@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        card_view:cardCornerRadius="5dp"
+        android:padding="@dimen/detail_body_padding"
+        android:id="@+id/cardview">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="7"
+                android:id="@+id/view_activity_body_data"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="7月"
+                android:id="@+id/view_activity_body_month"
+                android:layout_margin="10dp"
+                android:layout_below="@+id/view_activity_body_data"
+                android:layout_alignParentStart="true" />
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_margin="10dp"
+                android:layout_toEndOf="@+id/view_activity_body_month"
+                android:id="@+id/view_activity_body_recyclerview"/>
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>

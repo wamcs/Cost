@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/period_month"
+        android:title="@string/periodmonth"
+        android:orderInCategory="130">
+    </item>
+    <item
+        android:id="@+id/period_week"
+        android:title="@string/periodweek"
+        android:orderInCategory="120">
+    </item>
+    <item
+        android:id="@+id/period_day"
+        android:title="@string/periodday"
+        android:orderInCategory="110">
+    </item>
+    <item
+    android:id="@+id/period_twoweek"
+    android:title="@string/periodtwoweek"
+    android:orderInCategory="120">
+    </item>
+</menu>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageButton
+        android:layout_width="@dimen/view_nagitivation_lsize"
+        android:layout_height="@dimen/view_nagitivation_hsize"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/View_nagitivation_item_padding"
+        android:background="#85d0ff"
+        android:id="@+id/ngv_btn"
+        android:elevation="5dp"/>
+</LinearLayout>

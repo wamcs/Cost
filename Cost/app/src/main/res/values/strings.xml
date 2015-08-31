@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Cost</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="Navigation_open">open</string>
+    <string name="Navigation_close">close</string>
+
+    <string name="firstmenu">first</string>
+    <string name="secondmenu">second</string>
+    
+    <string name="income">收入:</string>
+    <string name="pay">支出:</string>
+
+    <string name="dialogtitle">账本设置</string>
+
+    <string name="periodno">一次性</string>
+    <string name="periodday">每天</string>
+    <string name="periodweek">每周</string>
+    <string name="periodtwoweek">每两周</string>
+    <string name="periodmonth">每月</string>
+    <string name="stateincome">收入</string>
+    <string name="statepay">支出</string>
+
+
+
+</resources>

@@ -1,0 +1,36 @@
+<?xml version="1.1" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.cost" >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".activity.Cost"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.BillWrite"/>
+        <activity android:name=".activity.BillDetail" />
+        <activity android:name=".activity.BillTable"/>
+        <activity android:name=".activity.Report"/>
+        <receiver android:name=".activity.Cost$BillChangeReceiver">
+            <intent-filter>
+                <action android:name="BILL_CHANGED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".service.TimeService$TimeChangedBroadReceiver">
+            <intent-filter>
+                <action android:name="TIME_CHANGE"/>
+            </intent-filter>
+        </receiver>
+        <service android:name=".service.TimeService"/>
+    </application>
+
+</manifest>

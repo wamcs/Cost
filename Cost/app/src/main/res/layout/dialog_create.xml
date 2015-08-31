@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入内容"
+        android:text="新建账本"
+        android:textSize="@dimen/dialog_title"
+        android:gravity="center"
+        android:id="@+id/dia_et"
+        android:layout_gravity="center_horizontal" />
+
+    <GridView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/dia_et"
+        android:numColumns="5"
+        android:id="@+id/dia_gv">
+
+    </GridView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dia_gv"
+        android:layout_alignParentStart="true">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="取消"
+            android:id="@+id/dia_negative_btn"
+            android:layout_weight="1"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="确定 "
+            android:id="@+id/dia_positive_btn"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

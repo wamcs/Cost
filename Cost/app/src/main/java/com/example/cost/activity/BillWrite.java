@@ -1,0 +1,344 @@
+package com.example.cost.activity;
+
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.GridView;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.PopupMenu;
+import android.widget.Switch;
+import android.widget.TextView;
+
+import com.example.cost.R;
+import com.example.cost.Util;
+import com.example.cost.adapter.ChooseAdapter;
+import com.example.cost.datebase.BillDateHelper;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+
+public class BillWrite extends AppCompatActivity {
+
+    private EditText getMoney;
+    private EditText getRemark;
+    private ImageButton cancel;
+    private TextView getLabel;
+    private TextView timetv;
+    private TextView periodtv;
+    private TextView statetv;
+    private Switch periodswitch;
+    private Switch stateswitch;
+    private ImageButton confirm;
+    private LinearLayout labellayout;
+    private LinearLayout timelayout;
+    private LinearLayout periodlayout;
+    private LinearLayout backgroudlayout;
+    private LinearLayout statelayout;
+    private BillDateHelper billDateHelper;
+    private int money;
+    private String content;
+    private String label;
+    private int year;
+    private int month;
+    private int date;
+    private int times;
+    private int recycleperiod;
+    private static int billID;
+    private static int billitemID;
+    private Intent change;
+    private String ShoppingName;
+    private int labelPosition;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_billwrite);
+        billID=getIntent().getIntExtra("billID",1);
+        billitemID=getIntent().getIntExtra("billitemID",0);
+        ShoppingName=getIntent().getStringExtra("ShoppingName");
+        billDateHelper=new BillDateHelper(this,"allbill.db",1);
+        init();
+        initDate(billitemID);
+        setListener();
+    }
+
+    public void init(){
+        getMoney= (EditText) findViewById(R.id.billwrite_getmoney);
+        getRemark= (EditText) findViewById(R.id.billwrite_getremark);
+        cancel= (ImageButton) findViewById(R.id.billwrite_return);
+        getLabel= (TextView) findViewById(R.id.billwrite_label);
+        timetv= (TextView) findViewById(R.id.billwrite_time);
+        periodtv= (TextView) findViewById(R.id.billwrite_period);
+        statetv= (TextView) findViewById(R.id.billwrite_state);
+        periodswitch= (Switch) findViewById(R.id.billwrite_period_switch);
+        stateswitch= (Switch) findViewById(R.id.billwrite_state_switch);
+        confirm= (ImageButton) findViewById(R.id.billwrite_confirm);
+        labellayout= (LinearLayout) findViewById(R.id.billwrite_label_layout);
+        timelayout= (LinearLayout) findViewById(R.id.billwrite_timelayout);
+        periodlayout= (LinearLayout) findViewById(R.id.billwrite_period_layout);
+        backgroudlayout= (LinearLayout) findViewById(R.id.billwrite_backgroud_layout);
+        statelayout= (LinearLayout) findViewById(R.id.billwrite_state_layout);
+        change=new Intent();
+        change.setAction("BILL_CHANGED");
+    }
+    public void getBilldate(){
+        money=Integer.parseInt(getMoney.getText().toString());
+        content=getRemark.getText().toString();
+        label=getLabel.getText().toString();
+    }
+    public void setListener(){
+        timelayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder datadialogbuilder=
+                        new AlertDialog.Builder(BillWrite.this);
+                View view= getLayoutInflater().inflate(R.layout.view_dialog_datepicker,null);
+                final DatePicker datePicker=
+                        (DatePicker) view.findViewById(R.id.view_dialog_datePicker);
+                datadialogbuilder.setView(view);
+                datePicker.setCalendarViewShown(false);
+                datadialogbuilder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        year=datePicker.getYear();
+                        month=datePicker.getMonth()+1;
+                        date=datePicker.getDayOfMonth();
+                        times=date+month*100+year*10000;
+                        timetv.setText(year+"/"+month+"/"+date);
+                        dialog.cancel();
+                    }
+                });
+                datadialogbuilder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                datadialogbuilder.create().show();
+
+            }
+        });
+        labellayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder=
+                        new AlertDialog.Builder(BillWrite.this);
+                View view= LayoutInflater.from(BillWrite.this).inflate(R.layout.view_label_choose,null);
+                ImageButton imageButton= (ImageButton)
+                        view.findViewById(R.id.label_choose_button);
+                GridView gridView= (GridView)
+                        view.findViewById(R.id.lable_gridview);
+                ChooseAdapter chooseAdapter=new ChooseAdapter(BillWrite.this);
+                chooseAdapter.setListener(new ChooseAdapter.positionListener() {
+                    @Override
+                    public void getPosition(int position) {
+                        labelPosition=position;
+                    }
+                });
+                gridView.setAdapter(chooseAdapter);
+                builder.setView(view);
+                final Dialog dialog=builder.create();
+                imageButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        getLabel.setText(Util.label[labelPosition]);
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
+            }
+        });
+
+        stateswitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(stateswitch.isChecked())
+                    statetv.setText(R.string.stateincome);
+                else
+                    statetv.setText(R.string.statepay);
+            }
+        });
+        periodswitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recycleperiod=Util.NOPERIOD;
+                if (periodswitch.isChecked()) {
+                    final PopupMenu pop = new PopupMenu(BillWrite.this, periodlayout);
+                    getMenuInflater().inflate(R.menu.bill_peroid_popmenu, pop.getMenu());
+                    pop.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            switch (item.getItemId()) {
+                                case R.id.period_month:
+                                    recycleperiod = Util.PRO_MONTH;
+                                    periodtv.setText(R.string.periodmonth);
+                                    pop.dismiss();
+                                    break;
+                                case R.id.period_week:
+                                    recycleperiod = Util.PRO_WEEK;
+                                    periodtv.setText(R.string.periodweek);
+                                    pop.dismiss();
+                                    break;
+                                case R.id.period_day:
+                                    recycleperiod = Util.PRO_DAY;
+                                    periodtv.setText(R.string.periodday);
+                                    pop.dismiss();
+                                    break;
+                                case R.id.period_twoweek:
+                                    recycleperiod = Util.TWO_WEEK;
+                                    periodtv.setText(R.string.periodtwoweek);
+                                    pop.dismiss();
+                                    break;
+                                default:
+                                    periodswitch.setChecked(false);
+
+                                    pop.dismiss();
+
+                            }
+                            return true;
+                        }
+                    });
+                    pop.show();
+                }else
+                    periodtv.setText(R.string.periodno);
+            }
+        });
+
+        confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(getMoney.getText().toString().equals("")||
+                        getRemark.getText().toString().equals("")){
+                    Snackbar.make(findViewById(android.R.id.content),"输入为空，请重新输入",Snackbar.LENGTH_SHORT).show();
+                }else
+                    dateCofirm();
+            }
+        });
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+    }
+
+
+    public void initDate(int billitemID){
+        if (billitemID<=0){
+            year=(int)billDateHelper.getTime().get("year");
+            month=(int)billDateHelper.getTime().get("month");
+            date=(int)billDateHelper.getTime().get("date");
+            times=date+month*100+year*10000;
+            recycleperiod=Util.NOPERIOD;
+            timetv.setText(year+"/"+month+"/"+date);
+            if(ShoppingName!=null)
+                getRemark.setText(ShoppingName);
+        }
+        else {
+            Map<String,Object> map=billDateHelper.getbillitem(billitemID);
+            String content=map.get("content").toString();
+            int income=Integer.parseInt(map.get("income").toString());
+            int pay=Integer.parseInt(map.get("pay").toString());
+            String label=map.get("label").toString();
+            recycleperiod=Integer.parseInt(map.get("period").toString());
+            year=Integer.parseInt(map.get("year").toString());
+            month=Integer.parseInt(map.get("month").toString());
+            date=Integer.parseInt(map.get("date").toString());
+            times=Integer.parseInt(map.get("time").toString());
+            timetv.setText(year+"/"+month+"/"+date);
+            getRemark.setText(content);
+            getLabel.setText(label);
+            if(income==0){
+                stateswitch.setChecked(false);
+                statetv.setText(getResources().getString(R.string.statepay));
+                getMoney.setText(pay+"");
+                money=pay;
+            }
+            else {
+                stateswitch.setChecked(true);
+                statetv.setText(getResources().getString(R.string.stateincome));
+                getMoney.setText(income+"");
+                money=income;
+            }
+            if(recycleperiod==Util.NOPERIOD){
+                periodswitch.setChecked(false);
+                periodtv.setText(getResources()
+                        .getString(billDateHelper.recycleTurntoString(recycleperiod)));
+            }
+            else {
+                periodswitch.setChecked(true);
+                periodtv.setText(getResources()
+                        .getString(billDateHelper.recycleTurntoString(recycleperiod)));
+            }
+        }
+    }
+
+    public void dateCofirm(){
+        getBilldate();
+        Map<String,Object> map=new HashMap<>();
+        map.put("content", content);
+        if(stateswitch.isChecked()){
+            map.put("income",money);
+            map.put("pay",0);
+        }
+        else{
+            map.put("income",0);
+            map.put("pay",money);
+        }
+        map.put("label",label);
+        map.put("color",billDateHelper.getcolor(label));
+        map.put("period",recycleperiod);
+        map.put("year",year);
+        map.put("month",month);
+        map.put("date",date);
+        map.put("week",billDateHelper.getTime().get("week"));
+        map.put("time",times);
+        map.put("billid",billID);
+        map.put("day",0);
+        if(billitemID<=0) {
+            billDateHelper.addbill(map);
+            if (periodswitch.isChecked())
+                billDateHelper.addrecycle(map);
+        }
+        else{
+            Map<String,Object> billmap=billDateHelper.getbillitem(billitemID);
+            if((int)billmap.get("period")==Util.NOPERIOD)
+            {
+                billDateHelper.updateBill(map,billitemID);
+                ArrayList<Integer> list=billDateHelper.getBillID(billmap);
+                for(int i=0;i<list.size();i++)
+                    billDateHelper.updateBillRecycle(map,list.get(i));
+                if(periodswitch.isChecked())
+                    billDateHelper.addrecycle(map);
+            }
+            else {
+                int recycleid = billDateHelper.getRecycleID(billmap);
+                billDateHelper.updateBill(map,billitemID);
+                ArrayList<Integer> list=billDateHelper.getBillID(billmap);
+                for(int i=0;i<list.size();i++)
+                    billDateHelper.updateBillRecycle(map,list.get(i));
+                if (periodswitch.isChecked())
+                    billDateHelper.updateRecycle(map, recycleid);
+                else
+                    billDateHelper.deleterecycle(recycleid);
+            }
+        }
+        sendBroadcast(change);
+        finish();
+    }
+}
