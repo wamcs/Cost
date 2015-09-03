@@ -12,11 +12,13 @@
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.BillWrite"/>
+        <activity
+            android:name=".activity.BillWrite"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.TransparentActivity"/>
         <activity android:name=".activity.BillDetail" />
         <activity android:name=".activity.BillTable"/>
         <activity android:name=".activity.Report"/>

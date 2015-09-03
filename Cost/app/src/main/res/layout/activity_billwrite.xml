@@ -1,62 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
+    android:orientation="vertical"
+    >
+    <com.example.cost.contrl.RevealCircleBackgroud
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/billwrite_reveal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/activity_billwrite_height"
-        android:orientation="vertical"
-        android:background="@color/style_color_primary"
-        android:elevation="10dp"
-        android:id="@+id/billwrite_backgroud_layout">
-        <RelativeLayout
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:id="@+id/billwrite_return"
-                android:background="@color/style_color_primary"
-                android:src="@drawable/ic_launcher"
-                android:layout_margin="10dp"/>
-            <ImageButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:id="@+id/billwrite_confirm"
-                android:background="@color/style_color_primary"
-                android:src="@drawable/ic_launcher"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_alignTop="@+id/billwrite_return"
-                android:layout_alignParentEnd="true" />
-        </RelativeLayout>
+            android:layout_height="@dimen/activity_billwrite_height"
+            android:orientation="vertical"
+            android:background="@color/style_color_primary"
+            android:elevation="10dp"
+            android:id="@+id/billwrite_backgroud_layout">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageButton
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/billwrite_return"
+                    android:background="@color/style_color_primary"
+                    android:src="@drawable/ic_launcher"
+                    android:layout_margin="10dp"/>
+                <ImageButton
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/billwrite_confirm"
+                    android:background="@color/style_color_primary"
+                    android:src="@drawable/ic_launcher"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignTop="@+id/billwrite_return"
+                    android:layout_alignParentEnd="true" />
+            </RelativeLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                app:errorEnabled="true">
+                <EditText
+                    android:layout_width="@dimen/activity_billwrite_edittext_weight"
+                    android:layout_height="@dimen/activity_billwrite_edittext_height"
+                    android:id="@+id/billwrite_getmoney"
+                    android:layout_gravity="center_horizontal"
+                    android:hint="金额"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    />
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                app:errorEnabled="true">
+                <EditText
+                    android:layout_width="@dimen/activity_billwrite_edittext_weight"
+                    android:layout_height="@dimen/activity_billwrite_edittext_height"
+                    android:id="@+id/billwrite_getremark"
+                    android:hint="备注..."
+                    android:ems="10"
+                    android:singleLine="true"/>
+            </android.support.design.widget.TextInputLayout>
 
-        <EditText
-            android:layout_width="@dimen/activity_billwrite_edittext_weight"
-            android:layout_height="@dimen/activity_billwrite_edittext_height"
-            android:id="@+id/billwrite_getmoney"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="40dp"
-            android:hint="￥   100.00"
-            android:ems="10"
-            android:inputType="number"
-            android:singleLine="true"
-            />
-
-        <EditText
-            android:layout_width="@dimen/activity_billwrite_edittext_weight"
-            android:layout_height="@dimen/activity_billwrite_edittext_height"
-            android:id="@+id/billwrite_getremark"
-            android:layout_gravity="center_horizontal"
-            android:hint="备注..."
-            android:ems="10"
-            android:singleLine="true"/>
-
-    </LinearLayout>
-
-    <LinearLayout
+        </LinearLayout>
+        <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -193,3 +213,4 @@
             />
     </LinearLayout>
 </LinearLayout>
+</RelativeLayout>

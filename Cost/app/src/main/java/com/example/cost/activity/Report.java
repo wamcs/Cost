@@ -11,7 +11,7 @@ import com.example.cost.datebase.BillDateHelper;
 
 import java.util.Calendar;
 
-public class Report extends AppCompatActivity {
+public class Report extends BaseActivity {
 
     private int billid;
     private TextView dateIncomeTv;

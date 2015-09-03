@@ -1,5 +1,8 @@
 package com.example.cost.activity;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,20 +13,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewTreeObserver;
+import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.OvershootInterpolator;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
+import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.cost.R;
 import com.example.cost.Util;
 import com.example.cost.adapter.ChooseAdapter;
+import com.example.cost.contrl.RevealCircleBackgroud;
 import com.example.cost.datebase.BillDateHelper;
 
 import java.util.ArrayList;
@@ -31,7 +39,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class BillWrite extends AppCompatActivity {
+public class BillWrite extends BaseActivity {
 
     private EditText getMoney;
     private EditText getRemark;
@@ -49,6 +57,7 @@ public class BillWrite extends AppCompatActivity {
     private LinearLayout backgroudlayout;
     private LinearLayout statelayout;
     private BillDateHelper billDateHelper;
+    private RevealCircleBackgroud revealCircleBackgroud;
     private int money;
     private String content;
     private String label;
@@ -72,6 +81,7 @@ public class BillWrite extends AppCompatActivity {
         ShoppingName=getIntent().getStringExtra("ShoppingName");
         billDateHelper=new BillDateHelper(this,"allbill.db",1);
         init();
+        setupRevealCircleBackgroud();
         initDate(billitemID);
         setListener();
     }
@@ -92,14 +102,17 @@ public class BillWrite extends AppCompatActivity {
         periodlayout= (LinearLayout) findViewById(R.id.billwrite_period_layout);
         backgroudlayout= (LinearLayout) findViewById(R.id.billwrite_backgroud_layout);
         statelayout= (LinearLayout) findViewById(R.id.billwrite_state_layout);
+        revealCircleBackgroud= (RevealCircleBackgroud) findViewById(R.id.billwrite_reveal);
         change=new Intent();
         change.setAction("BILL_CHANGED");
     }
+
     public void getBilldate(){
         money=Integer.parseInt(getMoney.getText().toString());
         content=getRemark.getText().toString();
         label=getLabel.getText().toString();
     }
+
     public void setListener(){
         timelayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -237,7 +250,6 @@ public class BillWrite extends AppCompatActivity {
 
     }
 
-
     public void initDate(int billitemID){
         if (billitemID<=0){
             year=(int)billDateHelper.getTime().get("year");
@@ -340,5 +352,56 @@ public class BillWrite extends AppCompatActivity {
         }
         sendBroadcast(change);
         finish();
+    }
+
+    public void setupRevealCircleBackgroud() {
+        revealCircleBackgroud.setListener(new RevealCircleBackgroud.onStateListener() {
+            @Override
+            public void onStateChange(int state) {
+                if (RevealCircleBackgroud.STATE_FILL_FINISHED == state) {
+                    backgroudlayout.animate().translationY(0)
+                            .setDuration(800).setStartDelay(0).start();
+                    labellayout.animate().translationX(0).setInterpolator(new OvershootInterpolator(1.f))
+                            .setDuration(800).setStartDelay(200).start();
+                    timelayout.animate().translationX(0).setInterpolator(new OvershootInterpolator(1.f))
+                            .setDuration(800).setStartDelay(300).start();
+                    periodlayout.animate().translationX(0).setInterpolator(new OvershootInterpolator(1.f))
+                            .setDuration(800).setStartDelay(400).setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            periodswitch.animate().alpha(1.0f).setStartDelay(200)
+                                    .setDuration(300).start();
+                        }
+                    }).start();
+                    statelayout.animate().translationX(0).setInterpolator(new OvershootInterpolator(1.f))
+                            .setDuration(800).setStartDelay(500).setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            stateswitch.animate().alpha(1.0f).setStartDelay(100)
+                                    .setDuration(300).start();
+                        }
+                    }).start();
+                } else {
+                    int backHeight = getResources().getDimensionPixelSize(R.dimen.activity_billwrite_height);
+                    backgroudlayout.setTranslationY(-Util.dpToPx(backHeight));
+                    labellayout.setTranslationX(-Util.width);
+                    periodlayout.setTranslationX(-Util.width);
+                    timelayout.setTranslationX(2 * Util.width);
+                    statelayout.setTranslationX(2 * Util.width);
+                    periodswitch.setAlpha(0.0f);
+                    stateswitch.setAlpha(0.0f);
+                }
+            }
+        });
+        final int[] location = getIntent().getIntArrayExtra("location");
+        revealCircleBackgroud.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                revealCircleBackgroud.getViewTreeObserver().removeOnPreDrawListener(this);
+                revealCircleBackgroud.startFromLocation(location);
+                return true;
+            }
+        });
+
     }
 }
