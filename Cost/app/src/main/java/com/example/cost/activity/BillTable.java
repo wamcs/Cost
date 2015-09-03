@@ -22,7 +22,7 @@ import com.example.cost.fragment.PieCharFragment;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class BillTable extends BaseActivity{
+public class BillTable extends AppCompatActivity{
 
     private TabLayout tabLayout;
     private ViewPager viewPager;

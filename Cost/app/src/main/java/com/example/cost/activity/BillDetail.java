@@ -3,7 +3,6 @@ package com.example.cost.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
@@ -18,7 +17,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BillDetail extends BaseActivity{
+public class BillDetail extends AppCompatActivity{
     private ImageButton editfab;
     private ImageButton deletebtn;
     private ImageButton returnbtn;
@@ -123,18 +122,8 @@ public class BillDetail extends BaseActivity{
         editfab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int[] location=new int[2];
-                v.getLocationOnScreen(location);
-                location[0]+=v.getWidth()/2;
-                intent.putExtra("location",location);
                 startActivity(intent);
-                overridePendingTransition(0,0);
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        finish();
-                    }
-                },500);
+                finish();
             }
         });
     }
