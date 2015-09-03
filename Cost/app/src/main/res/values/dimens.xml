@@ -28,7 +28,7 @@
     <dimen name="dialog_radio_pic_hsize">90dp</dimen>
     <dimen name="dialog_radio_pic_pad">3dp</dimen>
 
-    <dimen name="activity_billwrite_height">250dp</dimen>
+    <dimen name="activity_billwrite_height">256dp</dimen>
     <dimen name="activity_billwrite_edittext_height">50dp</dimen>
     <dimen name="activity_billwrite_edittext_weight">300dp</dimen>
     <dimen name="activity_billwrite_item_height">50dp</dimen>

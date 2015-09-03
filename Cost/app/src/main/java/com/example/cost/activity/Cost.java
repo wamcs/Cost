@@ -47,7 +47,7 @@ import java.util.concurrent.Executors;
 
 
 
-public class Cost extends AppCompatActivity {
+public class Cost extends BaseActivity {
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private BillDateHelper billDateHelper;
@@ -124,6 +124,11 @@ public class Cost extends AppCompatActivity {
                 Util.isInitialize=true;
             }
         },1000);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         if(isChanged) {
             es.execute(new BaseThread());
             isChanged = false;
@@ -135,6 +140,7 @@ public class Cost extends AppCompatActivity {
         super.onStop();
         Util.isInitialize=false;
     }
+
 
     @Override
     protected void onDestroy() {
@@ -222,8 +228,13 @@ public class Cost extends AppCompatActivity {
             public void onClick(View v) {
                 int ID=getSharedPreferences("billselect",
                         Context.MODE_PRIVATE).getInt("selectedID",1);
-                tobillwrite.putExtra("billID",ID);
+                tobillwrite.putExtra("billID", ID);
+                int[] location=new int[2];
+                v.getLocationOnScreen(location);
+                location[0]+=v.getWidth()/2;
+                tobillwrite.putExtra("location", location);
                 startActivity(tobillwrite);
+                overridePendingTransition(0, 0);
             }
         });
     }
@@ -368,6 +379,7 @@ public class Cost extends AppCompatActivity {
         cursor.close();
         return pay;
     }
+
     public void initData(){
         if(!namelist.isEmpty())
         namelist.clear();
@@ -381,7 +393,6 @@ public class Cost extends AppCompatActivity {
         }
         cursor.close();
     }
-
 
     public class BaseThread implements Runnable{
 
