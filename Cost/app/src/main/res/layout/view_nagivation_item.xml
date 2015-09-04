@@ -34,23 +34,21 @@
     </RelativeLayout>
 
     <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:id="@+id/ngv_item_mod"
-        android:background="@drawable/ic_launcher"
-        android:visibility="invisible"
+        android:src="@mipmap/ic_edit_white_36dp"
         android:focusable="false"
         android:layout_alignTop="@+id/ngv_item_del"
         android:layout_toEndOf="@+id/relativeLayout2" />
 
     <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:id="@+id/ngv_item_del"
-        android:background="@drawable/ic_launcher"
-        android:visibility="invisible"
+        android:src="@mipmap/ic_cancel_white_36dp"
         android:focusable="false"
-        android:layout_marginBottom="32dp"
-        android:layout_alignBottom="@+id/relativeLayout2"
-        android:layout_toStartOf="@+id/relativeLayout2" />
+        android:layout_alignTop="@+id/relativeLayout2"
+        android:layout_toStartOf="@+id/relativeLayout2"
+        android:layout_marginTop="45dp" />
 </RelativeLayout>

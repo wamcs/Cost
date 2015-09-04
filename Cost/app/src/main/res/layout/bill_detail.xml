@@ -2,17 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <com.example.cost.contrl.RevealCircleBackgroud
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/bill_detail_reveal"/>
 
-    <ImageButton
-        android:layout_width="@dimen/fab_size"
-        android:layout_height="@dimen/fab_size"
-        android:id="@+id/bill_detail_fab"
-        android:elevation="@dimen/default_elevation"
-        android:background="@drawable/btn_fab"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="@dimen/bill_detail_fab_rightpadding"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="@dimen/bill_detail_fab_toppadding"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,18 +15,19 @@
         android:id="@+id/linearLayout">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+           >
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/bill_detail_return"
-                android:src="@drawable/ic_launcher"
+                android:src="@mipmap/ic_arrow_back_white_36dp"
                 android:layout_margin="10dp"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/bill_detail_delete"
-                android:src="@drawable/ic_launcher"
+                android:src="@mipmap/ic_delete_white_36dp"
                 android:layout_marginEnd="10dp"
                 android:layout_alignTop="@+id/bill_detail_return"
                 android:layout_alignParentEnd="true" />
@@ -40,11 +35,9 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="@dimen/bill_detail_image"
-            android:id="@+id/bill_detail_imageview"
             />
 
     </LinearLayout>
-
 
 
     <LinearLayout
@@ -52,7 +45,8 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/linearLayout"
         android:orientation="vertical"
-
+        android:id="@+id/bill_detail_layout"
+        android:background="#FFF"
         >
         <LinearLayout
             android:orientation="horizontal"
@@ -63,7 +57,8 @@
             <ImageView
                 android:layout_height="@dimen/bill_detail_item_height"
                 android:layout_width="@dimen/bill_detail_item_weight"
-                android:layout_margin="@dimen/bill_detail_item_pad"/>
+                android:layout_margin="@dimen/bill_detail_item_pad"
+                />
             <LinearLayout
                 android:layout_width="@dimen/bill_detail_item_detail_weight"
                 android:layout_height="match_parent"
@@ -95,7 +90,9 @@
             <ImageView
                 android:layout_height="@dimen/bill_detail_item_height"
                 android:layout_width="@dimen/bill_detail_item_weight"
-                android:layout_margin="@dimen/bill_detail_item_pad"/>
+                android:layout_margin="@dimen/bill_detail_item_pad"
+                android:src="@mipmap/ic_bookmark_outline_grey600_36dp"
+                />
             <LinearLayout
                 android:layout_width="@dimen/bill_detail_item_detail_weight"
                 android:layout_height="match_parent"
@@ -124,7 +121,8 @@
             <ImageView
                 android:layout_height="@dimen/bill_detail_item_height"
                 android:layout_width="@dimen/bill_detail_item_weight"
-                android:layout_margin="@dimen/bill_detail_item_pad"/>
+                android:layout_margin="@dimen/bill_detail_item_pad"
+                android:src="@mipmap/ic_query_builder_grey600_36dp"/>
             <LinearLayout
                 android:layout_width="@dimen/bill_detail_item_detail_weight"
                 android:layout_height="match_parent"
@@ -205,6 +203,17 @@
 
         </LinearLayout>
     </LinearLayout>
+
+    <ImageButton
+        android:layout_width="@dimen/fab_size"
+        android:layout_height="@dimen/fab_size"
+        android:id="@+id/bill_detail_fab"
+        android:elevation="@dimen/default_elevation"
+        android:background="@drawable/btn_fab"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/bill_detail_fab_rightpadding"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/bill_detail_fab_toppadding"/>
 
 
 </RelativeLayout>

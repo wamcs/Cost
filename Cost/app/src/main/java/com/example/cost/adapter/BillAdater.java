@@ -1,5 +1,6 @@
 package com.example.cost.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 
 import com.example.cost.Util;
@@ -26,11 +27,13 @@ public class BillAdater extends RecyclerView.Adapter<BillAdater.ViewHolderBody>{
     private Map<Integer,ArrayList<Map<String,Object>>> date;
     private Context context;
     private ArrayList<Integer> time;
+    private Activity activity;
     public BillAdater(Context context,ArrayList<Integer> time,
-                      Map<Integer,ArrayList<Map<String,Object>>> date){
+                      Map<Integer,ArrayList<Map<String,Object>>> date,Activity activity){
         this.context=context;
         this.date=date;
         this.time=time;
+        this.activity=activity;
     }
 
     @Override
@@ -52,7 +55,7 @@ public class BillAdater extends RecyclerView.Adapter<BillAdater.ViewHolderBody>{
         LinerLayoutManager linearLayoutManager=new LinerLayoutManager(context);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         viewHolderBody.recyclerView.setLayoutManager(linearLayoutManager);
-        BodyItemAdapter bodyItemAdapter=new BodyItemAdapter(context,recycledate);
+        BodyItemAdapter bodyItemAdapter=new BodyItemAdapter(context,recycledate,activity);
         viewHolderBody.recyclerView.setAdapter(bodyItemAdapter);
         if(!Util.isInitialize)
             onStratAnimation(viewHolderBody,position);

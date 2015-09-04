@@ -7,7 +7,13 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/view_shoppinglist_addbtn_height"
         android:id="@+id/view_shoppinglist_addbtn"
+        android:background="@color/shoppinglist_color"
+        android:src="@mipmap/ic_add_white_36dp"
         android:layout_gravity="center_horizontal" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/style_color_accent"/>
 
     <ListView
         android:layout_width="match_parent"

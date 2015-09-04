@@ -1,5 +1,6 @@
 package com.example.cost.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.cost.R;
+import com.example.cost.Util;
 import com.example.cost.activity.BillDetail;
 import com.example.cost.activity.Cost;
 
@@ -24,9 +26,11 @@ public class BodyItemAdapter extends RecyclerView.Adapter<BodyItemAdapter.BillVi
     private ArrayList<Map<String,Object>> datalsit;
     private int length;
     private Intent intent;
-    public BodyItemAdapter(Context context, ArrayList<Map<String, Object>> datalsit){
+    private Activity activity;
+    public BodyItemAdapter(Context context, ArrayList<Map<String, Object>> datalsit,Activity activity){
         this.context=context;
         this.datalsit=datalsit;
+        this.activity=activity;
         length=datalsit.size();
     }
 
@@ -43,6 +47,8 @@ public class BodyItemAdapter extends RecyclerView.Adapter<BodyItemAdapter.BillVi
 
     @Override
     public void onBindViewHolder(BillViewHolder holder, final int position){
+        holder.content.setWidth(Util.width/3);
+        holder.money.setWidth(Util.width/3);
         holder.content.setText(datalsit.get(length-1-position).get("content").toString());
         if((int)datalsit.get(length-1-position).get("income")==0)
             holder.money.setText(datalsit.get(length-1-position).get("pay").toString());
@@ -55,8 +61,13 @@ public class BodyItemAdapter extends RecyclerView.Adapter<BodyItemAdapter.BillVi
             @Override
             public void onClick(View v) {
                 intent=new Intent(context,BillDetail.class);
-                intent.putExtra("billitemID",(int)datalsit.get(length-1-position).get("ID"));
-                context.startActivity(intent);
+                intent.putExtra("billitemID", (int) datalsit.get(length - 1 - position).get("ID"));
+                int[] location=new int[2];
+                v.getLocationOnScreen(location);
+                location[0]+=v.getWidth()/2;
+                intent.putExtra("location", location);
+                activity.startActivity(intent);
+                activity.overridePendingTransition(0,0);
             }
         });
 

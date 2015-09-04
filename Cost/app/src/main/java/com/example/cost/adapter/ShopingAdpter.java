@@ -108,6 +108,9 @@ public class ShopingAdpter extends BaseAdapter {
             public void onClick(View v) {
                 Intent intent=new Intent(context, BillWrite.class);
                 intent.putExtra("ShoppingName",viewHolder.editText.getText().toString());
+                int[] location=new int[2];
+                v.getLocationOnScreen(location);
+                intent.putExtra("location", location);
                 context.startActivity(intent);
                 connection.change(idlist.get(position));
             }

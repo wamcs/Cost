@@ -60,7 +60,7 @@ public class RevealCircleBackgroud extends View {
     }
 
     public void setPaintColor(int Color){
-        fillPaint.setColor(Color);
+        fillPaint.setColor(getResources().getColor(Color));
     }
 
     public void startFromLocation(int[] location){

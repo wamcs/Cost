@@ -309,7 +309,6 @@ public class Cost extends BaseActivity {
         return date;
     }
 
-
     public ArrayList<Integer> getTime(int id){
         ArrayList<Integer> time=new ArrayList<>();
         SQLiteDatabase db=billDateHelper.getWritableDatabase();
@@ -405,7 +404,7 @@ public class Cost extends BaseActivity {
                     titletv.setText(title);
                     incometv.setText(income);
                     paytv.setText(pay);
-                    recyclerView.setAdapter(new BillAdater(Cost.this,time,date));
+                    recyclerView.setAdapter(new BillAdater(Cost.this,time,date,Cost.this));
                 }
             });
         }
@@ -423,6 +422,7 @@ public class Cost extends BaseActivity {
         fab.setTranslationY(getResources().getDimensionPixelOffset(R.dimen.fab_size)+
         getResources().getDimensionPixelOffset(R.dimen.fab_margin));
         int actionbarSize = Util.dpToPx(56);
+        Log.e("TAG",Util.dpToPx(40)+"");
         DisplayMetrics displayMetrics=this.getResources().getDisplayMetrics();
         int width=displayMetrics.widthPixels;
         backgroud.setTranslationX(-width);
@@ -470,6 +470,7 @@ public class Cost extends BaseActivity {
                 })
                 .start();
     }
+
 
 }
 

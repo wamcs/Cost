@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -190,7 +191,7 @@ public class BillWrite extends BaseActivity {
             public void onClick(View v) {
                 recycleperiod=Util.NOPERIOD;
                 if (periodswitch.isChecked()) {
-                    final PopupMenu pop = new PopupMenu(BillWrite.this, periodlayout);
+                    final PopupMenu pop = new PopupMenu(BillWrite.this,periodswitch);
                     getMenuInflater().inflate(R.menu.bill_peroid_popmenu, pop.getMenu());
                     pop.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         @Override
@@ -218,13 +219,13 @@ public class BillWrite extends BaseActivity {
                                     break;
                                 default:
                                     periodswitch.setChecked(false);
-
                                     pop.dismiss();
 
                             }
                             return true;
                         }
                     });
+
                     pop.show();
                 }else
                     periodtv.setText(R.string.periodno);

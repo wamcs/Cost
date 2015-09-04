@@ -19,7 +19,9 @@
             android:name=".activity.BillWrite"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.TransparentActivity"/>
-        <activity android:name=".activity.BillDetail" />
+        <activity android:name=".activity.BillDetail"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.TransparentActivity"/>
         <activity android:name=".activity.BillTable"/>
         <activity android:name=".activity.Report"/>
         <receiver android:name=".activity.Cost$BillChangeReceiver">

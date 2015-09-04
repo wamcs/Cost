@@ -126,14 +126,14 @@ public class NagivationAdapter extends BaseAdapter {
             } else {
                 viewHolder = (NagivationAdapter.viewHolder) convertView.getTag();
             }
-            viewHolder.title.setText(namelist.get(position-1));
+            viewHolder.title.setText(namelist.get(position - 1));
             viewHolder.itembutton.setBackground(context.getResources().getDrawable(
-                    coverpictures.get(coverlist.get(position-1))));
-            viewHolder.modbutton.setVisibility(View.INVISIBLE);
+                    coverpictures.get(coverlist.get(position - 1))));
+            viewHolder.modbutton.setAlpha(0.0f);
             viewHolder.modbutton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    final CreateDialog dialog = new CreateDialog(context,coverlist.get(position-1));
+                    final CreateDialog dialog = new CreateDialog(context, coverlist.get(position - 1));
                     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                     dialog.show();
                     dialog.setListenerInterface(new CreateDialog.listenerInterface() {
@@ -156,7 +156,7 @@ public class NagivationAdapter extends BaseAdapter {
                     });
                 }
             });
-            viewHolder.delbutton.setVisibility(View.INVISIBLE);
+            viewHolder.delbutton.setAlpha(0.0f);
             viewHolder.delbutton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -213,8 +213,8 @@ public class NagivationAdapter extends BaseAdapter {
                                                              @Override
                                                              public void onClick(View v) {
                                                                  if(lastposition!=null) {
-                                                                     lastposition.delbutton.setVisibility(View.INVISIBLE);
-                                                                     lastposition.modbutton.setVisibility(View.INVISIBLE);
+                                                                     lastposition.delbutton.setAlpha(0.0f);
+                                                                     lastposition.modbutton.setAlpha(0.0f);
                                                                  }
                                                                  context.getSharedPreferences("billselect",
                                                                          Context.MODE_PRIVATE).edit().putInt("selectedID", ID.get(position - 1))
@@ -228,12 +228,12 @@ public class NagivationAdapter extends BaseAdapter {
                                                                  @Override
                                                                  public boolean onLongClick(View v) {
                                                                      if(lastposition!=null) {
-                                                                         lastposition.delbutton.setVisibility(View.INVISIBLE);
-                                                                         lastposition.modbutton.setVisibility(View.INVISIBLE);
+                                                                         lastposition.delbutton.setAlpha(0.0f);
+                                                                         lastposition.modbutton.setAlpha(0.0f);
                                                                      }
                                                                      lastposition=viewHolder;
-                                                                     viewHolder.modbutton.setVisibility(View.VISIBLE);
-                                                                     viewHolder.delbutton.setVisibility(View.VISIBLE);
+                                                                     viewHolder.modbutton.animate().setDuration(200).alpha(1.0f).start();
+                                                                     viewHolder.delbutton.animate().setDuration(200).alpha(1.0f).start();
                                                                      return true;
                                                                  }
                                                              }
@@ -244,8 +244,8 @@ public class NagivationAdapter extends BaseAdapter {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction()==MotionEvent.ACTION_DOWN&&lastposition!=null) {
-                    lastposition.delbutton.setVisibility(View.INVISIBLE);
-                    lastposition.modbutton.setVisibility(View.INVISIBLE);
+                    lastposition.delbutton.setAlpha(0.0f);
+                    lastposition.modbutton.setAlpha(0.0f);
                 }
                 return false;
             }

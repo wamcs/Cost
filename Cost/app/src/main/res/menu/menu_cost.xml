@@ -2,10 +2,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".Cost">
-    <item android:id="@+id/action_settings"
-        android:title="@string/action_settings"
-        android:orderInCategory="100"
-        app:showAsAction="never" />
     <item
         android:id="@+id/first"
         android:title="@string/firstmenu"
@@ -18,5 +14,5 @@
         android:title="@string/secondmenu"
         app:showAsAction="ifRoom"
         android:orderInCategory="90"
-        android:icon="@drawable/ic_launcher"/>
+        android:icon="@drawable/img_chart"/>
 </menu>
