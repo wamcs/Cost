@@ -118,7 +118,7 @@ public class ShopingAdpter extends BaseAdapter {
         parent.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction()==MotionEvent.ACTION_DOWN&&last!=null){
+                if(event.getAction()==MotionEvent.ACTION_DOWN&&last!=null&&lastposition<idlist.size()){
                     billDateHelper.updateShopping(last.editText.getText().toString(),idlist.get(lastposition));
                     last.editText.setFocusableInTouchMode(false);
                     last.editText.setFocusable(false);

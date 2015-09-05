@@ -36,7 +36,9 @@
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:id="@+id/view_shoppinglist_imagebutton"
-            android:visibility="invisible"/>
+            android:visibility="invisible"
+            android:background="@color/shoppinglist_color"
+            android:src="@mipmap/ic_cancel_white_36dp"/>
     </LinearLayout>
 
 </LinearLayout>

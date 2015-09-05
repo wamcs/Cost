@@ -33,7 +33,9 @@
     <color name="main_color">#2d5d82</color>
     <color name="shallow_color">#01bcd5</color>
 
-
-
+    <color name="report_year_color">#31648c</color>
+    <color name="report_month_color">#3a7aab</color>
+    <color name="report_week_color">#4590ca</color>
+    <color name="report_date_color">#50a5e7</color>
 
 </resources>

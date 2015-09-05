@@ -17,8 +17,11 @@
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:id="@+id/view_shoppinglist_listview"
         android:layout_gravity="center_horizontal"
-        android:background="@color/shoppinglist_color"/>
+        android:background="@color/shoppinglist_color"
+        android:headerDividersEnabled="false"
+        android:dividerHeight="0dp"
+        android:footerDividersEnabled="false"/>
 </LinearLayout>

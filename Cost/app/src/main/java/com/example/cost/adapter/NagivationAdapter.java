@@ -130,6 +130,7 @@ public class NagivationAdapter extends BaseAdapter {
             viewHolder.itembutton.setBackground(context.getResources().getDrawable(
                     coverpictures.get(coverlist.get(position - 1))));
             viewHolder.modbutton.setAlpha(0.0f);
+            viewHolder.modbutton.setVisibility(View.INVISIBLE);
             viewHolder.modbutton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -157,6 +158,7 @@ public class NagivationAdapter extends BaseAdapter {
                 }
             });
             viewHolder.delbutton.setAlpha(0.0f);
+            viewHolder.delbutton.setVisibility(View.INVISIBLE);
             viewHolder.delbutton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -209,35 +211,42 @@ public class NagivationAdapter extends BaseAdapter {
                 }
 
                 );
-                viewHolder.itembutton.setOnClickListener(new View.OnClickListener() {
-                                                             @Override
-                                                             public void onClick(View v) {
-                                                                 if(lastposition!=null) {
-                                                                     lastposition.delbutton.setAlpha(0.0f);
-                                                                     lastposition.modbutton.setAlpha(0.0f);
-                                                                 }
-                                                                 context.getSharedPreferences("billselect",
-                                                                         Context.MODE_PRIVATE).edit().putInt("selectedID", ID.get(position - 1))
-                                                                         .commit();
-                                                                 mainChanged.changed(ID.get(position - 1));
-                                                             }
-                                                         }
-
+                viewHolder.itembutton.setOnClickListener(
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                if(lastposition!=null) {
+                                    lastposition.delbutton.setAlpha(0.0f);
+                                    lastposition.modbutton.setAlpha(0.0f);
+                                    lastposition.modbutton.setVisibility(View.INVISIBLE);
+                                    lastposition.delbutton.setVisibility(View.INVISIBLE);
+                                }
+                                context.getSharedPreferences("billselect",
+                                        Context.MODE_PRIVATE).edit().putInt("selectedID", ID.get(position - 1))
+                                        .commit();
+                                mainChanged.changed(ID.get(position - 1));
+                            }
+                        }
                 );
-                viewHolder.itembutton.setOnLongClickListener(new View.OnLongClickListener() {
-                                                                 @Override
-                                                                 public boolean onLongClick(View v) {
-                                                                     if(lastposition!=null) {
-                                                                         lastposition.delbutton.setAlpha(0.0f);
-                                                                         lastposition.modbutton.setAlpha(0.0f);
-                                                                     }
-                                                                     lastposition=viewHolder;
-                                                                     viewHolder.modbutton.animate().setDuration(200).alpha(1.0f).start();
-                                                                     viewHolder.delbutton.animate().setDuration(200).alpha(1.0f).start();
-                                                                     return true;
-                                                                 }
-                                                             }
+                viewHolder.itembutton.setOnLongClickListener(
+                        new View.OnLongClickListener() {
+                            @Override
+                            public boolean onLongClick(View v) {
+                                if(lastposition!=null) {
+                                    lastposition.delbutton.setAlpha(0.0f);
+                                    lastposition.modbutton.setAlpha(0.0f);
+                                    lastposition.modbutton.setVisibility(View.INVISIBLE);
+                                    lastposition.delbutton.setVisibility(View.INVISIBLE);
+                                }
+                                lastposition=viewHolder;
+                                viewHolder.modbutton.setVisibility(View.VISIBLE);
+                                viewHolder.delbutton.setVisibility(View.VISIBLE);
+                                viewHolder.modbutton.animate().setDuration(200).alpha(1.0f).start();
+                                viewHolder.delbutton.animate().setDuration(200).alpha(1.0f).start();
 
+                                return true;
+                            }
+                        }
                 );
             }
         parent.setOnTouchListener(new View.OnTouchListener() {
@@ -246,6 +255,8 @@ public class NagivationAdapter extends BaseAdapter {
                 if (event.getAction()==MotionEvent.ACTION_DOWN&&lastposition!=null) {
                     lastposition.delbutton.setAlpha(0.0f);
                     lastposition.modbutton.setAlpha(0.0f);
+                    lastposition.modbutton.setVisibility(View.INVISIBLE);
+                    lastposition.delbutton.setVisibility(View.INVISIBLE);
                 }
                 return false;
             }
