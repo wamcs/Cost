@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,26 +47,26 @@ public class BodyItemAdapter extends RecyclerView.Adapter<BodyItemAdapter.BillVi
     @Override
     public void onBindViewHolder(BillViewHolder holder, final int position){
         holder.content.setWidth(Util.width/3);
-        holder.money.setWidth(Util.width/3);
-        holder.content.setText(datalsit.get(length-1-position).get("content").toString());
+        holder.money.setWidth(Util.width / 3);
+        holder.content.setText(datalsit.get(length - 1 - position).get("content").toString());
         if((int)datalsit.get(length-1-position).get("income")==0)
             holder.money.setText(datalsit.get(length-1-position).get("pay").toString());
         else
             holder.money.setText(datalsit.get(length - 1 - position).get("income").toString());
 
         holder.linearLayout.setBackgroundColor(context.getResources().
-                getColor((int)datalsit.get(length-1-position).get("color")));
+                getColor((Integer) datalsit.get(length-1-position).get("color")));
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent=new Intent(context,BillDetail.class);
+                intent = new Intent(context, BillDetail.class);
                 intent.putExtra("billitemID", (int) datalsit.get(length - 1 - position).get("ID"));
-                int[] location=new int[2];
+                int[] location = new int[2];
                 v.getLocationOnScreen(location);
-                location[0]+=v.getWidth()/2;
+                location[0] += v.getWidth() / 2;
                 intent.putExtra("location", location);
                 activity.startActivity(intent);
-                activity.overridePendingTransition(0,0);
+                activity.overridePendingTransition(0, 0);
             }
         });
 

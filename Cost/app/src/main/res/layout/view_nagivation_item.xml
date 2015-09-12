@@ -39,6 +39,7 @@
         android:id="@+id/ngv_item_mod"
         android:src="@mipmap/ic_edit_white_36dp"
         android:focusable="false"
+        android:background="@color/style_color_primary"
         android:layout_alignTop="@+id/ngv_item_del"
         android:layout_toEndOf="@+id/relativeLayout2" />
 
@@ -47,6 +48,7 @@
         android:layout_height="40dp"
         android:id="@+id/ngv_item_del"
         android:src="@mipmap/ic_cancel_white_36dp"
+        android:background="@color/style_color_primary"
         android:focusable="false"
         android:layout_alignTop="@+id/relativeLayout2"
         android:layout_toStartOf="@+id/relativeLayout2"

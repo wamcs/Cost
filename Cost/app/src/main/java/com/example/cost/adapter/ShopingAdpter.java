@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -90,6 +92,7 @@ public class ShopingAdpter extends BaseAdapter {
                 lastposition=position;
                 viewHolder.editText.setFocusable(true);
                 viewHolder.editText.setFocusableInTouchMode(true);
+                viewHolder.editText.setTextColor(Color.WHITE);
                 viewHolder.imageButton.setVisibility(View.VISIBLE);
                 return true;
             }
@@ -119,10 +122,14 @@ public class ShopingAdpter extends BaseAdapter {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction()==MotionEvent.ACTION_DOWN&&last!=null&&lastposition<idlist.size()){
-                    billDateHelper.updateShopping(last.editText.getText().toString(),idlist.get(lastposition));
+                    Log.e("TAG", "onTouch "+lastposition);
+                    billDateHelper.updateShopping(last.editText.getText().toString(), idlist.get(lastposition));
+                    last.editText.setTextColor(context.getResources().getColor(R.color.text_color_primary));
                     last.editText.setFocusableInTouchMode(false);
                     last.editText.setFocusable(false);
                     last.imageButton.setVisibility(View.INVISIBLE);
+                    initData();
+                    notifyDataSetChanged();
                 }
                 return false;
             }
@@ -150,8 +157,6 @@ public class ShopingAdpter extends BaseAdapter {
         }
         cursor.close();
     }
-
-
 
     public interface Connection{
         void change(int id);

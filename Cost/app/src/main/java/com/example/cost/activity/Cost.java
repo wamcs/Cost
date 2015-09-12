@@ -12,13 +12,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -68,7 +66,6 @@ public class Cost extends BaseActivity {
     private ImageButton shoppingadd;
     private ListView shoppinglist;
     private static Boolean isChanged=false;
-
     private Handler handler;
     private ExecutorService es= Executors.newCachedThreadPool();
     private ArrayList<Integer> time;
@@ -90,12 +87,12 @@ public class Cost extends BaseActivity {
         Intent intent =new Intent(this, TimeService.TimeChangedBroadReceiver.class);
         intent.setAction("TIME_CHANGE");
         Calendar calendar=Calendar.getInstance();
-        calendar.set(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH)+1,
-                calendar.get(Calendar.DATE)+1,8,0,0);
+        //calendar.set(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH)+1,
+        //        calendar.get(Calendar.DATE)+1,8,0,0);
         PendingIntent sender=
                 PendingIntent.getBroadcast(this, 0, intent, 0);
         AlarmManager am=(AlarmManager)getSystemService(ALARM_SERVICE);
-        am.setRepeating(AlarmManager.RTC,calendar.getTimeInMillis(),24*60*60*1000, sender);
+        am.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),24*60*60*1000, sender);
         init();
         StartAnimation();
         layout.setOnClickListener(new View.OnClickListener() {
@@ -165,7 +162,6 @@ public class Cost extends BaseActivity {
         switch (item.getItemId()){
             case R.id.first:
                 drawerLayout.openDrawer(rightLayout);
-                Log.e("TAG","dsa");
                 break;
             case R.id.second:
                 Intent intent=new Intent(Cost.this,BillTable.class);
@@ -266,8 +262,7 @@ public class Cost extends BaseActivity {
     //侧边菜单栏实现
     public void onCreateNavigation(){
         setSupportActionBar(toolbar);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("");
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
                 R.string.Navigation_open, R.string.Navigation_close);
         actionBarDrawerToggle.syncState();
@@ -422,7 +417,6 @@ public class Cost extends BaseActivity {
         fab.setTranslationY(getResources().getDimensionPixelOffset(R.dimen.fab_size)+
         getResources().getDimensionPixelOffset(R.dimen.fab_margin));
         int actionbarSize = Util.dpToPx(56);
-        Log.e("TAG",Util.dpToPx(40)+"");
         DisplayMetrics displayMetrics=this.getResources().getDisplayMetrics();
         int width=displayMetrics.widthPixels;
         backgroud.setTranslationX(-width);

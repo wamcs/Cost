@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="style_color_primary">#2d5d82</color>
-    <color name="style_color_primary_dark">#21425d</color>
-    <color name="style_color_accent">#01bcd5</color>
+    <color name="style_color_primary">#0288d1</color>
+    <color name="style_color_primary_dark">#0277bd</color>
+    <color name="style_color_accent">#ffa7c3</color>
+
+    <color name="text_color_primary">#b3e5fc</color>
 
     <color name="Nagitivation_color">#fff</color>
 
-    <color name="activity_head_color">#80d1ff</color>
-
-    <color name="fab_color_pressed">#007787</color>
-    <color name="fab_color_shadow">#44000000</color>
-
-    <color name="shoppinglist_color">#8ebbff</color>
+    <color name="activity_head_color">#0277bd</color>
 
     <color name="label_color1">#75b551</color>
     <color name="label_color2">#77b69d</color>
     <color name="label_color3">#cddc17</color>
     <color name="label_color4">#c99f47</color>
     <color name="label_color5">#b56f1d</color>
+
+    <color name="fab_color_pressed">#d13469</color>
+    <color name="fab_color_shadow">#44000000</color>
 
     <color name="table_tab_backgroud">#73c8fd</color>
     <color name="table_tab_text">#000000</color>
@@ -37,5 +37,6 @@
     <color name="report_month_color">#3a7aab</color>
     <color name="report_week_color">#4590ca</color>
     <color name="report_date_color">#50a5e7</color>
+
 
 </resources>

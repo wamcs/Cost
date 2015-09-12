@@ -21,7 +21,7 @@ import java.util.Map;
 public class TimeService extends Service {
     private BillDateHelper billDateHelper;
     private ArrayList<Map<String,Integer>> list;
-    private static Boolean isTimeChange=false;
+    private static boolean isTimeChange=false;
     private static boolean isMonthChange=false;
 
     @Nullable
@@ -92,7 +92,7 @@ public class TimeService extends Service {
      @Override
      public void onReceive(Context context, Intent intent) {
          Calendar calendar = Calendar.getInstance();
-         Log.e("TAG", calendar.get(Calendar.MONTH)+1+" "+calendar.get(Calendar.DATE));
+         Log.e("TAG","onReceive "+calendar.get(Calendar.MONTH)+" "+calendar.get(Calendar.DATE));
          int month = calendar.get(Calendar.MONTH) + 1;
          isTimeChange = true;
          int getmonth = context.getSharedPreferences("monthChange", Context.MODE_PRIVATE)

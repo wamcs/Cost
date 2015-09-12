@@ -10,7 +10,7 @@
 
             <item android:bottom="5dp" android:left="2dp" android:right="2dp" android:top="2dp">
                 <shape android:shape="oval">
-                    <solid android:color="@color/style_color_accent" />
+                    <solid android:color="#ff4081" />
                 </shape>
             </item>
         </layer-list>
