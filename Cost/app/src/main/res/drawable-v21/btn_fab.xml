@@ -4,7 +4,7 @@
     android:color="@color/fab_color_shadow">
     <item>
         <shape android:shape="oval">
-            <solid android:color="#ff4081"/>
+            <solid android:color="#f16897"/>
         </shape>
     </item>
 

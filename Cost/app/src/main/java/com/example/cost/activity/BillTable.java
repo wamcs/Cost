@@ -26,9 +26,6 @@ public class BillTable extends BaseActivity{
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    private ImageButton lastButton;
-    private ImageButton nextButton;
-    private TextView dateNumber;
     private int billid;
     private Fragment lineChart;
     private Fragment pieChart;
@@ -48,40 +45,8 @@ public class BillTable extends BaseActivity{
     public void init(){
         tabLayout= (TabLayout) findViewById(R.id.table_tablayout);
         viewPager= (ViewPager) findViewById(R.id.table_viewpager);
-        lastButton= (ImageButton) findViewById(R.id.table_last);
-        nextButton= (ImageButton) findViewById(R.id.table_next);
-        dateNumber= (TextView) findViewById(R.id.table_date_number);
-        lastButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                    if(Util.month==1){
-                        Util.year--;
-                        Util.month=12;
-                        ((linerRefresh) lineChart).refresh();
-                        ((pieRefresh) pieChart).refresh();
-                    }else{
-                        Util.month--;
-                        ((pieRefresh) pieChart).refresh();
-                    }
-                dateNumber.setText(Util.year+"年"+Util.month+"月");
-            }
-        });
-        nextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                    if(Util.month==12){
-                        Util.year++;
-                        Util.month=1;
-                        ((linerRefresh) lineChart).refresh();
-                        ((pieRefresh) pieChart).refresh();
-                    }else{
-                        Util.month++;
-                        ((pieRefresh) pieChart).refresh();
-                    }
-                dateNumber.setText(Util.year+"年"+Util.month+"月");
-            }
-        });
-        dateNumber.setText(Util.year+"年"+Util.month+"月");
+
+
     }
 
     public void initView(){
@@ -143,13 +108,6 @@ public class BillTable extends BaseActivity{
 
             }
         });
-    }
-
-    public interface linerRefresh{
-        void refresh();
-    }
-    public interface pieRefresh{
-        void refresh();
     }
 
 }

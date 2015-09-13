@@ -265,6 +265,7 @@ public class Cost extends BaseActivity {
         getSupportActionBar().setTitle("");
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
                 R.string.Navigation_open, R.string.Navigation_close);
+
         actionBarDrawerToggle.syncState();
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
         NagivationAdapter nagivationAdapter = new NagivationAdapter(Cost.this);

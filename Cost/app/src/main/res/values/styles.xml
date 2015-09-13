@@ -8,12 +8,15 @@
         <item name="colorAccent">@color/style_color_accent</item>
         <item name="android:windowTranslucentStatus" tools:targetApi="19">true</item>
         <item name="android:fitsSystemWindows">true</item>
-
+        <item name="drawerArrowStyle">@style/MyAppDrawerArrowStyle</item>
     </style>
 
     <style name="AppTheme.TransparentActivity">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowIsTranslucent">true</item>
+    </style>
+    <style name="MyAppDrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="color">@android:color/white</item>
     </style>
 
 </resources>

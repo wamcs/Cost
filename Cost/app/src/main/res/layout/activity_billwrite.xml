@@ -86,7 +86,7 @@
         <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/activity_billwrite_layout_height"
         android:id="@+id/billwrite_label_layout"
         android:layout_marginTop="20dp"
         android:elevation="0dp">
@@ -106,12 +106,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/activity_billwrite_childitem_height"
                 android:text="标签"
-                android:textSize="25sp"/>
+                android:textSize="20sp"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="食物"
-                android:textSize="15sp"
+                android:textSize="12sp"
                 android:id="@+id/billwrite_label"/>
 
         </LinearLayout>
@@ -120,7 +120,7 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/activity_billwrite_layout_height"
         android:id="@+id/billwrite_timelayout"
         android:elevation="0dp">
         <ImageView
@@ -138,12 +138,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/activity_billwrite_childitem_height"
                 android:text="时间"
-                android:textSize="25sp"/>
+                android:textSize="20sp"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="2015/7/7"
-                android:textSize="15sp"
+                android:textSize="12sp"
                 android:id="@+id/billwrite_time"/>
 
         </LinearLayout>
@@ -152,7 +152,7 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/activity_billwrite_layout_height"
         android:id="@+id/billwrite_period_layout"
         android:elevation="0dp">
         <ImageView
@@ -169,19 +169,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/activity_billwrite_childitem_height"
                 android:text="周期 "
-                android:textSize="25sp"/>
+                android:textSize="20sp"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/periodno"
-                android:textSize="15sp"
+                android:textSize="12sp"
                 android:id="@+id/billwrite_period"/>
 
         </LinearLayout>
 
         <android.support.v7.widget.SwitchCompat
-            android:layout_height="@dimen/activity_billwrite_item_height"
-            android:layout_width="@dimen/activity_billwrite_item_weight"
+            android:layout_height="50dp"
+            android:layout_width="50dp"
             android:layout_margin="@dimen/activity_billwrite_item_pad"
             android:id="@+id/billwrite_period_switch"
             android:checked="false"
@@ -191,9 +191,9 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/activity_billwrite_layout_height"
         android:id="@+id/billwrite_state_layout"
-        android:elevation="0dp">
+        >
         <ImageView
             android:layout_height="@dimen/activity_billwrite_item_height"
             android:layout_width="@dimen/activity_billwrite_item_weight"
@@ -209,19 +209,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/activity_billwrite_childitem_height"
                 android:text="收支"
-                android:textSize="25sp"/>
+                android:textSize="20sp"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/statepay"
-                android:textSize="15sp"
+                android:textSize="12sp"
                 android:id="@+id/billwrite_state"/>
 
         </LinearLayout>
 
         <android.support.v7.widget.SwitchCompat
-            android:layout_height="@dimen/activity_billwrite_item_height"
-            android:layout_width="@dimen/activity_billwrite_item_weight"
+            android:layout_height="50dp"
+            android:layout_width="50dp"
             android:layout_margin="@dimen/activity_billwrite_item_pad"
             android:id="@+id/billwrite_state_switch"
             android:checked="false"

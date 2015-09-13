@@ -73,26 +73,32 @@ public class ShopingAdpter extends BaseAdapter {
         viewHolder.editText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(last!=null&&lastposition!=position){
+                if (last != null && lastposition != position) {
                     last.editText.setFocusableInTouchMode(false);
                     last.editText.setFocusable(false);
                     last.imageButton.setVisibility(View.INVISIBLE);
+                    last.editText.setTextColor(context.getResources()
+                            .getColor(R.color.text_color_primary));
+                    billDateHelper.updateShopping(last.editText.getText().toString(),
+                            idlist.get(lastposition));
+                    initData();
+                    notifyDataSetChanged();
                 }
+                last = viewHolder;
+                lastposition = position;
+                viewHolder.editText.setFocusable(true);
+                viewHolder.editText.setFocusableInTouchMode(true);
+                viewHolder.editText.setTextColor(Color.WHITE);
             }
+
         });
         viewHolder.editText.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                if(last!=null){
-                    last.editText.setFocusableInTouchMode(false);
-                    last.editText.setFocusable(false);
+                if(last!=null&& lastposition != position)
                     last.imageButton.setVisibility(View.INVISIBLE);
-                }
-                last=viewHolder;
-                lastposition=position;
-                viewHolder.editText.setFocusable(true);
-                viewHolder.editText.setFocusableInTouchMode(true);
-                viewHolder.editText.setTextColor(Color.WHITE);
+                last = viewHolder;
+                lastposition = position;
                 viewHolder.imageButton.setVisibility(View.VISIBLE);
                 return true;
             }
@@ -123,8 +129,10 @@ public class ShopingAdpter extends BaseAdapter {
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction()==MotionEvent.ACTION_DOWN&&last!=null&&lastposition<idlist.size()){
                     Log.e("TAG", "onTouch "+lastposition);
-                    billDateHelper.updateShopping(last.editText.getText().toString(), idlist.get(lastposition));
-                    last.editText.setTextColor(context.getResources().getColor(R.color.text_color_primary));
+                    billDateHelper.updateShopping(last.editText.getText().toString(),
+                            idlist.get(lastposition));
+                    last.editText.setTextColor(context.getResources()
+                            .getColor(R.color.text_color_primary));
                     last.editText.setFocusableInTouchMode(false);
                     last.editText.setFocusable(false);
                     last.imageButton.setVisibility(View.INVISIBLE);

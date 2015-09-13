@@ -23,7 +23,7 @@ import com.github.mikephil.charting.data.LineDataSet;
 
 import java.util.ArrayList;
 
-public class LineChartFragment extends Fragment implements BillTable.linerRefresh{
+public class LineChartFragment extends Fragment {
 
     private int billid;
     private LineChart lineChart;
@@ -58,7 +58,6 @@ public class LineChartFragment extends Fragment implements BillTable.linerRefres
         lineChart.setBackgroundColor(getResources().getColor(R.color.line_chart_backgroud));
 
         lineChart.setData(getLinedate());
-
         Legend mlegend=lineChart.getLegend();
 
         mlegend.setFormSize(6f);
@@ -108,11 +107,11 @@ public class LineChartFragment extends Fragment implements BillTable.linerRefres
 
         return lineData;
     }
-
-    @Override
+    /*@Override
     public void refresh() {
         year=Util.year;
         initChart();
     }
+    */
 
 }
