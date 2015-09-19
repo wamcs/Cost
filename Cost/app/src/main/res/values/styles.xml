@@ -9,6 +9,7 @@
         <item name="android:windowTranslucentStatus" tools:targetApi="19">true</item>
         <item name="android:fitsSystemWindows">true</item>
         <item name="drawerArrowStyle">@style/MyAppDrawerArrowStyle</item>
+
     </style>
 
     <style name="AppTheme.TransparentActivity">

@@ -22,7 +22,7 @@
                 android:layout_height="30dp"
                 android:layout_margin="10dp"
                 android:text="饮食"
-                android:textSize="26sp"
+                android:textSize="20sp"
                 android:id="@+id/table_pieitem_title"
                 android:layout_weight="1"/>
             <TextView
@@ -30,7 +30,7 @@
                 android:layout_height="30dp"
                 android:layout_margin="10dp"
                 android:text="400"
-                android:textSize="26sp"
+                android:textSize="20sp"
                 android:id="@+id/table_pieitem_money"
                 android:layout_weight="10"/>
             <TextView
@@ -38,7 +38,7 @@
                 android:layout_height="30dp"
                 android:layout_margin="10dp"
                 android:text="40%"
-                android:textSize="26sp"
+                android:textSize="20sp"
                 android:id="@+id/table_pieitem_proportion"
                 android:layout_weight="1"/>
         </LinearLayout>

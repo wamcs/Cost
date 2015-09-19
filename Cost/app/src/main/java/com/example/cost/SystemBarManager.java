@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.view.Gravity;
 import android.view.View;
@@ -15,8 +14,6 @@ import android.widget.FrameLayout;
 
 
 public class SystemBarManager {
-
-
 
     public static final int DEFAULT_TINT_COLOR = 0x99000000;
 
@@ -52,7 +49,6 @@ public class SystemBarManager {
 
     }
 
-
     public void setStatusBarTintEnabled(boolean enabled) {
         if (mStatusBarAvailable) {
             mStatusBarTintView.setVisibility(enabled ? View.VISIBLE : View.GONE);
@@ -64,7 +60,6 @@ public class SystemBarManager {
             mStatusBarTintView.setBackgroundColor(color);
         }
     }
-
 
     private void setupStatusBarView(Context context, ViewGroup decorViewGroup) {
         mStatusBarTintView = new View(context);
@@ -98,7 +93,5 @@ public class SystemBarManager {
         public int getStatusBarHeight() {
             return mStatusBarHeight;
         }
-
-
     }
 }

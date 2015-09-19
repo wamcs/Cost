@@ -7,7 +7,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AlertDialog;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -162,7 +161,6 @@ public class NagivationAdapter extends BaseAdapter {
             viewHolder.delbutton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     if (namelist.size() == 1) {
                         new AlertDialog.Builder(context).
                                 setMessage("这是默认账本不可删除但可重置,需要重置吗")
@@ -184,33 +182,43 @@ public class NagivationAdapter extends BaseAdapter {
                             }
                         }).show();
                     } else {
-                        delBasedate(ID.get(position - 1));
-                        db.execSQL("delete from bill where billid=" + ID.get(position - 1));
-                        db.execSQL("delete from recycle where billid=" + ID.get(position - 1));
-                        int pos=context.getSharedPreferences("billselect",
-                                Context.MODE_PRIVATE).getInt("selectedID",1);
-                        if(pos==ID.get(position - 1)) {
-                            if (ID.size() == position) {
-                                mainChanged.changed(ID.get(position - 2));
-                                context.getSharedPreferences("billselect",
-                                        Context.MODE_PRIVATE).edit().putInt("selectedID", ID.get(position - 2))
-                                        .commit();
-                            } else {
-                                mainChanged.changed(ID.get(position));
-                                context.getSharedPreferences("billselect",
-                                        Context.MODE_PRIVATE).edit().putInt("selectedID", ID.get(position))
-                                        .commit();
+                        AlertDialog.Builder builder=new AlertDialog.Builder(context);
+                        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                delBasedate(ID.get(position - 1));
+                                db.execSQL("delete from bill where billid=" + ID.get(position - 1));
+                                db.execSQL("delete from recycle where billid=" + ID.get(position - 1));
+                                int pos=context.getSharedPreferences("billselect",
+                                        Context.MODE_PRIVATE).getInt("selectedID",1);
+                                if(pos==ID.get(position - 1)) {
+                                    if (ID.size() == position) {
+                                        mainChanged.changed(ID.get(position - 2));
+                                        context.getSharedPreferences("billselect",
+                                                Context.MODE_PRIVATE).edit().putInt("selectedID", ID.get(position - 2))
+                                                .commit();
+                                    } else {
+                                        mainChanged.changed(ID.get(position));
+                                        context.getSharedPreferences("billselect",
+                                                Context.MODE_PRIVATE).edit().putInt("selectedID", ID.get(position))
+                                                .commit();
+                                    }
+                                }
+
+                                initBasedate();
+                                notifyDataSetChanged();
                             }
-                        }
-
-                            initBasedate();
-                            notifyDataSetChanged();
-                        }
-
+                        }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        }).setMessage("您确认要删除吗").create().show();
                     }
-                }
 
-                );
+                }
+                                                    }
+            );
                 viewHolder.itembutton.setOnClickListener(
                         new View.OnClickListener() {
                             @Override

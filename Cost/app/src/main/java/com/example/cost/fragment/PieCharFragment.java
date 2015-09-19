@@ -82,6 +82,7 @@ public class PieCharFragment extends Fragment {
 
         pieChart.setDescription("");
         pieChart.setDrawCenterText(false);
+        pieChart.setNoDataText(year+"年"+month+"月");
         pieChart.setDrawHoleEnabled(true);
         pieChart.setDrawSliceText(false);
         pieChart.setDrawMarkerViews(false);

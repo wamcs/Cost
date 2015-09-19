@@ -24,6 +24,8 @@
             android:theme="@style/AppTheme.TransparentActivity"/>
         <activity android:name=".activity.BillTable"/>
         <activity android:name=".activity.Report"/>
+        <activity android:name=".activity.Setting" />
+        <activity android:name=".activity.LabelSetting" />
         <receiver android:name=".activity.Cost$BillChangeReceiver">
             <intent-filter>
                 <action android:name="BILL_CHANGED"/>

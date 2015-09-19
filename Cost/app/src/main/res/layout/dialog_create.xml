@@ -12,8 +12,8 @@
         android:textSize="@dimen/dialog_title"
         android:gravity="center"
         android:id="@+id/dia_et"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:layout_gravity="center_horizontal" />
 
     <GridView

@@ -23,15 +23,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 />
-            <ImageButton
+            <android.support.design.widget.FloatingActionButton
                 android:layout_width="@dimen/fab_size"
                 android:layout_height="@dimen/fab_size"
                 android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_margin="@dimen/fab_margin"
                 android:id="@+id/fab_btn_main"
                 android:elevation="@dimen/default_elevation"
-                android:background="@drawable/btn_fab"
                 android:src="@mipmap/ic_add_white_36dp"/>
         </RelativeLayout>
         <LinearLayout

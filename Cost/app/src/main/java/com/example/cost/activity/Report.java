@@ -3,14 +3,10 @@ package com.example.cost.activity;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.View;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.Interpolator;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.cost.R;
-import com.example.cost.Util;
+import com.example.cost.contrl.ColorCompareView;
 import com.example.cost.datebase.BillDateHelper;
 
 import java.util.Calendar;
@@ -26,10 +22,10 @@ public class Report extends BaseActivity {
     private TextView monthPayTv;
     private TextView yearIncomeTv;
     private TextView yearPayTv;
-    private LinearLayout yearLayout;
-    private LinearLayout monthLayout;
-    private LinearLayout weekLayout;
-    private LinearLayout dateLayout;
+    private ColorCompareView yearCompare;
+    private ColorCompareView monthCompare;
+    private ColorCompareView weekCompare;
+    private ColorCompareView dateCompare;
     private SQLiteDatabase liteDatabase;
     private int year;
     private int month;
@@ -62,35 +58,10 @@ public class Report extends BaseActivity {
         monthPayTv= (TextView) findViewById(R.id.activity_report_month_pay);
         yearIncomeTv= (TextView) findViewById(R.id.activity_report_year_income);
         yearPayTv= (TextView) findViewById(R.id.activity_report_year_pay);
-        yearLayout= (LinearLayout) findViewById(R.id.report_year_layout);
-        monthLayout= (LinearLayout) findViewById(R.id.report_month_layout);
-        dateLayout= (LinearLayout) findViewById(R.id.report_date_layout);
-        weekLayout= (LinearLayout) findViewById(R.id.report_week_layout);
-        yearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Animation(0,100,100,100);
-            }
-        });
-        monthLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Animation(0,0,100,100);
-            }
-        });
-        weekLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Animation(0,0,0,100);
-            }
-        });
-        dateLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Animation(0,0,0,0);
-            }
-        });
-
+        yearCompare= (ColorCompareView) findViewById(R.id.activity_report_year);
+        monthCompare= (ColorCompareView) findViewById(R.id.activity_report_month);
+        weekCompare= (ColorCompareView) findViewById(R.id.activity_report_week);
+        dateCompare= (ColorCompareView) findViewById(R.id.activity_report_date);
     }
 
     public void getData(){
@@ -111,6 +82,8 @@ public class Report extends BaseActivity {
         }
         dateIncomeTv.setText(income + "");
         datePayTv.setText(pay + "");
+        dateCompare.setProportion(pay, income);
+        dateCompare.setAnimation();
         cursor.close();
     }
 
@@ -123,8 +96,10 @@ public class Report extends BaseActivity {
             income+=cursor.getInt(cursor.getColumnIndex("income"));
             pay+=cursor.getInt(cursor.getColumnIndex("pay"));
         }
-        weekIncomeTv.setText(income+"");
+        weekIncomeTv.setText(income + "");
         weekPayTv.setText(pay+"");
+        weekCompare.setProportion(pay, income);
+        weekCompare.setAnimation();
         cursor.close();
     }
 
@@ -139,6 +114,8 @@ public class Report extends BaseActivity {
         }
         monthIncomeTv.setText(income+"");
         monthPayTv.setText(pay+"");
+        monthCompare.setProportion(pay, income);
+        monthCompare.setAnimation();
         cursor.close();
     }
 
@@ -153,23 +130,10 @@ public class Report extends BaseActivity {
         }
         yearIncomeTv.setText(income + "");
         yearPayTv.setText(pay + "");
+        yearCompare.setProportion(pay,income);
+        yearCompare.setAnimation();
         cursor.close();
-    }
 
-    public void Animation(int yearDp,int monthDp,int weekDp,int dateDp){
-        int yearPx= Util.dpToPx(yearDp);
-        int monthPx= Util.dpToPx(monthDp);
-        int weekPx= Util.dpToPx(weekDp);
-        int datePx= Util.dpToPx(dateDp);
-        Interpolator interpolator=new AccelerateInterpolator();
-        yearLayout.animate().translationY(yearPx).setInterpolator(interpolator).setDuration(300)
-                .setStartDelay(200).start();
-        monthLayout.animate().translationY(monthPx).setInterpolator(interpolator).setDuration(300)
-                .setStartDelay(200).start();
-        weekLayout.animate().translationY(weekPx).setInterpolator(interpolator).setDuration(300)
-                .setStartDelay(200).start();
-        dateLayout.animate().translationY(datePx).setInterpolator(interpolator).setDuration(300)
-                .setStartDelay(200).start();
     }
 
 }

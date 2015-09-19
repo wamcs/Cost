@@ -39,7 +39,7 @@
                     android:layout_height="40dp"
                     android:id="@+id/billwrite_confirm"
                     android:background="@color/style_color_primary"
-                    android:src="@mipmap/ic_save_white_36dp"
+                    android:src="@mipmap/ic_done_white_36dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_alignTop="@+id/billwrite_return"

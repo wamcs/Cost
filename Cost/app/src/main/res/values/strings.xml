@@ -8,9 +8,10 @@
 
     <string name="firstmenu">first</string>
     <string name="secondmenu">second</string>
+    <string name="setting">设置</string>
     
-    <string name="income">收入:</string>
-    <string name="pay">支出:</string>
+    <string name="income">收入</string>
+    <string name="pay">支出</string>
 
     <string name="dialogtitle">账本设置</string>
 
@@ -21,7 +22,17 @@
     <string name="periodmonth">每月</string>
     <string name="stateincome">收入</string>
     <string name="statepay">支出</string>
+    <string name="label_sure">选定</string>
 
+    <string name="unique">Unique Studio</string>
+    <string-array name="staff_name">
 
+    </string-array>
+    <string-array name="staff_position">
+
+    </string-array>
+    <string-array name="staff_email">
+
+    </string-array>
 
 </resources>

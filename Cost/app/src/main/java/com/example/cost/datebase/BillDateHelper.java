@@ -9,6 +9,7 @@ import android.util.Log;
 import com.example.cost.R;
 import com.example.cost.Util;
 
+import java.sql.SQLClientInfoException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -29,7 +30,8 @@ public class BillDateHelper extends SQLiteOpenHelper{
             ",color integer,period integer,day integer,billid integer)";
     private final String CREATE_SHOPPINGTABLE="create table shopping(_id integer " +
             "primary key autoincrement,name text)";
-    private final String CREATE_LABELCOLOR="create table labelcolor(label text,color integer)";
+    private final String CREATE_LABELCOLOR="create table labelcolor(_id integer " +
+            "primary key autoincrement,label text,color integer)";
 
     private Context context;
     public BillDateHelper(Context context, String name,int version) {
@@ -46,7 +48,7 @@ public class BillDateHelper extends SQLiteOpenHelper{
         db.execSQL(CREATE_SHOPPINGTABLE);
         db.execSQL(CREATE_LABELCOLOR);
         for(int i=0;i< Util.label.length;i++)
-            db.execSQL("insert into labelcolor values('"+Util.label[i]+"',"+Util.colors[i]+")");
+            db.execSQL("insert into labelcolor values(null,'"+Util.label[i]+"',"+Util.colors[i]+")");
         db.execSQL("insert into billdirc values(null,'新建账本',0,0)");
         context.getSharedPreferences("billselect",
                 Context.MODE_PRIVATE).edit().putInt("selectedID",1)
@@ -75,13 +77,74 @@ public class BillDateHelper extends SQLiteOpenHelper{
         return map;
     }
 
-    public int getcolor(String label){
+    public int getColor(String label){
         SQLiteDatabase db=getWritableDatabase();
-        Cursor cursor=db.rawQuery("select color from labelcolor where label='"+label+"'",null);
+        Cursor cursor=db.rawQuery("select  color from labelcolor where label='" + label + "'", null);
         cursor.moveToNext();
         int color=cursor.getInt(cursor.getColumnIndex("color"));
         cursor.close();
         return color;
+    }
+
+    public int getcolor(String label){
+        SQLiteDatabase db=getWritableDatabase();
+        Cursor cursor=db.rawQuery("select distinct color from bill where label='" + label + "'", null);
+        cursor.moveToNext();
+        int color=cursor.getInt(cursor.getColumnIndex("color"));
+        cursor.close();
+        return color;
+    }
+
+    public ArrayList<Map<String,Object>> getLabelColor(){
+        ArrayList<Map<String,Object>> list=new ArrayList<>();
+        SQLiteDatabase db=getWritableDatabase();
+        Cursor cursor=db.rawQuery("select * from labelcolor", null);
+        for(;cursor.moveToNext();cursor.isAfterLast()){
+            Map<String,Object> map=new HashMap<>();
+            String label=cursor.getString(cursor.getColumnIndex("label"));
+            int color=cursor.getInt(cursor.getColumnIndex("color"));
+            map.put("label",label);
+            map.put("color",color);
+            list.add(map);
+        }
+        cursor.close();
+        return list;
+
+    }
+
+    public void addlabel(String label,int color){
+        SQLiteDatabase db=getWritableDatabase();
+        db.execSQL("insert into labelcolor values (null,'" + label + "'," + color + ")");
+    }
+
+    public int getlabelID(String label){
+        SQLiteDatabase db=getWritableDatabase();
+        Cursor cursor=db.rawQuery("select _id from labelcolor where label='"+label+"'",null);
+        cursor.moveToNext();
+        int id=cursor.getInt(cursor.getColumnIndex("_id"));
+        cursor.close();
+        return id;
+    }
+
+    public void deletelabel(int id){
+        SQLiteDatabase db=getWritableDatabase();
+        db.execSQL("delete from labelcolor where _id=" + id);
+    }
+
+    public void updatelabel(String label,int id){
+        SQLiteDatabase db=getWritableDatabase();
+        db.execSQL("update labelcolor set label='" + label + "' where _id=" + id);
+    }
+
+    public void modificateLabel(String proLabel,String nowLabel){
+        SQLiteDatabase db=getWritableDatabase();
+        db.execSQL("update bill set label='"+nowLabel+"' where label='"+proLabel+"'");
+        db.execSQL("update recycle set label='"+nowLabel+"' where label='"+proLabel+"'");
+    }
+
+    public void updatecolor(int color,int id){
+        SQLiteDatabase db=getWritableDatabase();
+        db.execSQL("update labelcolor set color="+color+" where _id="+id);
     }
 
     public Map<String,Object> getbillitem(int billitemID){

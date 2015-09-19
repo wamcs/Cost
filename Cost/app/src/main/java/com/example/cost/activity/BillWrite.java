@@ -3,6 +3,7 @@ package com.example.cost.activity;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,9 +21,7 @@ import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
-import android.widget.Switch;
 import android.widget.TextView;
-
 import com.example.cost.R;
 import com.example.cost.Util;
 import com.example.cost.adapter.ChooseAdapter;
@@ -71,7 +70,8 @@ public class BillWrite extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_billwrite);
-        billID=getIntent().getIntExtra("billID",1);
+        billID=getSharedPreferences("billselect",
+                Context.MODE_PRIVATE).getInt("selectedID",1);
         billitemID=getIntent().getIntExtra("billitemID",0);
         ShoppingName=getIntent().getStringExtra("ShoppingName");
         billDateHelper=new BillDateHelper(this,"allbill.db",1);
@@ -145,7 +145,8 @@ public class BillWrite extends BaseActivity {
             public void onClick(View v) {
                 AlertDialog.Builder builder=
                         new AlertDialog.Builder(BillWrite.this);
-                View view= LayoutInflater.from(BillWrite.this).inflate(R.layout.view_label_choose,null);
+                View view= LayoutInflater.
+                        from(BillWrite.this).inflate(R.layout.view_label_choose,null);
                 ImageButton imageButton= (ImageButton)
                         view.findViewById(R.id.label_choose_button);
                 GridView gridView= (GridView)
@@ -308,7 +309,7 @@ public class BillWrite extends BaseActivity {
             map.put("pay",money);
         }
         map.put("label",label);
-        map.put("color",billDateHelper.getcolor(label));
+        map.put("color",billDateHelper.getColor(label));
         map.put("period",recycleperiod);
         map.put("year",year);
         map.put("month",month);
@@ -316,7 +317,7 @@ public class BillWrite extends BaseActivity {
         map.put("week",billDateHelper.getTime().get("week"));
         map.put("time",times);
         map.put("billid",billID);
-        map.put("day",0);
+        map.put("day", 0);
         if(billitemID<=0) {
             billDateHelper.addbill(map);
             if (periodswitch.isChecked())

@@ -37,7 +37,6 @@ public class ChooseAdapter extends BaseAdapter{
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        Log.e("TAG", "getView ");
         final viewHolder viewholder;
         if(convertView==null) {
             convertView = LayoutInflater.from(context).

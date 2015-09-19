@@ -53,7 +53,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:elevation="0dp"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="20dp"
+            >
             <ImageView
                 android:layout_height="@dimen/bill_detail_item_height"
                 android:layout_width="@dimen/bill_detail_item_weight"
@@ -206,12 +207,11 @@
         </LinearLayout>
     </LinearLayout>
 
-    <ImageButton
+    <android.support.design.widget.FloatingActionButton
         android:layout_width="@dimen/fab_size"
         android:layout_height="@dimen/fab_size"
         android:id="@+id/bill_detail_fab"
         android:elevation="@dimen/default_elevation"
-        android:background="@drawable/btn_fab"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="@dimen/bill_detail_fab_rightpadding"
         android:layout_alignParentTop="true"

@@ -2,7 +2,7 @@
 <resources>
     <color name="style_color_primary">#0288d1</color>
     <color name="style_color_primary_dark">#0277bd</color>
-    <color name="style_color_accent">#ffa7c3</color>
+    <color name="style_color_accent">#f16897</color>
 
     <color name="text_color_primary">#b3e5fc</color>
 
@@ -30,13 +30,8 @@
     <color name="chart_trans">#80d1ff</color>
     <color name="chart_trans_pressed">#50aad6</color>
 
-    <color name="main_color">#2d5d82</color>
-    <color name="shallow_color">#01bcd5</color>
-
-    <color name="report_year_color">#31648c</color>
-    <color name="report_month_color">#3a7aab</color>
-    <color name="report_week_color">#4590ca</color>
-    <color name="report_date_color">#50a5e7</color>
+    <color name="main_color">#ffffff</color>
+    <color name="shallow_color">#c5bdc9</color>
 
 
 </resources>

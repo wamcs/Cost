@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 
 import com.example.cost.R;
 import com.example.cost.Util;
-import com.example.cost.activity.BillTable;
 import com.example.cost.datebase.BillDateHelper;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
@@ -20,6 +19,7 @@ import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.renderer.XAxisRenderer;
 
 import java.util.ArrayList;
 
@@ -56,7 +56,6 @@ public class LineChartFragment extends Fragment {
         lineChart.setScaleEnabled(true);
 
         lineChart.setBackgroundColor(getResources().getColor(R.color.line_chart_backgroud));
-
         lineChart.setData(getLinedate());
         Legend mlegend=lineChart.getLegend();
 
@@ -87,14 +86,14 @@ public class LineChartFragment extends Fragment {
 
 
         LineDataSet incomeDate=new LineDataSet(incomelist,"收入");
-        incomeDate.setLineWidth(1.5f);
-        incomeDate.setCircleSize(2.5f);
+        incomeDate.setLineWidth(3f);
+        incomeDate.setCircleSize(6f);
         incomeDate.setColor(getResources().getColor(R.color.line_chart_income));
         incomeDate.setCircleColor(getResources().getColor(R.color.line_chart_income));
         incomeDate.setHighLightColor(getResources().getColor(R.color.line_chart_income));
         LineDataSet payDate=new LineDataSet(paylist,"支出");
-        payDate.setLineWidth(1.5f);
-        payDate.setCircleSize(2.5f);
+        payDate.setLineWidth(3f);
+        payDate.setCircleSize(6f);
         payDate.setColor(getResources().getColor(R.color.line_chart_pay));
         payDate.setCircleColor(getResources().getColor(R.color.line_chart_pay));
         payDate.setHighLightColor(getResources().getColor(R.color.line_chart_pay));

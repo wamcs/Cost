@@ -9,7 +9,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Handler;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.os.Bundle;
@@ -58,7 +60,7 @@ public class Cost extends BaseActivity {
     private LinearLayout rightLayout;
     private LinearLayout leftlayout;
     private LinearLayout layout;
-    private ImageButton fab;
+    private FloatingActionButton fab;
     private LinearLayout incomelayout;
     private LinearLayout paylayout;
     private Intent tobillwrite;
@@ -164,11 +166,16 @@ public class Cost extends BaseActivity {
                 drawerLayout.openDrawer(rightLayout);
                 break;
             case R.id.second:
-                Intent intent=new Intent(Cost.this,BillTable.class);
+                Intent billTable=new Intent(Cost.this,BillTable.class);
                 int billid=this.getSharedPreferences("billselect",
                         Context.MODE_PRIVATE).getInt("selectedID",1);
-                intent.putExtra("billid",billid);
-                startActivity(intent);
+                billTable.putExtra("billid", billid);
+                startActivity(billTable);
+                break;
+            case R.id.setting:
+                Intent setting=new Intent(Cost.this,Setting.class);
+                startActivity(setting);
+                break;
         }
 
         return super.onOptionsItemSelected(item);
@@ -205,7 +212,7 @@ public class Cost extends BaseActivity {
         rightLayout= (LinearLayout) findViewById(R.id.rightlayout);
         leftlayout= (LinearLayout) findViewById(R.id.leftlayout);
         layout= (LinearLayout) findViewById(R.id.activity_head_layout);
-        fab= (ImageButton) findViewById(R.id.fab_btn_main);
+        fab= (FloatingActionButton) findViewById(R.id.fab_btn_main);
         shoppingadd= (ImageButton) findViewById(R.id.view_shoppinglist_addbtn);
         shoppinglist= (ListView) findViewById(R.id.view_shoppinglist_listview);
         incomelayout= (LinearLayout) findViewById(R.id.activity_head_income_layout);
@@ -222,9 +229,7 @@ public class Cost extends BaseActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int ID=getSharedPreferences("billselect",
-                        Context.MODE_PRIVATE).getInt("selectedID",1);
-                tobillwrite.putExtra("billID", ID);
+
                 int[] location=new int[2];
                 v.getLocationOnScreen(location);
                 location[0]+=v.getWidth()/2;
@@ -415,7 +420,7 @@ public class Cost extends BaseActivity {
     }
 
     public void StartAnimation(){
-        fab.setTranslationY(getResources().getDimensionPixelOffset(R.dimen.fab_size)+
+        fab.setTranslationY(2*getResources().getDimensionPixelOffset(R.dimen.fab_size)+
         getResources().getDimensionPixelOffset(R.dimen.fab_margin));
         int actionbarSize = Util.dpToPx(56);
         DisplayMetrics displayMetrics=this.getResources().getDisplayMetrics();
@@ -432,6 +437,7 @@ public class Cost extends BaseActivity {
                 .setListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animation) {
+                        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
                         fab.animate().setDuration(300).translationY(0)
                                 .setStartDelay(700).setInterpolator(new OvershootInterpolator(1.f))
                                 .setListener(new AnimatorListenerAdapter() {
@@ -441,6 +447,16 @@ public class Cost extends BaseActivity {
                                     }
                                 })
                                 .start();
+                        else
+                            fab.animate().setDuration(300).translationY(40).translationX(40)
+                                    .setStartDelay(700).setInterpolator(new OvershootInterpolator(1.f))
+                                    .setListener(new AnimatorListenerAdapter() {
+                                        @Override
+                                        public void onAnimationEnd(Animator animation) {
+                                            Util.isInitialize = true;
+                                        }
+                                    })
+                                    .start();
 
                     }
                 })

@@ -128,7 +128,6 @@ public class ShopingAdpter extends BaseAdapter {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction()==MotionEvent.ACTION_DOWN&&last!=null&&lastposition<idlist.size()){
-                    Log.e("TAG", "onTouch "+lastposition);
                     billDateHelper.updateShopping(last.editText.getText().toString(),
                             idlist.get(lastposition));
                     last.editText.setTextColor(context.getResources()

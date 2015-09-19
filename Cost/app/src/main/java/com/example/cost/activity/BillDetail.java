@@ -3,12 +3,16 @@ package com.example.cost.activity;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
+import android.support.design.widget.FloatingActionButton;
+import android.os.Build;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.view.animation.DecelerateInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -25,7 +29,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class BillDetail extends BaseActivity{
-    private ImageButton editfab;
+    private FloatingActionButton editfab;
     private ImageButton deletebtn;
     private ImageButton returnbtn;
     private TextView contenttv;
@@ -56,7 +60,7 @@ public class BillDetail extends BaseActivity{
     }
 
     public void init(){
-        editfab= (ImageButton) findViewById(R.id.bill_detail_fab);
+        editfab= (FloatingActionButton) findViewById(R.id.bill_detail_fab);
         deletebtn= (ImageButton) findViewById(R.id.bill_detail_delete);
         returnbtn= (ImageButton) findViewById(R.id.bill_detail_return);
         contenttv= (TextView) findViewById(R.id.bill_detail_content);
@@ -84,7 +88,7 @@ public class BillDetail extends BaseActivity{
         int year=Integer.parseInt(map.get("year").toString());
         int month=Integer.parseInt(map.get("month").toString());
         int date=Integer.parseInt(map.get("date").toString());
-        int color=billDateHelper.getcolor(label);
+        int color=Integer.parseInt(map.get("color").toString());
         linearLayout.setBackgroundColor(getResources().getColor(color));
         deletebtn.setBackgroundColor(getResources().getColor(color));
         returnbtn.setBackgroundColor(getResources().getColor(color));
@@ -121,20 +125,19 @@ public class BillDetail extends BaseActivity{
         deletebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Map<String,Object> billmap=billDateHelper.getbillitem(billitemID);
-                billDateHelper.deleteBill(billitemID);
-                if((int)billmap.get("period")!=Util.NOPERIOD)
-                {
-                    int recycleid = billDateHelper.getRecycleID(billmap);
-                    Map<String ,Object> map=new HashMap<>();
-                    map.put("period",0);
-                    ArrayList<Integer> list=billDateHelper.getBillID(billmap);
-                    for(int i=0;i<list.size();i++)
-                        billDateHelper.updateBillRecycle(map,list.get(i));
-                    billDateHelper.deleterecycle(recycleid);
-                }
-                sendBroadcast(change);
-                finish();
+                AlertDialog.Builder builder=new AlertDialog.Builder(BillDetail.this);
+                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        delele();
+                    }
+                }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                }).setMessage("您确认要删除吗").create().show();
+
             }
         });
 
@@ -157,33 +160,67 @@ public class BillDetail extends BaseActivity{
         });
     }
 
+    private void delele(){
+        Map<String,Object> billmap=billDateHelper.getbillitem(billitemID);
+        billDateHelper.deleteBill(billitemID);
+        if((int)billmap.get("period")!=Util.NOPERIOD)
+        {
+            int recycleid = billDateHelper.getRecycleID(billmap);
+            Map<String ,Object> map=new HashMap<>();
+            map.put("period",0);
+            ArrayList<Integer> list=billDateHelper.getBillID(billmap);
+            for(int i=0;i<list.size();i++)
+                billDateHelper.updateBillRecycle(map,list.get(i));
+            billDateHelper.deleterecycle(recycleid);
+        }
+        sendBroadcast(change);
+        finish();
+    }
     private void setupRevealRectangleBackgroud(){
         circleBackgroud.setListener(new RevealCircleBackgroud.onStateListener() {
             @Override
             public void onStateChange(int state) {
                 if (RevealCircleBackgroud.STATE_FILL_FINISHED == state) {
-                    editfab.animate().translationX(0).translationY(0).setDuration(400)
-                            .setInterpolator(new OvershootInterpolator(1.0f)).setStartDelay(100)
+                    if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+                        editfab.animate().translationX(0).translationY(0).setDuration(400)
+                            .setInterpolator(new OvershootInterpolator(1.0f)).setStartDelay(300)
                             .setListener(new AnimatorListenerAdapter() {
                                 @Override
                                 public void onAnimationEnd(Animator animation) {
                                     editfab.setImageResource(R.mipmap.ic_edit_white_36dp);
                                 }
                             }).start();
+                    else
+                        editfab.animate().translationX(0).translationY(-50).setDuration(400)
+                                .setInterpolator(new OvershootInterpolator(1.0f)).setStartDelay(300)
+                                .setListener(new AnimatorListenerAdapter() {
+                                    @Override
+                                    public void onAnimationEnd(Animator animation) {
+                                        editfab.setImageResource(R.mipmap.ic_edit_white_36dp);
+                                    }
+                                }).start();
                     linearLayout.animate().setDuration(300).alpha(1.0f).setStartDelay(400)
                             .setListener(new AnimatorListenerAdapter() {
+
                                 @Override
                                 public void onAnimationEnd(Animator animation) {
                                     backLayout.animate().translationY(0).setDuration(400)
-                                            .setInterpolator(new OvershootInterpolator(1.0f))
                                             .setStartDelay(100).start();
+
                                 }
                             }).start();
                 } else {
-                    editfab.setTranslationX(Util.dpToPx(34));
-                    editfab.setTranslationY(backLayout.getHeight()-Util.dpToPx(40));
+                    if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        editfab.setTranslationY(backLayout.getHeight() - Util.dpToPx(40));
+                        editfab.setTranslationX(Util.dpToPx(34));
+                    }
+                    else {
+                        editfab.setTranslationY(backLayout.getHeight() - Util.dpToPx(68));
+                        editfab.setTranslationX(Util.dpToPx(47));
+                    }
                     editfab.setImageResource(R.mipmap.ic_add_white_36dp);
                     linearLayout.setAlpha(0.0f);
+
                     backLayout.setTranslationY(2 * backLayout.getHeight() + linearLayout.getHeight());
 
                 }
