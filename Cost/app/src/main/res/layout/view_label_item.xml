@@ -27,17 +27,10 @@
             android:layout_marginStart="30dp"
             android:focusableInTouchMode="false"
             android:focusable="false"
-            android:ems="8"
+            android:ems="10"
             android:singleLine="true"
             android:gravity="center_vertical"
             android:id="@+id/label_edit"/>
-        <ImageButton
-            android:layout_width="@dimen/label_color_size"
-            android:layout_height="@dimen/label_color_size"
-            android:layout_marginStart="20dp"
-            android:src="@mipmap/ic_cancel_grey600_36dp"
-            android:id="@+id/label_delete"
-            android:background="#00ffffff"
-            android:visibility="invisible"/>
+
     </LinearLayout>
 </android.support.v7.widget.CardView>

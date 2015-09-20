@@ -1,14 +1,12 @@
 package com.example.cost.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.example.cost.R;
@@ -25,6 +23,7 @@ public class LabelItemAdapter extends RecyclerView.Adapter<LabelItemAdapter.View
     private int lastposition;
     private String lastlabel;
     private BillDateHelper billDateHelper;
+    private Boolean isEdited=false;
 
     public LabelItemAdapter(Context context,ArrayList<Map<String,Object>> arrayList){
         this.context=context;
@@ -37,22 +36,24 @@ public class LabelItemAdapter extends RecyclerView.Adapter<LabelItemAdapter.View
         ViewHolder viewHolder;
         view= LayoutInflater.from(context).inflate(R.layout.view_label_item,parent,false);
         viewHolder=new ViewHolder(view);
-        parent.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction()==MotionEvent.ACTION_DOWN&&last!=null){
-                    billDateHelper.updatelabel(last.editText.getText().toString(),
-                            billDateHelper.getlabelID(lastlabel));
-                    billDateHelper.modificateLabel(lastlabel,last.editText.getText().toString());
-                    last.editText.setFocusableInTouchMode(false);
-                    last.editText.setFocusable(false);
-                    last.imageButton.setVisibility(View.INVISIBLE);
-                    initData();
-                    notifyDataSetChanged();
+        if(isEdited) {
+            parent.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    if (event.getAction() == MotionEvent.ACTION_DOWN && last != null) {
+                        billDateHelper.updatelabel(last.editText.getText().toString(),
+                                billDateHelper.getlabelID(lastlabel));
+                        billDateHelper.modificateLabel(lastlabel, last.editText.getText().toString());
+                        last.editText.setFocusableInTouchMode(false);
+                        last.editText.setFocusable(false);
+                        initData();
+                        notifyDataSetChanged();
+                        last=null;
+                    }
+                    return false;
                 }
-                return false;
-            }
-        });
+            });
+        }
         return viewHolder;
     }
 
@@ -62,40 +63,37 @@ public class LabelItemAdapter extends RecyclerView.Adapter<LabelItemAdapter.View
                 .getResources().getColor(Integer.parseInt
                         (arrayList.get(position).get("color").toString())));
         holder.editText.setText(arrayList.get(position).get("label").toString());
-        holder.editText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (last != null && lastposition != position) {
-                    last.editText.setFocusableInTouchMode(false);
-                    last.editText.setFocusable(false);
-                    last.imageButton.setVisibility(View.INVISIBLE);
-                    billDateHelper.updatelabel(last.editText.getText().toString(),
-                            billDateHelper.getlabelID(lastlabel));
-                    billDateHelper.modificateLabel(lastlabel,last.editText.getText().toString());
-                    initData();
-                    notifyDataSetChanged();
+        if(isEdited) {
+            holder.editText.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (last != null && lastposition != position) {
+                        last.editText.setFocusableInTouchMode(false);
+                        last.editText.setFocusable(false);
+                        billDateHelper.updatelabel(last.editText.getText().toString(),
+                                billDateHelper.getlabelID(lastlabel));
+                        billDateHelper.modificateLabel(lastlabel, last.editText.getText().toString());
+                        initData();
+                        notifyDataSetChanged();
+                    }
+                    last = holder;
+                    lastposition = position;
+                    lastlabel = holder.editText.getText().toString();
+                    holder.editText.setFocusable(true);
+                    holder.editText.setFocusableInTouchMode(true);
                 }
-                last = holder;
-                lastposition = position;
-                lastlabel = holder.editText.getText().toString();
-                holder.editText.setFocusable(true);
-                holder.editText.setFocusableInTouchMode(true);
-                last.imageButton.setVisibility(View.VISIBLE);
-            }
-        });
-        holder.imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                billDateHelper.deletelabel(billDateHelper.getlabelID(lastlabel));
-                initData();
-                notifyDataSetChanged();
-            }
-        });
+            });
+        }
+
     }
 
     @Override
     public int getItemCount() {
         return arrayList.size();
+    }
+
+    public void setEdited(){
+        this.isEdited=true;
     }
 
     public void initData(){
@@ -107,12 +105,11 @@ public class LabelItemAdapter extends RecyclerView.Adapter<LabelItemAdapter.View
     class ViewHolder extends RecyclerView.ViewHolder{
         private ImageView imageView;
         private EditText editText;
-        private ImageButton imageButton;
         public ViewHolder(View itemView) {
             super(itemView);
             imageView= (ImageView) itemView.findViewById(R.id.label_color);
             editText= (EditText) itemView.findViewById(R.id.label_edit);
-            imageButton= (ImageButton) itemView.findViewById(R.id.label_delete);
+
         }
     }
 }

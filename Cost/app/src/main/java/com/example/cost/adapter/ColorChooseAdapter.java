@@ -1,6 +1,7 @@
 package com.example.cost.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,7 @@ import java.util.Map;
 
 public class ColorChooseAdapter extends BaseAdapter {
 
-    private ArrayList<Map<String,Object>> arrayList;
+    private ArrayList<Integer> arrayList;
     private Context context;
     private final int mainColor= R.color.main_color;
     private final int shallowColor=R.color.shallow_color;
@@ -25,7 +26,7 @@ public class ColorChooseAdapter extends BaseAdapter {
     private ColorListener listener;
 
 
-    public ColorChooseAdapter(Context context,ArrayList<Map<String,Object>> arrayList){
+    public ColorChooseAdapter(Context context,ArrayList<Integer> arrayList){
         this.context=context;
         this.arrayList=arrayList;
     }
@@ -62,8 +63,7 @@ public class ColorChooseAdapter extends BaseAdapter {
             viewholder= (viewHolder) convertView.getTag();
         }
         viewholder.imageView.setBackgroundColor(context
-                .getResources().getColor(Integer.parseInt
-                        (arrayList.get(position).get("color").toString())));
+                .getResources().getColor(arrayList.get(position)));
         viewholder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,8 +73,7 @@ public class ColorChooseAdapter extends BaseAdapter {
                 viewholder.linearLayout.setBackgroundColor(context.getResources().
                         getColor(shallowColor));
                 lastposition = viewholder.linearLayout;
-                listener.getColor(Integer.parseInt
-                        (arrayList.get(position).get("color").toString()));
+                listener.getColor(arrayList.get(position));
             }
         });
 

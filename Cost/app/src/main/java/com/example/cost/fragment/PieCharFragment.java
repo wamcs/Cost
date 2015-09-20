@@ -163,7 +163,7 @@ public class PieCharFragment extends Fragment {
         PieDataSet pieDataSet;
         if (!isShowAll) {
             Cursor label = liteDatabase.rawQuery("select distinct label from bill where billid="
-                    + billid + " and year=" + year + " and month=" + month, null);
+                    + billid + " and year=" + year + " and month=" + month+" and pay>0", null);
             for (; label.moveToNext(); label.isAfterLast())
                 labelList.add(label.getString(label.getColumnIndex("label")));
             if(labelList.isEmpty())

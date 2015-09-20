@@ -57,11 +57,11 @@
             >
             <ImageView
                 android:layout_height="@dimen/bill_detail_item_height"
-                android:layout_width="@dimen/bill_detail_item_weight"
+                android:layout_width="@dimen/bill_detail_item_width"
                 android:layout_margin="@dimen/bill_detail_item_pad"
                 />
             <LinearLayout
-                android:layout_width="@dimen/bill_detail_item_detail_weight"
+                android:layout_width="@dimen/bill_detail_item_detail_width"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/bill_detail_item_pad"
                 android:orientation="vertical">
@@ -90,12 +90,12 @@
             android:elevation="0dp">
             <ImageView
                 android:layout_height="@dimen/bill_detail_item_height"
-                android:layout_width="@dimen/bill_detail_item_weight"
+                android:layout_width="@dimen/bill_detail_item_width"
                 android:layout_margin="@dimen/bill_detail_item_pad"
                 android:src="@mipmap/ic_label_grey_36dp"
                 />
             <LinearLayout
-                android:layout_width="@dimen/bill_detail_item_detail_weight"
+                android:layout_width="@dimen/bill_detail_item_detail_width"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/bill_detail_item_pad"
                 android:orientation="vertical">
@@ -121,11 +121,11 @@
             android:elevation="0dp">
             <ImageView
                 android:layout_height="@dimen/bill_detail_item_height"
-                android:layout_width="@dimen/bill_detail_item_weight"
+                android:layout_width="@dimen/bill_detail_item_width"
                 android:layout_margin="@dimen/bill_detail_item_pad"
                 android:src="@mipmap/ic_time_grey_36dp"/>
             <LinearLayout
-                android:layout_width="@dimen/bill_detail_item_detail_weight"
+                android:layout_width="@dimen/bill_detail_item_detail_width"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/bill_detail_item_pad"
                 android:orientation="vertical">
@@ -151,11 +151,11 @@
             android:elevation="0dp">
             <ImageView
                 android:layout_height="@dimen/bill_detail_item_height"
-                android:layout_width="@dimen/bill_detail_item_weight"
+                android:layout_width="@dimen/bill_detail_item_width"
                 android:layout_margin="@dimen/bill_detail_item_pad"
                 android:src="@mipmap/ic_period_grey_36dp"/>
             <LinearLayout
-                android:layout_width="@dimen/bill_detail_item_detail_weight"
+                android:layout_width="@dimen/bill_detail_item_detail_width"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/bill_detail_item_pad"
                 android:orientation="vertical">
@@ -182,11 +182,11 @@
             android:elevation="0dp">
             <ImageView
                 android:layout_height="@dimen/bill_detail_item_height"
-                android:layout_width="@dimen/bill_detail_item_weight"
+                android:layout_width="@dimen/bill_detail_item_width"
                 android:layout_margin="@dimen/bill_detail_item_pad"
                 android:src="@mipmap/ic_state_grey_36dp"/>
             <LinearLayout
-                android:layout_width="@dimen/bill_detail_item_detail_weight"
+                android:layout_width="@dimen/bill_detail_item_detail_width"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/bill_detail_item_pad"
                 android:orientation="vertical">

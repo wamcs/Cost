@@ -32,6 +32,8 @@ public class BillDateHelper extends SQLiteOpenHelper{
             "primary key autoincrement,name text)";
     private final String CREATE_LABELCOLOR="create table labelcolor(_id integer " +
             "primary key autoincrement,label text,color integer)";
+    private final String CREATE_SELECTCOLOR="create table colors(_id integer " +
+            "primary key autoincrement,color integer)";
 
     private Context context;
     public BillDateHelper(Context context, String name,int version) {
@@ -47,8 +49,11 @@ public class BillDateHelper extends SQLiteOpenHelper{
         db.execSQL(CREATE_RECYCLETABLE);
         db.execSQL(CREATE_SHOPPINGTABLE);
         db.execSQL(CREATE_LABELCOLOR);
+        db.execSQL(CREATE_SELECTCOLOR);
         for(int i=0;i< Util.label.length;i++)
             db.execSQL("insert into labelcolor values(null,'"+Util.label[i]+"',"+Util.colors[i]+")");
+        for(int i=0;i<Util.selectingColors.length;i++)
+            db.execSQL("insert into colors values(null,"+Util.selectingColors[i]+")");
         db.execSQL("insert into billdirc values(null,'新建账本',0,0)");
         context.getSharedPreferences("billselect",
                 Context.MODE_PRIVATE).edit().putInt("selectedID",1)
@@ -77,6 +82,7 @@ public class BillDateHelper extends SQLiteOpenHelper{
         return map;
     }
 
+    //从labelcolor里获取标签对应颜色
     public int getColor(String label){
         SQLiteDatabase db=getWritableDatabase();
         Cursor cursor=db.rawQuery("select  color from labelcolor where label='" + label + "'", null);
@@ -86,6 +92,7 @@ public class BillDateHelper extends SQLiteOpenHelper{
         return color;
     }
 
+    //从bill里获取标签对应颜色
     public int getcolor(String label){
         SQLiteDatabase db=getWritableDatabase();
         Cursor cursor=db.rawQuery("select distinct color from bill where label='" + label + "'", null);
@@ -94,6 +101,26 @@ public class BillDateHelper extends SQLiteOpenHelper{
         cursor.close();
         return color;
     }
+
+    public ArrayList<Integer> getAllColors(){
+        ArrayList<Integer> list=new ArrayList<>();
+        SQLiteDatabase db=getWritableDatabase();
+        Cursor cursor=db.rawQuery("select * from colors", null);
+        for(;cursor.moveToNext();cursor.isAfterLast())
+            list.add(cursor.getInt(cursor.getColumnIndex("color")));
+        cursor.close();
+        return list;
+    }
+
+    public int getColorID(int color){
+        SQLiteDatabase db=getWritableDatabase();
+        Cursor cursor=db.rawQuery("select _id from colors where color="+color,null);
+        cursor.moveToNext();
+        int id=cursor.getInt(cursor.getColumnIndex("_id"));
+        cursor.close();
+        return id;
+    }
+
 
     public ArrayList<Map<String,Object>> getLabelColor(){
         ArrayList<Map<String,Object>> list=new ArrayList<>();
@@ -126,9 +153,9 @@ public class BillDateHelper extends SQLiteOpenHelper{
         return id;
     }
 
-    public void deletelabel(int id){
+    public void deleteColor(int id){
         SQLiteDatabase db=getWritableDatabase();
-        db.execSQL("delete from labelcolor where _id=" + id);
+        db.execSQL("delete from colors where _id=" + id);
     }
 
     public void updatelabel(String label,int id){
