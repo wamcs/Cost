@@ -25,6 +25,7 @@
         <activity android:name=".activity.BillTable"/>
         <activity android:name=".activity.Report"/>
         <activity android:name=".activity.Setting" />
+        <activity android:name=".activity.AboutUs"/>
         <activity android:name=".activity.LabelSetting" />
         <receiver android:name=".activity.Cost$BillChangeReceiver">
             <intent-filter>

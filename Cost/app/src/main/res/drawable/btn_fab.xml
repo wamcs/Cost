@@ -2,13 +2,7 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="false">
         <layer-list>
-            <item android:bottom="2dp" android:left="2dp" android:right="2dp" android:top="2dp">
-                <shape android:shape="oval">
-                    <solid android:color="@color/fab_color_shadow" />
-                </shape>
-            </item>
-
-            <item android:bottom="5dp" android:left="2dp" android:right="2dp" android:top="2dp">
+            <item >
                 <shape android:shape="oval">
                     <solid android:color="#f16897" />
                 </shape>

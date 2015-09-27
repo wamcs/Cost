@@ -21,13 +21,13 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/bill_detail_return"
-                android:src="@mipmap/ic_arrow_back_white_36dp"
+                android:src="@mipmap/ic_arrow_back_white_24dp"
                 android:layout_margin="10dp"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/bill_detail_delete"
-                android:src="@mipmap/ic_delete_white_36dp"
+                android:src="@mipmap/ic_delete_white_24dp"
                 android:layout_marginEnd="10dp"
                 android:layout_alignTop="@+id/bill_detail_return"
                 android:layout_alignParentEnd="true" />
@@ -207,11 +207,12 @@
         </LinearLayout>
     </LinearLayout>
 
-    <android.support.design.widget.FloatingActionButton
+    <ImageButton
         android:layout_width="@dimen/fab_size"
         android:layout_height="@dimen/fab_size"
         android:id="@+id/bill_detail_fab"
         android:elevation="@dimen/default_elevation"
+        android:background="@drawable/btn_fab"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="@dimen/bill_detail_fab_rightpadding"
         android:layout_alignParentTop="true"

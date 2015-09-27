@@ -9,7 +9,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/view_activity_body_content"
         android:text="午饭"
-        android:textSize="@dimen/detail_size"
+        android:layout_marginStart="10dp"
+        android:textSize="@dimen/Title"
         android:padding="@dimen/detail_body_item_padding"
         android:layout_weight="1"
         />
@@ -18,8 +19,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/view_activity_body_money"
         android:text="100"
-        android:textSize="@dimen/detail_size"
+        android:textSize="@dimen/Title"
         android:padding="@dimen/detail_body_item_padding"
+        android:gravity="end"
+        android:layout_marginEnd="10dp"
         android:layout_weight="1"/>
 
 </LinearLayout>

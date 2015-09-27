@@ -10,5 +10,6 @@
         android:layout_marginTop="@dimen/View_nagitivation_item_padding"
         android:background="#85d0ff"
         android:id="@+id/ngv_btn"
+        android:src="@mipmap/ic_add_white_36dp"
         android:elevation="5dp"/>
 </LinearLayout>

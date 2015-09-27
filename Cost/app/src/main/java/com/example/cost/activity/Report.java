@@ -2,7 +2,10 @@ package com.example.cost.activity;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.cost.R;
@@ -47,6 +50,7 @@ public class Report extends BaseActivity {
         week=calendar.get(Calendar.WEEK_OF_MONTH);
         init();
         getData();
+        setToolbar();
     }
 
     public void init(){
@@ -97,7 +101,7 @@ public class Report extends BaseActivity {
             pay+=cursor.getInt(cursor.getColumnIndex("pay"));
         }
         weekIncomeTv.setText(income + "");
-        weekPayTv.setText(pay+"");
+        weekPayTv.setText(pay + "");
         weekCompare.setProportion(pay, income);
         weekCompare.setAnimation();
         cursor.close();
@@ -134,6 +138,26 @@ public class Report extends BaseActivity {
         yearCompare.setAnimation();
         cursor.close();
 
+    }
+    public void setToolbar(){
+        Toolbar toolbar= (Toolbar) findViewById(R.id.activity_report_toolbar);
+        toolbar.setTitleTextColor(Color.WHITE);
+        toolbar.setNavigationIcon(getResources().getDrawable(R.mipmap.ic_arrow_back_white_24dp));
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("收支情况");
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

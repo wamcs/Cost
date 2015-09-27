@@ -9,11 +9,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.Build;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -31,8 +28,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.cost.Util;
-import com.example.cost.adapter.BillAdater;
+import com.example.cost.adapter.BillAdapter;
 import com.example.cost.adapter.ShopingAdpter;
+import com.example.cost.contrl.RecyclerItemDivider;
 import com.example.cost.datebase.BillDateHelper;
 import com.example.cost.R;
 import com.example.cost.adapter.NagivationAdapter;
@@ -60,7 +58,7 @@ public class Cost extends BaseActivity {
     private LinearLayout rightLayout;
     private LinearLayout leftlayout;
     private LinearLayout layout;
-    private FloatingActionButton fab;
+    private ImageButton fab;
     private LinearLayout incomelayout;
     private LinearLayout paylayout;
     private Intent tobillwrite;
@@ -176,6 +174,9 @@ public class Cost extends BaseActivity {
                 Intent setting=new Intent(Cost.this,Setting.class);
                 startActivity(setting);
                 break;
+            case android.R.id.home:
+                drawerLayout.openDrawer(leftlayout);
+                break;
         }
 
         return super.onOptionsItemSelected(item);
@@ -212,7 +213,7 @@ public class Cost extends BaseActivity {
         rightLayout= (LinearLayout) findViewById(R.id.rightlayout);
         leftlayout= (LinearLayout) findViewById(R.id.leftlayout);
         layout= (LinearLayout) findViewById(R.id.activity_head_layout);
-        fab= (FloatingActionButton) findViewById(R.id.fab_btn_main);
+        fab= (ImageButton) findViewById(R.id.fab_btn_main);
         shoppingadd= (ImageButton) findViewById(R.id.view_shoppinglist_addbtn);
         shoppinglist= (ListView) findViewById(R.id.view_shoppinglist_listview);
         incomelayout= (LinearLayout) findViewById(R.id.activity_head_income_layout);
@@ -221,6 +222,10 @@ public class Cost extends BaseActivity {
         LinearLayoutManager manager=new LinearLayoutManager(this);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(manager);
+        RecyclerItemDivider divider=new RecyclerItemDivider(this);
+        divider.setmItemSize(2);
+        divider.setmPaintColor(R.color.cost_divider);
+        recyclerView.addItemDecoration(divider);
         handler=new Handler();
         Util.width=getResources().getDisplayMetrics().widthPixels;
     }
@@ -266,13 +271,11 @@ public class Cost extends BaseActivity {
     }
     //侧边菜单栏实现
     public void onCreateNavigation(){
+        toolbar.setNavigationIcon(getResources().getDrawable(R.mipmap.ic_menu_white_24dp));
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
-        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
-                R.string.Navigation_open, R.string.Navigation_close);
-
-        actionBarDrawerToggle.syncState();
-        drawerLayout.setDrawerListener(actionBarDrawerToggle);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         NagivationAdapter nagivationAdapter = new NagivationAdapter(Cost.this);
         nagivationAdapter.setMainChanged(new NagivationAdapter.MainChanged() {
             @Override
@@ -405,7 +408,7 @@ public class Cost extends BaseActivity {
                     titletv.setText(title);
                     incometv.setText(income);
                     paytv.setText(pay);
-                    recyclerView.setAdapter(new BillAdater(Cost.this,time,date,Cost.this));
+                    recyclerView.setAdapter(new BillAdapter(Cost.this,time,date,Cost.this));
                 }
             });
         }
@@ -420,8 +423,7 @@ public class Cost extends BaseActivity {
     }
 
     public void StartAnimation(){
-        fab.setTranslationY(2*getResources().getDimensionPixelOffset(R.dimen.fab_size)+
-        getResources().getDimensionPixelOffset(R.dimen.fab_margin));
+        fab.setTranslationY(2*getResources().getDimensionPixelOffset(R.dimen.fab_size));
         int actionbarSize = Util.dpToPx(56);
         DisplayMetrics displayMetrics=this.getResources().getDisplayMetrics();
         int width=displayMetrics.widthPixels;
@@ -437,7 +439,6 @@ public class Cost extends BaseActivity {
                 .setListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animation) {
-                        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
                         fab.animate().setDuration(300).translationY(0)
                                 .setStartDelay(700).setInterpolator(new OvershootInterpolator(1.f))
                                 .setListener(new AnimatorListenerAdapter() {
@@ -447,17 +448,6 @@ public class Cost extends BaseActivity {
                                     }
                                 })
                                 .start();
-                        else
-                            fab.animate().setDuration(300).translationY(40).translationX(40)
-                                    .setStartDelay(700).setInterpolator(new OvershootInterpolator(1.f))
-                                    .setListener(new AnimatorListenerAdapter() {
-                                        @Override
-                                        public void onAnimationEnd(Animator animation) {
-                                            Util.isInitialize = true;
-                                        }
-                                    })
-                                    .start();
-
                     }
                 })
                 .start();

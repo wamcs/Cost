@@ -2,20 +2,41 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/main_color">
-    <ImageButton
-        android:layout_width="@dimen/label_choose_edit_width"
-        android:layout_height="@dimen/label_choose_edit_height"
-        android:layout_margin="10dp"
-        android:id="@+id/label_choose_button"
-        android:layout_gravity="center"/>
-    <GridView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:numColumns="4"
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginBottom="15dp"
-        android:id="@+id/lable_gridview"
+    android:background="@color/main_color_show">
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="9"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/label_choose_height"
+            android:text="@string/label"
+            android:textSize="15sp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/label_choose_height"
+            android:layout_height="1dp"
+            android:background="@color/backgroud"/>
+        <android.support.v7.widget.RecyclerView
+            android:layout_marginTop="51dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/label_choose_recyclerview"
         />
+
+    </android.support.v7.widget.CardView>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/label_choose_height"
+        android:background="#2e94d2"
+        android:layout_gravity="bottom"
+        android:text="@string/label_create"
+        android:id="@+id/label_choose_button"
+        android:textSize="20sp"
+        android:textColor="@color/text_color_primary"/>
 </LinearLayout>

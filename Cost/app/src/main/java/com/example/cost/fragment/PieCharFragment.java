@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.example.cost.R;
 import com.example.cost.Util;
 import com.example.cost.adapter.PieChartItemAdapter;
+import com.example.cost.contrl.RecyclerItemDivider;
 import com.example.cost.datebase.BillDateHelper;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
@@ -63,7 +64,7 @@ public class PieCharFragment extends Fragment {
         nextButton= (ImageButton) view.findViewById(R.id.table_next);
         titletv= (TextView) view.findViewById(R.id.table_trans_title);
         moneytv=(TextView) view.findViewById(R.id.table_trans_money);
-        recyclerView= (RecyclerView) view.findViewById(R.id.table_recyclerview);
+        recyclerView= (RecyclerView) view.findViewById(R.id.pie_table_recyclerview);
         initView();
         initListener();
         return view;
@@ -76,13 +77,11 @@ public class PieCharFragment extends Fragment {
         else
             titletv.setText(year+"年"+month+"月");
         pieChart.setHoleColorTransparent(true);
-        pieChart.setHoleRadius(60f);
-        pieChart.setTransparentCircleRadius(64f);
-
+        pieChart.setHoleRadius(90f);
 
         pieChart.setDescription("");
         pieChart.setDrawCenterText(false);
-        pieChart.setNoDataText(year+"年"+month+"月");
+        pieChart.setNoDataText(year + "年" + month + "月");
         pieChart.setDrawHoleEnabled(true);
         pieChart.setDrawSliceText(false);
         pieChart.setDrawMarkerViews(false);
@@ -94,6 +93,7 @@ public class PieCharFragment extends Fragment {
         pieChart.setData(getPieDate());
         PieChartItemAdapter adapter=new PieChartItemAdapter(getActivity(),labelList
                 ,moneyList,colorList,proportion);
+        recyclerView.addItemDecoration(new RecyclerItemDivider(getActivity()));
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));
         recyclerView.setAdapter(adapter);
 
@@ -124,7 +124,6 @@ public class PieCharFragment extends Fragment {
                 if(Util.month==1){
                     Util.year--;
                     Util.month=12;
-                    //((linerRefresh) lineChart).refresh();
                     refresh();
                 }else{
                     Util.month--;
@@ -139,7 +138,6 @@ public class PieCharFragment extends Fragment {
                 if(Util.month==12){
                     Util.year++;
                     Util.month=1;
-                    //((linerRefresh) lineChart).refresh();
                     refresh();
                 }else{
                     Util.month++;
@@ -214,7 +212,7 @@ public class PieCharFragment extends Fragment {
             for(int i=0;i<moneyList.size();i++)
                 money+=moneyList.get(i);
             for(int i=0;i<moneyList.size();i++){
-                if(moneyList.get(i)*100%money>=50)
+                if((moneyList.get(i)*1000/money)%10>=5)
                     proportion.add(moneyList.get(i)*100/money+1);
                 else
                     proportion.add(moneyList.get(i) * 100 / money);

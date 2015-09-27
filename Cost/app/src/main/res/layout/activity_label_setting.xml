@@ -5,18 +5,26 @@
     <include layout="@layout/view_toolbar"/>
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/label_setting_height"
-        android:layout_margin="1dp">
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/label_setting_card_margin">
         <ImageButton
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/label_setting_height"
             android:id="@+id/activity_label_addbtn"
             android:src="@mipmap/ic_add_grey600_36dp"
-            android:layout_gravity="center"
+            android:layout_gravity="top"
             android:background="#00ffffff"/>
-    </android.support.v7.widget.CardView>
-    <include layout="@layout/view_label_item_show"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/label_setting_height"
+            android:layout_height="1dp"
+            android:background="@color/backgroud"/>
+        <include layout="@layout/view_label_show"
+            android:layout_marginTop="@dimen/label_setting_margin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
         />
+    </android.support.v7.widget.CardView>
+
+
 </LinearLayout>

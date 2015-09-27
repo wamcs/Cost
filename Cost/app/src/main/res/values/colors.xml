@@ -10,54 +10,68 @@
 
     <color name="activity_head_color">#0277bd</color>
 
-    <color name="label_color1">#75b551</color>
-    <color name="label_color2">#77b69d</color>
-    <color name="label_color3">#cddc17</color>
-    <color name="label_color4">#c99f47</color>
-    <color name="label_color5">#b56f1d</color>
+    <color name="label_color1">#9ccc65</color>
+    <color name="label_color2">#ffa726</color>
+    <color name="label_color3">#ffee58</color>
+    <color name="label_color4">#2baf2b</color>
+    <color name="label_color5">#26c6da</color>
 
-    <color name="label_color6">#5df651</color>
-    <color name="label_color7">#48bc3e</color>
-    <color name="label_color8">#3da135</color>
-    <color name="label_color9">#ffc95a</color>
-    <color name="label_color10">#e3bc36</color>
-    <color name="label_color11">#bde8b134</color>
-    <color name="label_color12">#97e8c8</color>
-    <color name="label_color13">#71dabe</color>
-    <color name="label_color14">#51c3c7</color>
-    <color name="label_color15">#fffc94</color>
-    <color name="label_color16">#fff91e</color>
-    <color name="label_color17">#ffff00</color>
-    <color name="label_color18">#6787dc</color>
-    <color name="label_color19">#77a3ff</color>
-    <color name="label_color20">#434eb5</color>
-    <color name="label_color21">#ff433f</color>
-    <color name="label_color22">#ff755f</color>
-    <color name="label_color23">#dc1455</color>
-    <color name="label_color24">#c963c4</color>
-    <color name="label_color25">#df23ae</color>
-    <color name="label_color26">#a702c6</color>
+    <color name="label_color6">#fe6e00</color>
+    <color name="label_color7">#fe9200</color>
+    <color name="label_color8">#fbc12d</color>
+    <color name="label_color9">#64de16</color>
+    <color name="label_color10">#00c952</color>
+    <color name="label_color11">#007a6a</color>
+    <color name="label_color12">#43a046</color>
+    <color name="label_color13">#65bb69</color>
+    <color name="label_color14">#65bb69</color>
+    <color name="label_color15">#00c0a4</color>
+    <color name="label_color16">#00adc1</color>
+    <color name="label_color17">#4dd1e1</color>
+    <color name="label_color18">#5c6bbf</color>
+    <color name="label_color19">#663cb7</color>
+    <color name="label_color20">#7b21a2</color>
+    <color name="label_color21">#d71b60</color>
+    <color name="label_color22">#ef6392</color>
+    <color name="label_color23">#f8bcd0</color>
+
 
     <color name="fab_color_pressed">#d13469</color>
     <color name="fab_color_shadow">#44000000</color>
 
-    <color name="table_tab_backgroud">#73c8fd</color>
-    <color name="table_tab_text">#ffffff</color>
-    <color name="table_tab_selected">#60ff76</color>
+    <color name="table_tab_backgroud">#0288d1</color>
+    <color name="table_tab_selected">#ffffff</color>
 
-    <color name="line_chart_income">#fbf261</color>
-    <color name="line_chart_pay">#fba453</color>
-    <color name="line_chart_backgroud">#80d1ff</color>
+    <color name="line_chart_income">#53d7a6</color>
+    <color name="line_chart_pay">#ddf59d</color>
 
     <color name="chart_trans">#80d1ff</color>
     <color name="chart_trans_pressed">#50aad6</color>
 
-    <color name="main_color">#00ffffff</color>
-    <color name="shallow_color">#31bababa</color>
+    <color name="main_color_show">#00ffffff</color>
+    <color name="shallow_color_show">#31bababa</color>
 
-    <color name="dialog_backgroud">#0288d1</color>
-    <color name="dialog_button_color">#0277bd</color>
-    <color name="dialog_edit_text">#b3e5fc</color>
+    <color name="main_color_choose">#f9f9f9</color>
+    <color name="shallow_color_choose">#00bababa</color>
+
+    <color name="backgroud">#40b7b7b7</color>
+    <color name="transparent">#00ffffff</color>
+
+    <color name="shopping_list_radio_nocheck">#0274b2</color>
+    <color name="shopping_list_radio_checked">#b3e5fc</color>
+
+    <color name="bill_cover_unchecked1">#e1bee7</color>
+    <color name="bill_cover_checked1">#756378</color>
+    <color name="bill_cover_unchecked2">#f48fb1</color>
+    <color name="bill_cover_checked2">#7f4b5c</color>
+    <color name="bill_cover_unchecked3">#fff9c4</color>
+    <color name="bill_cover_checked3">#858266</color>
+    <color name="bill_cover_unchecked4">#b9f6ca</color>
+    <color name="bill_cover_checked4">#608069</color>
+    <color name="bill_cover_unchecked5">#26a69a</color>
+    <color name="bill_cover_checked5">#145750</color>
+
+    <color name="cost_divider">#77bdbdbd</color>
 
 
 </resources>

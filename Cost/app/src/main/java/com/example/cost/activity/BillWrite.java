@@ -9,22 +9,30 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SwitchCompat;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.view.ViewTreeObserver;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.OvershootInterpolator;
+import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import com.example.cost.R;
 import com.example.cost.Util;
-import com.example.cost.adapter.ChooseAdapter;
+import com.example.cost.adapter.LabelChooseAdapter;
+import com.example.cost.adapter.LabelItemAdapter;
 import com.example.cost.contrl.RevealCircleBackgroud;
 import com.example.cost.datebase.BillDateHelper;
 
@@ -64,7 +72,7 @@ public class BillWrite extends BaseActivity {
     private static int billitemID;
     private Intent change;
     private String ShoppingName;
-    private int labelPosition;
+    private String reciveLabel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -80,6 +88,7 @@ public class BillWrite extends BaseActivity {
         initDate(billitemID);
         setListener();
     }
+
 
     public void init(){
         getMoney= (EditText) findViewById(R.id.billwrite_getmoney);
@@ -106,123 +115,40 @@ public class BillWrite extends BaseActivity {
         money=Integer.parseInt(getMoney.getText().toString());
         content=getRemark.getText().toString();
         label=getLabel.getText().toString();
+
     }
 
     public void setListener(){
         timelayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder datadialogbuilder=
-                        new AlertDialog.Builder(BillWrite.this);
-                View view= getLayoutInflater().inflate(R.layout.view_dialog_datepicker,null);
-                final DatePicker datePicker=
-                        (DatePicker) view.findViewById(R.id.view_dialog_datePicker);
-                datadialogbuilder.setView(view);
-                datePicker.setCalendarViewShown(false);
-                datadialogbuilder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        year=datePicker.getYear();
-                        month=datePicker.getMonth()+1;
-                        date=datePicker.getDayOfMonth();
-                        times=date+month*100+year*10000;
-                        timetv.setText(year+"/"+month+"/"+date);
-                        dialog.cancel();
-                    }
-                });
-                datadialogbuilder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-                datadialogbuilder.create().show();
+             popTime();
 
             }
         });
         labellayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder=
-                        new AlertDialog.Builder(BillWrite.this);
-                View view= LayoutInflater.
-                        from(BillWrite.this).inflate(R.layout.view_label_choose,null);
-                ImageButton imageButton= (ImageButton)
-                        view.findViewById(R.id.label_choose_button);
-                GridView gridView= (GridView)
-                        view.findViewById(R.id.lable_gridview);
-                ChooseAdapter chooseAdapter=new ChooseAdapter(BillWrite.this);
-                chooseAdapter.setListener(new ChooseAdapter.positionListener() {
-                    @Override
-                    public void getPosition(int position) {
-                        labelPosition=position;
-                    }
-                });
-                gridView.setAdapter(chooseAdapter);
-                builder.setView(view);
-                final Dialog dialog=builder.create();
-                imageButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        getLabel.setText(Util.label[labelPosition]);
-                        dialog.dismiss();
-                    }
-                });
-                dialog.show();
+                popLabel();
             }
         });
 
-        stateswitch.setOnClickListener(new View.OnClickListener() {
+        stateswitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                if(stateswitch.isChecked())
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)
                     statetv.setText(R.string.stateincome);
                 else
                     statetv.setText(R.string.statepay);
             }
         });
-        periodswitch.setOnClickListener(new View.OnClickListener() {
+        periodswitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 recycleperiod=Util.NOPERIOD;
-                if (periodswitch.isChecked()) {
-                    final PopupMenu pop = new PopupMenu(BillWrite.this,periodswitch);
-                    getMenuInflater().inflate(R.menu.bill_peroid_popmenu, pop.getMenu());
-                    pop.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                        @Override
-                        public boolean onMenuItemClick(MenuItem item) {
-                            switch (item.getItemId()) {
-                                case R.id.period_month:
-                                    recycleperiod = Util.PRO_MONTH;
-                                    periodtv.setText(R.string.periodmonth);
-                                    pop.dismiss();
-                                    break;
-                                case R.id.period_week:
-                                    recycleperiod = Util.PRO_WEEK;
-                                    periodtv.setText(R.string.periodweek);
-                                    pop.dismiss();
-                                    break;
-                                case R.id.period_day:
-                                    recycleperiod = Util.PRO_DAY;
-                                    periodtv.setText(R.string.periodday);
-                                    pop.dismiss();
-                                    break;
-                                case R.id.period_twoweek:
-                                    recycleperiod = Util.TWO_WEEK;
-                                    periodtv.setText(R.string.periodtwoweek);
-                                    pop.dismiss();
-                                    break;
-                                default:
-                                    periodswitch.setChecked(false);
-                                    pop.dismiss();
-
-                            }
-                            return true;
-                        }
-                    });
-
-                    pop.show();
-                }else
+                if(isChecked)
+                    popPeriod();
+                else
                     periodtv.setText(R.string.periodno);
             }
         });
@@ -241,9 +167,9 @@ public class BillWrite extends BaseActivity {
             @Override
             public void onClick(View v) {
                 finish();
+                overridePendingTransition(0,0);
             }
         });
-
     }
 
     public void initDate(int billitemID){
@@ -253,6 +179,7 @@ public class BillWrite extends BaseActivity {
             date=(int)billDateHelper.getTime().get("date");
             times=date+month*100+year*10000;
             recycleperiod=Util.NOPERIOD;
+            getLabel.setText(billDateHelper.getLabel(1));
             timetv.setText(year+"/"+month+"/"+date);
             if(ShoppingName!=null)
                 getRemark.setText(ShoppingName);
@@ -348,6 +275,7 @@ public class BillWrite extends BaseActivity {
         }
         sendBroadcast(change);
         finish();
+        overridePendingTransition(0,0);
     }
 
     public void setupRevealCircleBackgroud() {
@@ -399,5 +327,122 @@ public class BillWrite extends BaseActivity {
             }
         });
 
+    }
+
+    public void backAnimation(){
+        final int[] location = getIntent().getIntArrayExtra("location");
+        revealCircleBackgroud.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                revealCircleBackgroud.getViewTreeObserver().removeOnPreDrawListener(this);
+                revealCircleBackgroud.startFromLocation(location);
+                return true;
+            }
+        });
+    }
+
+    public void popPeriod(){
+        final PopupMenu pop = new PopupMenu(BillWrite.this,periodswitch);
+        getMenuInflater().inflate(R.menu.bill_peroid_popmenu, pop.getMenu());
+        pop.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    switch (item.getItemId()) {
+                        case R.id.period_month:
+                            recycleperiod = Util.PRO_MONTH;
+                            periodtv.setText(R.string.periodmonth);
+                            pop.dismiss();
+                            break;
+                        case R.id.period_week:
+                            recycleperiod = Util.PRO_WEEK;
+                            periodtv.setText(R.string.periodweek);
+                            pop.dismiss();
+                            break;
+                        case R.id.period_day:
+                            recycleperiod = Util.PRO_DAY;
+                            periodtv.setText(R.string.periodday);
+                            pop.dismiss();
+                            break;
+                        case R.id.period_twoweek:
+                            recycleperiod = Util.TWO_WEEK;
+                            periodtv.setText(R.string.periodtwoweek);
+                            pop.dismiss();
+                            break;
+                        default:
+                            periodswitch.setChecked(false);
+                            pop.dismiss();
+
+                    }
+                    return true;
+                }
+        });
+        pop.show();
+
+    }
+
+    public void popLabel(){
+        AlertDialog.Builder builder=
+                new AlertDialog.Builder(BillWrite.this);
+        View view= LayoutInflater.
+                from(BillWrite.this).inflate(R.layout.view_label_choose,null);
+        RecyclerView recyclerView= (RecyclerView)
+                view.findViewById(R.id.label_choose_recyclerview);
+        Button button= (Button) view.findViewById(R.id.label_choose_button);
+        LabelChooseAdapter adapter=new LabelChooseAdapter(BillWrite.this,billDateHelper.getLabelColor());
+        adapter.setListener(new LabelChooseAdapter.labelListener() {
+            @Override
+            public void getLabel(String label) {
+                reciveLabel = label;
+            }
+        });
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(BillWrite.this);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(adapter);
+        builder.setView(view);
+        final Dialog dialog=builder.create();
+        Window window=dialog.getWindow();
+        WindowManager.LayoutParams layoutParams=window.getAttributes();
+        DisplayMetrics displayMetrics=
+                getResources().getDisplayMetrics();
+        layoutParams.width=(int)(displayMetrics.widthPixels*0.95);
+        layoutParams.height=(int)(displayMetrics.heightPixels*0.6);
+        window.setAttributes(layoutParams);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getLabel.setText(reciveLabel);
+                dialog.cancel();
+            }
+        });
+        dialog.show();
+    }
+
+    public void popTime(){
+        AlertDialog.Builder datadialogbuilder=
+                new AlertDialog.Builder(BillWrite.this);
+        View view= getLayoutInflater().inflate(R.layout.view_dialog_datepicker,null);
+        final DatePicker datePicker=
+                (DatePicker) view.findViewById(R.id.view_dialog_datePicker);
+        datadialogbuilder.setView(view);
+        datePicker.setCalendarViewShown(false);
+        datadialogbuilder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                year=datePicker.getYear();
+                month=datePicker.getMonth()+1;
+                date=datePicker.getDayOfMonth();
+                times=date+month*100+year*10000;
+                timetv.setText(year+"/"+month+"/"+date);
+                dialog.cancel();
+            }
+        });
+        datadialogbuilder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        datadialogbuilder.create().show();
     }
 }

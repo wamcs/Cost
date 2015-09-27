@@ -6,22 +6,21 @@
     android:orientation="vertical">
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="169dp"
         android:id="@+id/view_activity_head_iv"
         android:background="@color/activity_head_color"/>
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="250dp"
         android:id="@+id/activity_head_layout">
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
+            android:layout_gravity="start"
             android:id="@+id/activity_head_income_layout"
             >
 
@@ -29,13 +28,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="收入:"
+                android:layout_gravity="start"
                 android:textColor="@color/text_color_primary"
-                android:textSize="@dimen/head_textsize_top" />
+                android:textSize="@dimen/subhead" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0"
-                android:textSize="@dimen/head_textsize_top"
+                android:text="2,000.00"
+                android:textSize="@dimen/subhead"
                 android:textColor="#ffffff"
                 android:id="@+id/view_activity_income"
                 />
@@ -43,7 +43,7 @@
 
         </LinearLayout>
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/activity_head_pay_layout"
             >
@@ -51,16 +51,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="支出:"
-                android:textSize="@dimen/head_textsize_top"
-                android:layout_gravity="right"
+                android:layout_gravity="start"
+                android:textSize="@dimen/subhead"
                 android:textColor="@color/text_color_primary"/>
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0"
-                android:textSize="@dimen/head_textsize_top"
+                android:text="500.00"
+                android:textSize="@dimen/subhead"
                 android:textColor="#ffffff"
                 android:id="@+id/view_activity_pay"
                 />
@@ -73,9 +73,10 @@
         android:layout_height="wrap_content"
         android:text="生活日常"
         android:textColor="@color/text_color_primary"
-        android:textSize="@dimen/head_textsize_title"
+        android:textSize="@dimen/display1"
         android:id="@+id/view_activity_head_title"
-        android:layout_margin="20dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
         android:layout_alignBottom="@+id/view_activity_head_iv"
         android:layout_alignParentStart="true" />
 

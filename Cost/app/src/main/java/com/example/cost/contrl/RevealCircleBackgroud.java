@@ -29,6 +29,7 @@ public class RevealCircleBackgroud extends View {
     private int startLocationX;
     private int startLocationY;
 
+
     private onStateListener listener;
 
 
@@ -78,6 +79,8 @@ public class RevealCircleBackgroud extends View {
         animator.start();
     }
 
+
+
     @Override
     protected void onDraw(Canvas canvas) {
         if (STATE_FILL_FINISHED==state){
@@ -85,6 +88,7 @@ public class RevealCircleBackgroud extends View {
         }
         else{
             canvas.drawCircle(startLocationX,startLocationY,radius,fillPaint);
+
         }
     }
 

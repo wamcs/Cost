@@ -23,16 +23,20 @@
     <string name="stateincome">收入</string>
     <string name="statepay">支出</string>
     <string name="label_sure">选定</string>
+    <string name="label_create">创建</string>
+    <string name="label">标签</string>
 
     <string name="unique">Unique Studio</string>
-    <string-array name="staff_name">
 
-    </string-array>
-    <string-array name="staff_position">
+    <string name="staff_name1">K</string>
+    <string name="staff_position1">Programmer</string>
+    <string name="staff_email1">kaili@hustunique.com</string>
+    <string name="staff_name2">K</string>
+    <string name="staff_position2">Programmer</string>
+    <string name="staff_email2">kaili@hustunique.com</string>
+    <string name="staff_name3">K</string>
+    <string name="staff_position3">Programmer</string>
+    <string name="staff_email3">kaili@hustunique.com</string>
 
-    </string-array>
-    <string-array name="staff_email">
-
-    </string-array>
 
 </resources>

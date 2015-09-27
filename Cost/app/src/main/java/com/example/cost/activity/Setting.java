@@ -1,8 +1,8 @@
 package com.example.cost.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,7 +22,8 @@ public class Setting extends BaseActivity{
         aboutUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(Setting.this, AboutUs.class);
+                startActivity(intent);
             }
         });
         labelSet.setOnClickListener(new View.OnClickListener() {
@@ -36,9 +37,10 @@ public class Setting extends BaseActivity{
 
     public void setToolbar(){
         Toolbar toolbar= (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setNavigationIcon(getResources().getDrawable(R.mipmap.ic_arrow_back_white_36dp));
+        toolbar.setTitleTextColor(Color.WHITE);
+        toolbar.setNavigationIcon(getResources().getDrawable(R.mipmap.ic_arrow_back_white_24dp));
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("");
+        getSupportActionBar().setTitle("设置");
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

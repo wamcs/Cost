@@ -18,146 +18,85 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/report_card_height"
+            android:layout_marginBottom="1dp">
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="1dp"
-                >
-                <LinearLayout
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/report_title_height"
+                    android:layout_margin="@dimen/report_margin"
+                    android:text="本日"
+                    android:textSize="@dimen/head_textsize_top"
+                    android:layout_gravity="center"
+                    />
+                <com.example.cost.contrl.ColorCompareView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:orientation="vertical">
-                    <TextView
+                    android:layout_height="25dp"
+                    android:padding="5dp"
+                    android:id="@+id/activity_report_date"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="@dimen/report_title_height"
-                        android:layout_marginBottom="@dimen/report_margin"
-                        android:text="本年"
-                        android:textSize="@dimen/head_textsize_top"
-                        android:layout_gravity="center"
-                        />
-                    <com.example.cost.contrl.ColorCompareView
-                        android:layout_width="match_parent"
-                        android:layout_height="25dp"
-                        android:padding="5dp"
-                        android:id="@+id/activity_report_year"/>
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <LinearLayout
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginStart="5dp"
+                        android:orientation="vertical">
+                        <TextView
                             android:layout_width="wrap_content"
-                            android:layout_height="@dimen/report_layout_height"
-                            android:layout_margin="@dimen/report_margin"
-                            android:orientation="vertical">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/income"
-                                android:textSize="@dimen/head_textsize_top" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="0"
-                                android:textSize="@dimen/head_textsize_money"
-                                android:id="@+id/activity_report_year_income"/>
-                        </LinearLayout>
-                        <LinearLayout
+                            android:layout_height="wrap_content"
+                            android:text="@string/income"
+                            android:textSize="@dimen/head_textsize_top" />
+                        <TextView
                             android:layout_width="wrap_content"
-                            android:layout_height="@dimen/report_layout_height"
-                            android:layout_margin="@dimen/report_margin"
-                            android:orientation="vertical"
-                            android:layout_alignParentEnd="true">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/pay"
-                                android:textSize="@dimen/head_textsize_top"/>
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:layout_marginTop="5dp"
+                            android:textSize="@dimen/head_textsize_money"
+                            android:id="@+id/activity_report_date_income"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:orientation="vertical"
+                        android:layout_marginTop="16dp"
+                        android:layout_alignParentEnd="true">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/pay"
+                            android:layout_gravity="end"
+                            android:textSize="@dimen/head_textsize_top"/>
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="0"
-                                android:layout_gravity="end"
-                                android:textSize="@dimen/head_textsize_money"
-                                android:id="@+id/activity_report_year_pay"/>
-                        </LinearLayout>
-                    </RelativeLayout>
-
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:layout_marginTop="5dp"
+                            android:layout_gravity="end"
+                            android:textSize="@dimen/head_textsize_money"
+                            android:id="@+id/activity_report_date_pay"/>
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/report_card_height"
                 android:layout_marginBottom="1dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/report_title_height"
-                        android:layout_margin="@dimen/report_margin"
-                        android:text="本月"
-                        android:textSize="@dimen/head_textsize_top"
-                        android:layout_gravity="center"
-                        />
-                    <com.example.cost.contrl.ColorCompareView
-                        android:layout_width="match_parent"
-                        android:layout_height="25dp"
-                        android:padding="5dp"
-                        android:id="@+id/activity_report_month"/>
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/report_layout_height"
-                            android:layout_margin="@dimen/report_margin"
-                            android:orientation="vertical">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/income"
-                                android:textSize="@dimen/head_textsize_top" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="0"
-                                android:textSize="@dimen/head_textsize_money"
-                                android:id="@+id/activity_report_month_income"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/report_layout_height"
-                            android:layout_margin="@dimen/report_margin"
-                            android:orientation="vertical"
-                            android:layout_alignParentEnd="true">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/pay"
-                                android:textSize="@dimen/head_textsize_top"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="0"
-                                android:layout_gravity="end"
-                                android:textSize="@dimen/head_textsize_money"
-                                android:id="@+id/activity_report_month_pay"/>
-                        </LinearLayout>
-                    </RelativeLayout>
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="1dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
                     android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
@@ -177,8 +116,9 @@
                         android:layout_height="wrap_content">
                         <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="@dimen/report_layout_height"
-                            android:layout_margin="@dimen/report_margin"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="16dp"
                             android:orientation="vertical">
                             <TextView
                                 android:layout_width="wrap_content"
@@ -188,25 +128,29 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
                                 android:text="0"
                                 android:textSize="@dimen/head_textsize_money"
                                 android:id="@+id/activity_report_week_income"/>
                         </LinearLayout>
                         <LinearLayout
+                            android:layout_marginEnd="5dp"
                             android:layout_width="wrap_content"
-                            android:layout_height="@dimen/report_layout_height"
-                            android:layout_margin="@dimen/report_margin"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
                             android:orientation="vertical"
                             android:layout_alignParentEnd="true">
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/pay"
+                                android:layout_gravity="end"
                                 android:textSize="@dimen/head_textsize_top"/>
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
                                 android:text="0"
                                 android:layout_gravity="end"
                                 android:textSize="@dimen/head_textsize_money"
@@ -218,18 +162,19 @@
             </android.support.v7.widget.CardView>
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/report_card_height"
                 android:layout_marginBottom="1dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="10dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
                     android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/report_title_height"
                         android:layout_margin="@dimen/report_margin"
-                        android:text="本日"
+                        android:text="本月"
                         android:textSize="@dimen/head_textsize_top"
                         android:layout_gravity="center"
                         />
@@ -237,14 +182,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="25dp"
                         android:padding="5dp"
-                        android:id="@+id/activity_report_date"/>
+                        android:id="@+id/activity_report_month"/>
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="@dimen/report_layout_height"
-                            android:layout_margin="@dimen/report_margin"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginStart="5dp"
                             android:orientation="vertical">
                             <TextView
                                 android:layout_width="wrap_content"
@@ -255,33 +201,110 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="0"
+                                android:layout_marginTop="5dp"
                                 android:textSize="@dimen/head_textsize_money"
-                                android:id="@+id/activity_report_date_income"/>
+                                android:id="@+id/activity_report_month_income"/>
                         </LinearLayout>
                         <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="@dimen/report_layout_height"
-                            android:layout_margin="@dimen/report_margin"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="5dp"
                             android:orientation="vertical"
                             android:layout_alignParentEnd="true">
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/pay"
+                                android:layout_gravity="end"
                                 android:textSize="@dimen/head_textsize_top"/>
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="0"
+                                android:layout_marginTop="5dp"
                                 android:layout_gravity="end"
                                 android:textSize="@dimen/head_textsize_money"
-                                android:id="@+id/activity_report_date_pay"/>
+                                android:id="@+id/activity_report_month_pay"/>
                         </LinearLayout>
                     </RelativeLayout>
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
 
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/report_card_height"
+                android:layout_marginBottom="1dp"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/report_title_height"
+                        android:layout_marginBottom="@dimen/report_margin"
+                        android:text="本年"
+                        android:textSize="@dimen/head_textsize_top"
+                        android:layout_gravity="center"
+                        />
+                    <com.example.cost.contrl.ColorCompareView
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:padding="5dp"
+                        android:id="@+id/activity_report_year"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginStart="5dp"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/income"
+                                android:textSize="@dimen/head_textsize_top" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:layout_marginTop="5dp"
+                                android:textSize="@dimen/head_textsize_money"
+                                android:id="@+id/activity_report_year_income"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="5dp"
+                            android:orientation="vertical"
+                            android:layout_alignParentEnd="true">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/pay"
+                                android:layout_gravity="end"
+                                android:textSize="@dimen/head_textsize_top"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:layout_marginTop="5dp"
+                                android:layout_gravity="end"
+                                android:textSize="@dimen/head_textsize_money"
+                                android:id="@+id/activity_report_year_pay"/>
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
         </LinearLayout>
 
     </ScrollView>

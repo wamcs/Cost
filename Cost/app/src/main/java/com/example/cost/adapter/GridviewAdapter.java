@@ -8,13 +8,14 @@ import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 
 import com.example.cost.R;
+import com.example.cost.Util;
 
 import java.util.ArrayList;
 
 public class GridviewAdapter extends BaseAdapter{
 
-    private ArrayList<Integer> cover;//封面图案集合
-    private ArrayList<Integer> checked;//点击后图案集合
+    private int[] cover=Util.billCover;//封面图案集合
+    private int[] checked=Util.billCoverSure;//点击后图案集合
     private ArrayList<Integer> ischecked;
     private LayoutInflater layoutInflater;
     private Context context;
@@ -24,18 +25,6 @@ public class GridviewAdapter extends BaseAdapter{
     public GridviewAdapter(Context context){
         this.context=context;
         this.layoutInflater=LayoutInflater.from(context);
-        cover = new ArrayList<>();
-        cover.add(R.drawable.img_color1);
-        cover.add(R.drawable.img_color2);
-        cover.add(R.drawable.img_color3);
-        cover.add(R.drawable.img_color4);
-        cover.add(R.drawable.img_color5);
-        checked = new ArrayList<>();
-        checked.add(R.drawable.img_checked1);
-        checked.add(R.drawable.img_checked2);
-        checked.add(R.drawable.img_checked3);
-        checked.add(R.drawable.img_checked4);
-        checked.add(R.drawable.img_checked5);
         ischecked = new ArrayList<>();
         ischecked.add(1);
         for(int i=0;i<4;i++)
@@ -46,18 +35,6 @@ public class GridviewAdapter extends BaseAdapter{
         this.lastposition=lastposition;
         this.coverposition=lastposition;
         this.layoutInflater=LayoutInflater.from(context);
-        cover = new ArrayList<>();
-        cover.add(R.drawable.img_color1);
-        cover.add(R.drawable.img_color2);
-        cover.add(R.drawable.img_color3);
-        cover.add(R.drawable.img_color4);
-        cover.add(R.drawable.img_color5);
-        checked = new ArrayList<>();
-        checked.add(R.drawable.img_checked1);
-        checked.add(R.drawable.img_checked2);
-        checked.add(R.drawable.img_checked3);
-        checked.add(R.drawable.img_checked4);
-        checked.add(R.drawable.img_checked5);
         ischecked = new ArrayList<>();
         for(int i=0;i<5;i++)
             ischecked.add(0);
@@ -65,7 +42,7 @@ public class GridviewAdapter extends BaseAdapter{
     }
     @Override
     public int getCount() {
-        return cover.size();
+        return cover.length;
     }
 
     @Override
@@ -93,12 +70,12 @@ public class GridviewAdapter extends BaseAdapter{
             viewHolder= (GridviewAdapter.viewHolder) convertView.getTag();
         //选择。如果被选中封面设为选中封面，没有设为普通封面
         if(ischecked.get(position)==0){
-            viewHolder.itembtn.setBackground(context.getResources().
-                    getDrawable(cover.get(position)));
+            viewHolder.itembtn.setBackgroundColor(context.getResources().
+                    getColor(cover[position]));
         }
         else {
-            viewHolder.itembtn.setBackground(context.getResources().
-                    getDrawable(checked.get(position)));
+            viewHolder.itembtn.setBackgroundColor(context.getResources().
+                    getColor(checked[position]));
         }
         //设置监听，改变选择状态
         viewHolder.itembtn.setOnClickListener(new View.OnClickListener() {

@@ -1,6 +1,9 @@
 package com.example.cost.activity;
 
 import android.app.Dialog;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.v7.app.AlertDialog;
@@ -21,6 +24,7 @@ import android.widget.ImageButton;
 import com.example.cost.R;
 import com.example.cost.adapter.ColorChooseAdapter;
 import com.example.cost.adapter.LabelItemAdapter;
+import com.example.cost.contrl.RecyclerItemDivider;
 import com.example.cost.datebase.BillDateHelper;
 
 public class LabelSetting extends BaseActivity{
@@ -75,13 +79,6 @@ public class LabelSetting extends BaseActivity{
         gridView.setVerticalScrollBarEnabled(false);
         builder.setView(view);
         final Dialog dialog=builder.create();
-        Window window=dialog.getWindow();
-        WindowManager.LayoutParams layoutParams=window.getAttributes();
-        DisplayMetrics displayMetrics=
-                getResources().getDisplayMetrics();
-        layoutParams.width=(int)(displayMetrics.widthPixels*0.95);
-        layoutParams.height=(int)(displayMetrics.heightPixels*0.6);
-        window.setAttributes(layoutParams);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,9 +95,9 @@ public class LabelSetting extends BaseActivity{
 
     public void setRecyclerView(){
         adapter=new LabelItemAdapter(this,billDateHelper.getLabelColor());
-        adapter.setEdited();
         LinearLayoutManager manager=new LinearLayoutManager(this);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.addItemDecoration(new RecyclerItemDivider(this));
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);
     }
@@ -111,9 +108,10 @@ public class LabelSetting extends BaseActivity{
     }
 
     public void setToolbar(){
-        toolbar.setNavigationIcon(getResources().getDrawable(R.mipmap.ic_arrow_back_white_36dp));
+        toolbar.setTitleTextColor(android.graphics.Color.WHITE);
+        toolbar.setNavigationIcon(getResources().getDrawable(R.mipmap.ic_arrow_back_white_24dp));
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("");
+        getSupportActionBar().setTitle("标签设置");
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }

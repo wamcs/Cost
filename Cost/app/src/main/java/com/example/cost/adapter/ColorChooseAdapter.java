@@ -1,7 +1,6 @@
 package com.example.cost.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,15 +12,14 @@ import com.example.cost.R;
 
 
 import java.util.ArrayList;
-import java.util.Map;
 
 
 public class ColorChooseAdapter extends BaseAdapter {
 
     private ArrayList<Integer> arrayList;
     private Context context;
-    private final int mainColor= R.color.main_color;
-    private final int shallowColor=R.color.shallow_color;
+    private final int mainColor= R.color.main_color_show;
+    private final int shallowColor=R.color.shallow_color_show;
     private LinearLayout lastposition;
     private ColorListener listener;
 

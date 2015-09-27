@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -13,10 +11,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.RadioButton;
-
 import com.example.cost.R;
 import com.example.cost.activity.BillWrite;
+import com.example.cost.contrl.CircleImageView;
 import com.example.cost.datebase.BillDateHelper;
 
 import java.util.ArrayList;
@@ -63,7 +60,7 @@ public class ShopingAdpter extends BaseAdapter {
                     findViewById(R.id.view_shoppinglist_edittext);
             viewHolder.imageButton= (ImageButton) convertView
                     .findViewById(R.id.view_shoppinglist_imagebutton);
-            viewHolder.radioButton= (RadioButton) convertView
+            viewHolder.circleImageView= (CircleImageView) convertView
                     .findViewById(R.id.view_shoppinglist_radio);
             convertView.setTag(viewHolder);
         }
@@ -77,8 +74,7 @@ public class ShopingAdpter extends BaseAdapter {
                     last.editText.setFocusableInTouchMode(false);
                     last.editText.setFocusable(false);
                     last.imageButton.setVisibility(View.INVISIBLE);
-                    last.editText.setTextColor(context.getResources()
-                            .getColor(R.color.text_color_primary));
+                    last.editText.setCursorVisible(false);
                     billDateHelper.updateShopping(last.editText.getText().toString(),
                             idlist.get(lastposition));
                     initData();
@@ -88,14 +84,14 @@ public class ShopingAdpter extends BaseAdapter {
                 lastposition = position;
                 viewHolder.editText.setFocusable(true);
                 viewHolder.editText.setFocusableInTouchMode(true);
-                viewHolder.editText.setTextColor(Color.WHITE);
+                viewHolder.editText.setCursorVisible(true);
             }
 
         });
         viewHolder.editText.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                if(last!=null&& lastposition != position)
+                if (last != null && lastposition != position)
                     last.imageButton.setVisibility(View.INVISIBLE);
                 last = viewHolder;
                 lastposition = position;
@@ -111,13 +107,12 @@ public class ShopingAdpter extends BaseAdapter {
                 notifyDataSetChanged();
             }
         });
-        viewHolder.radioButton.setChecked(false);
-        viewHolder.radioButton.setOnClickListener(new View.OnClickListener() {
+        viewHolder.circleImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(context, BillWrite.class);
-                intent.putExtra("ShoppingName",viewHolder.editText.getText().toString());
-                int[] location=new int[2];
+                Intent intent = new Intent(context, BillWrite.class);
+                intent.putExtra("ShoppingName", viewHolder.editText.getText().toString());
+                int[] location = new int[2];
                 v.getLocationOnScreen(location);
                 intent.putExtra("location", location);
                 context.startActivity(intent);
@@ -130,13 +125,13 @@ public class ShopingAdpter extends BaseAdapter {
                 if(event.getAction()==MotionEvent.ACTION_DOWN&&last!=null&&lastposition<idlist.size()){
                     billDateHelper.updateShopping(last.editText.getText().toString(),
                             idlist.get(lastposition));
-                    last.editText.setTextColor(context.getResources()
-                            .getColor(R.color.text_color_primary));
+                    last.editText.setCursorVisible(false);
                     last.editText.setFocusableInTouchMode(false);
                     last.editText.setFocusable(false);
                     last.imageButton.setVisibility(View.INVISIBLE);
                     initData();
                     notifyDataSetChanged();
+                    last=null;
                 }
                 return false;
             }
@@ -146,7 +141,7 @@ public class ShopingAdpter extends BaseAdapter {
     }
 
     public class ViewHolder{
-        private RadioButton radioButton;
+        private CircleImageView circleImageView;
         private EditText editText;
         private ImageButton imageButton;
     }

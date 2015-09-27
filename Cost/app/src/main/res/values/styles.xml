@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/style_color_primary</item>
         <item name="colorPrimaryDark">@color/style_color_primary_dark</item>
         <item name="colorAccent">@color/style_color_accent</item>
+        <item name="android:colorAccent" tools:targetApi="21">@color/style_color_accent</item>
         <item name="android:windowTranslucentStatus" tools:targetApi="19">true</item>
         <item name="android:fitsSystemWindows">true</item>
         <item name="drawerArrowStyle">@style/MyAppDrawerArrowStyle</item>
@@ -19,5 +20,11 @@
     <style name="MyAppDrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
         <item name="color">@android:color/white</item>
     </style>
+
+    <style name="EditTheme" parent="Widget.AppCompat.EditText">
+        <item name="colorAccent">#a2a2a2</item>
+    </style>
+
+
 
 </resources>

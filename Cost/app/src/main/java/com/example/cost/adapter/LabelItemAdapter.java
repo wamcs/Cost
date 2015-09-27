@@ -2,12 +2,14 @@ package com.example.cost.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.example.cost.R;
 import com.example.cost.datebase.BillDateHelper;
@@ -23,7 +25,6 @@ public class LabelItemAdapter extends RecyclerView.Adapter<LabelItemAdapter.View
     private int lastposition;
     private String lastlabel;
     private BillDateHelper billDateHelper;
-    private Boolean isEdited=false;
 
     public LabelItemAdapter(Context context,ArrayList<Map<String,Object>> arrayList){
         this.context=context;
@@ -34,10 +35,9 @@ public class LabelItemAdapter extends RecyclerView.Adapter<LabelItemAdapter.View
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view;
         ViewHolder viewHolder;
-        view= LayoutInflater.from(context).inflate(R.layout.view_label_item,parent,false);
+        view= LayoutInflater.from(context).inflate(R.layout.view_label_show_items,parent,false);
         viewHolder=new ViewHolder(view);
-        if(isEdited) {
-            parent.setOnTouchListener(new View.OnTouchListener() {
+        parent.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
                     if (event.getAction() == MotionEvent.ACTION_DOWN && last != null) {
@@ -46,14 +46,14 @@ public class LabelItemAdapter extends RecyclerView.Adapter<LabelItemAdapter.View
                         billDateHelper.modificateLabel(lastlabel, last.editText.getText().toString());
                         last.editText.setFocusableInTouchMode(false);
                         last.editText.setFocusable(false);
+                        last.editText.setCursorVisible(false);
                         initData();
                         notifyDataSetChanged();
-                        last=null;
+                        last = null;
                     }
                     return false;
                 }
             });
-        }
         return viewHolder;
     }
 
@@ -63,37 +63,32 @@ public class LabelItemAdapter extends RecyclerView.Adapter<LabelItemAdapter.View
                 .getResources().getColor(Integer.parseInt
                         (arrayList.get(position).get("color").toString())));
         holder.editText.setText(arrayList.get(position).get("label").toString());
-        if(isEdited) {
-            holder.editText.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (last != null && lastposition != position) {
-                        last.editText.setFocusableInTouchMode(false);
-                        last.editText.setFocusable(false);
-                        billDateHelper.updatelabel(last.editText.getText().toString(),
-                                billDateHelper.getlabelID(lastlabel));
-                        billDateHelper.modificateLabel(lastlabel, last.editText.getText().toString());
-                        initData();
-                        notifyDataSetChanged();
-                    }
-                    last = holder;
-                    lastposition = position;
-                    lastlabel = holder.editText.getText().toString();
-                    holder.editText.setFocusable(true);
-                    holder.editText.setFocusableInTouchMode(true);
+        holder.editText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (last != null && lastposition != position) {
+                    last.editText.setFocusableInTouchMode(false);
+                    last.editText.setFocusable(false);
+                    last.editText.setCursorVisible(false);
+                    billDateHelper.updatelabel(last.editText.getText().toString(),
+                            billDateHelper.getlabelID(lastlabel));
+                    billDateHelper.modificateLabel(lastlabel, last.editText.getText().toString());
+                    initData();
+                    notifyDataSetChanged();
                 }
-            });
-        }
-
+                last = holder;
+                lastposition = position;
+                lastlabel = holder.editText.getText().toString();
+                holder.editText.setFocusable(true);
+                holder.editText.setFocusableInTouchMode(true);
+                holder.editText.setCursorVisible(true);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return arrayList.size();
-    }
-
-    public void setEdited(){
-        this.isEdited=true;
     }
 
     public void initData(){
@@ -109,7 +104,7 @@ public class LabelItemAdapter extends RecyclerView.Adapter<LabelItemAdapter.View
             super(itemView);
             imageView= (ImageView) itemView.findViewById(R.id.label_color);
             editText= (EditText) itemView.findViewById(R.id.label_edit);
-
         }
     }
+
 }

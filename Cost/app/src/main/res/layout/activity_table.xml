@@ -10,7 +10,7 @@
         android:id="@+id/table_tablayout"
         app:tabIndicatorColor="@color/table_tab_selected"
         app:tabSelectedTextColor="@color/table_tab_selected"
-        app:tabTextColor="@color/table_tab_text"
+        app:tabTextColor="#66c0f2"
         android:background="@color/table_tab_backgroud"
         />
     <android.support.v4.view.ViewPager

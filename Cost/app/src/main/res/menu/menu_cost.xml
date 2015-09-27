@@ -6,19 +6,19 @@
         android:id="@+id/first"
         android:title="@string/firstmenu"
         app:showAsAction="ifRoom"
-        android:orderInCategory="80"
+        android:orderInCategory="90"
         android:icon="@mipmap/ic_bill_grey_36dp"
         />
     <item
         android:id="@+id/second"
         android:title="@string/secondmenu"
         app:showAsAction="ifRoom"
-        android:orderInCategory="90"
+        android:orderInCategory="80"
         android:icon="@drawable/ic_chart"/>
     <item
         android:id="@+id/setting"
         app:showAsAction="ifRoom"
         android:orderInCategory="100"
         android:title="@string/setting"
-        android:icon="@mipmap/ic_more_vert_white_36dp"/>
+        android:icon="@mipmap/ic_more_vert_white_24dp"/>
 </menu>

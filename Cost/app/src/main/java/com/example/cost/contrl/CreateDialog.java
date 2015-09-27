@@ -72,8 +72,8 @@ public class CreateDialog extends Dialog{
         Window dialog=getWindow();
         WindowManager.LayoutParams layoutParams=dialog.getAttributes();
         DisplayMetrics displayMetrics=context.getResources().getDisplayMetrics();
-        layoutParams.width=(int)(displayMetrics.widthPixels*0.85);
-        layoutParams.height=(int)(displayMetrics.heightPixels*0.4);
+        layoutParams.width=(int)(displayMetrics.widthPixels*0.8);
+        layoutParams.height=(int)(displayMetrics.heightPixels*0.375);
         dialog.setAttributes(layoutParams);
 
 

@@ -2,6 +2,7 @@ package com.example.cost;
 
 
 import android.content.res.Resources;
+import android.util.Log;
 
 public class Util {
     public final static int PRO_DAY=1;
@@ -28,12 +29,28 @@ public class Util {
             R.color.label_color15,R.color.label_color16,R.color.label_color17,
             R.color.label_color18,R.color.label_color19,R.color.label_color20,
             R.color.label_color21,R.color.label_color22,R.color.label_color23,
-            R.color.label_color24,R.color.label_color25,R.color.label_color26};
+            };
+
+    public final static int[] billCover={
+            R.color.bill_cover_unchecked1,R.color.bill_cover_unchecked2,
+            R.color.bill_cover_unchecked3,R.color.bill_cover_unchecked4,
+            R.color.bill_cover_unchecked5,
+    };
+
+    public final static int[] billCoverSure={
+            R.color.bill_cover_checked1,R.color.bill_cover_checked2,
+            R.color.bill_cover_checked3,R.color.bill_cover_checked4,
+            R.color.bill_cover_checked5,
+    };
 
     public final static String[] months=
             {"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
 
     public static int dpToPx(int Dp){
         return (int)(Dp* Resources.getSystem().getDisplayMetrics().density);
+    }
+
+    public static int pxToDp(int px){
+        return (int)(px/ Resources.getSystem().getDisplayMetrics().density);
     }
 }

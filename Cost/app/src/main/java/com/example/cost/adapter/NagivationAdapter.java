@@ -15,6 +15,8 @@ import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import com.example.cost.Util;
 import com.example.cost.datebase.BillDateHelper;
 import com.example.cost.R;
 import com.example.cost.contrl.CreateDialog;
@@ -26,7 +28,7 @@ public class NagivationAdapter extends BaseAdapter {
     private ArrayList<String> namelist = new ArrayList<>();
     private ArrayList<Integer> coverlist = new ArrayList<>();
     private ArrayList<Integer> ID=new ArrayList<>();
-    private ArrayList<Integer> coverpictures = new ArrayList<>();
+    private int[] coverpictures = Util.billCover;
     private BillDateHelper billDateHelper;
     private SQLiteDatabase db;
     private Context context;
@@ -38,11 +40,6 @@ public class NagivationAdapter extends BaseAdapter {
     public NagivationAdapter(Context context) {
         this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
-        coverpictures.add(R.drawable.img_color1);
-        coverpictures.add(R.drawable.img_color2);
-        coverpictures.add(R.drawable.img_color3);
-        coverpictures.add(R.drawable.img_color4);
-        coverpictures.add(R.drawable.img_color5);
         billDateHelper = new BillDateHelper(context, "allbill.db", 1);
         initBasedate();
     }
@@ -126,8 +123,8 @@ public class NagivationAdapter extends BaseAdapter {
                 viewHolder = (NagivationAdapter.viewHolder) convertView.getTag();
             }
             viewHolder.title.setText(namelist.get(position - 1));
-            viewHolder.itembutton.setBackground(context.getResources().getDrawable(
-                    coverpictures.get(coverlist.get(position - 1))));
+            viewHolder.itembutton.setBackgroundColor(context.getResources().getColor(
+                    coverpictures[coverlist.get(position - 1)]));
             viewHolder.modbutton.setAlpha(0.0f);
             viewHolder.modbutton.setVisibility(View.INVISIBLE);
             viewHolder.modbutton.setOnClickListener(new View.OnClickListener() {

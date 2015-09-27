@@ -121,7 +121,6 @@ public class BillDateHelper extends SQLiteOpenHelper{
         return id;
     }
 
-
     public ArrayList<Map<String,Object>> getLabelColor(){
         ArrayList<Map<String,Object>> list=new ArrayList<>();
         SQLiteDatabase db=getWritableDatabase();
@@ -169,9 +168,14 @@ public class BillDateHelper extends SQLiteOpenHelper{
         db.execSQL("update recycle set label='"+nowLabel+"' where label='"+proLabel+"'");
     }
 
-    public void updatecolor(int color,int id){
+    public String getLabel(int id){
         SQLiteDatabase db=getWritableDatabase();
-        db.execSQL("update labelcolor set color="+color+" where _id="+id);
+        Cursor cursor=db.rawQuery("select label from labelcolor where _id="+id,null);
+        cursor.moveToNext();
+        String label=cursor.getString(cursor.getColumnIndex("label"));
+        cursor.close();
+        return label;
+
     }
 
     public Map<String,Object> getbillitem(int billitemID){

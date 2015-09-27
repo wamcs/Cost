@@ -26,6 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Large Text"
+            android:textColor="#756b6e"
             android:id="@+id/nav_item_tv"
             android:layout_marginTop="25dp"
             android:layout_alignTop="@+id/ngv_item_iv"

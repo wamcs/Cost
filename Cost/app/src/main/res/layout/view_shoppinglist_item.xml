@@ -11,11 +11,12 @@
         android:background="@color/style_color_primary"
         >
 
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+        <com.example.cost.contrl.CircleImageView
+            android:layout_width="40dp"
+            android:layout_height= "20dp"
             android:id="@+id/view_shoppinglist_radio"
-            android:layout_margin="5dp"
+            android:layout_margin="10dp"
+            android:src="@color/shopping_list_radio_nocheck"
             />
 
         <EditText

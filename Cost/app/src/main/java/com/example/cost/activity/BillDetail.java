@@ -29,7 +29,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class BillDetail extends BaseActivity{
-    private FloatingActionButton editfab;
+    private ImageButton editfab;
     private ImageButton deletebtn;
     private ImageButton returnbtn;
     private TextView contenttv;
@@ -60,7 +60,7 @@ public class BillDetail extends BaseActivity{
     }
 
     public void init(){
-        editfab= (FloatingActionButton) findViewById(R.id.bill_detail_fab);
+        editfab= (ImageButton) findViewById(R.id.bill_detail_fab);
         deletebtn= (ImageButton) findViewById(R.id.bill_detail_delete);
         returnbtn= (ImageButton) findViewById(R.id.bill_detail_return);
         contenttv= (TextView) findViewById(R.id.bill_detail_content);
@@ -181,7 +181,7 @@ public class BillDetail extends BaseActivity{
             @Override
             public void onStateChange(int state) {
                 if (RevealCircleBackgroud.STATE_FILL_FINISHED == state) {
-                    if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+
                         editfab.animate().translationX(0).translationY(0).setDuration(400)
                             .setInterpolator(new OvershootInterpolator(1.0f)).setStartDelay(300)
                             .setListener(new AnimatorListenerAdapter() {
@@ -190,15 +190,6 @@ public class BillDetail extends BaseActivity{
                                     editfab.setImageResource(R.mipmap.ic_edit_white_36dp);
                                 }
                             }).start();
-                    else
-                        editfab.animate().translationX(0).translationY(-50).setDuration(400)
-                                .setInterpolator(new OvershootInterpolator(1.0f)).setStartDelay(300)
-                                .setListener(new AnimatorListenerAdapter() {
-                                    @Override
-                                    public void onAnimationEnd(Animator animation) {
-                                        editfab.setImageResource(R.mipmap.ic_edit_white_36dp);
-                                    }
-                                }).start();
                     linearLayout.animate().setDuration(300).alpha(1.0f).setStartDelay(400)
                             .setListener(new AnimatorListenerAdapter() {
 
@@ -210,14 +201,8 @@ public class BillDetail extends BaseActivity{
                                 }
                             }).start();
                 } else {
-                    if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        editfab.setTranslationY(backLayout.getHeight() - Util.dpToPx(40));
-                        editfab.setTranslationX(Util.dpToPx(34));
-                    }
-                    else {
-                        editfab.setTranslationY(backLayout.getHeight() - Util.dpToPx(68));
-                        editfab.setTranslationX(Util.dpToPx(47));
-                    }
+                    editfab.setTranslationY(backLayout.getHeight() - Util.dpToPx(40));
+                    editfab.setTranslationX(Util.dpToPx(34));
                     editfab.setImageResource(R.mipmap.ic_add_white_36dp);
                     linearLayout.setAlpha(0.0f);
 
