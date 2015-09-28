@@ -375,11 +375,13 @@ public class BillWrite extends BaseActivity {
                 from(BillWrite.this).inflate(R.layout.view_label_choose,null);
         RecyclerView recyclerView= (RecyclerView)
                 view.findViewById(R.id.label_choose_recyclerview);
+        final TextView textView= (TextView) view.findViewById(R.id.label_choose_title);
         Button button= (Button) view.findViewById(R.id.label_choose_button);
         LabelChooseAdapter adapter=new LabelChooseAdapter(BillWrite.this,billDateHelper.getLabelColor());
         adapter.setListener(new LabelChooseAdapter.labelListener() {
             @Override
             public void getLabel(String label) {
+                textView.setText("标签:"+label);
                 reciveLabel = label;
             }
         });
@@ -399,8 +401,14 @@ public class BillWrite extends BaseActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getLabel.setText(reciveLabel);
-                dialog.cancel();
+                if(reciveLabel!=null) {
+                    getLabel.setText(reciveLabel);
+                    dialog.cancel();
+                    reciveLabel=null;
+                }
+                else
+                    Snackbar.make(findViewById(android.R.id.content),
+                            "嘛，选一个咯", Snackbar.LENGTH_SHORT).show();
             }
         });
         dialog.show();

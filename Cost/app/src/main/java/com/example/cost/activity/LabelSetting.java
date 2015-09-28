@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -34,7 +35,7 @@ public class LabelSetting extends BaseActivity{
     private RecyclerView recyclerView;
     private BillDateHelper billDateHelper;
     private LabelItemAdapter adapter;
-    private int Color;
+    private int Color=-1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -82,11 +83,16 @@ public class LabelSetting extends BaseActivity{
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                billDateHelper.addlabel("新建标签",Color);
-                int id=billDateHelper.getColorID(Color);
-                billDateHelper.deleteColor(id);
-                updateAdapter();
-                dialog.dismiss();
+                if(Color!=-1) {
+                    billDateHelper.addlabel("新建标签", Color);
+                    int id = billDateHelper.getColorID(Color);
+                    billDateHelper.deleteColor(id);
+                    updateAdapter();
+                    dialog.dismiss();
+                }
+                else
+                    Snackbar.make(findViewById(android.R.id.content),
+                            "选一个嘛~", Snackbar.LENGTH_SHORT).show();
             }
         });
         dialog.show();
