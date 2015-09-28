@@ -22,8 +22,8 @@
     <string name="periodmonth">每月</string>
     <string name="stateincome">收入</string>
     <string name="statepay">支出</string>
-    <string name="label_sure">选定</string>
-    <string name="label_create">创建</string>
+    <string name="label_sure">创建</string>
+    <string name="label_create">选定</string>
     <string name="label">标签</string>
 
     <string name="unique">Unique Studio</string>

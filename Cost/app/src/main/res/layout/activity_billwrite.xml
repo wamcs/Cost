@@ -108,12 +108,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/activity_billwrite_childitem_height"
                 android:text="标签"
-                android:textSize="20sp"/>
+                android:textSize="20dp"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="食物"
-                android:textSize="12sp"
+                android:textSize="12dp"
                 android:id="@+id/billwrite_label"/>
 
         </LinearLayout>
@@ -141,12 +141,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/activity_billwrite_childitem_height"
                 android:text="时间"
-                android:textSize="20sp"/>
+                android:textSize="20dp"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="2015/7/7"
-                android:textSize="12sp"
+                android:textSize="12dp"
                 android:id="@+id/billwrite_time"/>
 
         </LinearLayout>
@@ -172,12 +172,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/activity_billwrite_childitem_height"
                 android:text="周期 "
-                android:textSize="20sp"/>
+                android:textSize="20dp"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/periodno"
-                android:textSize="12sp"
+                android:textSize="12dp"
                 android:id="@+id/billwrite_period"/>
 
         </LinearLayout>
@@ -212,12 +212,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/activity_billwrite_childitem_height"
                 android:text="收支"
-                android:textSize="20sp"/>
+                android:textSize="20dp"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/statepay"
-                android:textSize="12sp"
+                android:textSize="12dp"
                 android:id="@+id/billwrite_state"/>
 
         </LinearLayout>

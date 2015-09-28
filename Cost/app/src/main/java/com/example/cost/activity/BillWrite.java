@@ -329,18 +329,6 @@ public class BillWrite extends BaseActivity {
 
     }
 
-    public void backAnimation(){
-        final int[] location = getIntent().getIntArrayExtra("location");
-        revealCircleBackgroud.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-            @Override
-            public boolean onPreDraw() {
-                revealCircleBackgroud.getViewTreeObserver().removeOnPreDrawListener(this);
-                revealCircleBackgroud.startFromLocation(location);
-                return true;
-            }
-        });
-    }
-
     public void popPeriod(){
         final PopupMenu pop = new PopupMenu(BillWrite.this,periodswitch);
         getMenuInflater().inflate(R.menu.bill_peroid_popmenu, pop.getMenu());

@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.GridView;
 
 import com.example.cost.R;
+import com.example.cost.Util;
 import com.example.cost.adapter.GridviewAdapter;
 
 import java.util.HashMap;
@@ -53,7 +54,6 @@ public class CreateDialog extends Dialog{
     public void init(){
         View view= LayoutInflater.from(context).inflate(R.layout.dialog_create,null);
         setContentView(view);
-
         editText= (EditText) view.findViewById(R.id.dia_et);
         GridView gridView = (GridView) view.findViewById(R.id.dia_gv);
         Button confirm = (Button) view.findViewById(R.id.dia_positive_btn);
@@ -73,7 +73,7 @@ public class CreateDialog extends Dialog{
         WindowManager.LayoutParams layoutParams=dialog.getAttributes();
         DisplayMetrics displayMetrics=context.getResources().getDisplayMetrics();
         layoutParams.width=(int)(displayMetrics.widthPixels*0.8);
-        layoutParams.height=(int)(displayMetrics.heightPixels*0.375);
+        layoutParams.height= Util.dpToPx(240);
         dialog.setAttributes(layoutParams);
 
 
