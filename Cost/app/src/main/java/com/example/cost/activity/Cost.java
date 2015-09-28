@@ -222,10 +222,6 @@ public class Cost extends BaseActivity {
         LinearLayoutManager manager=new LinearLayoutManager(this);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(manager);
-        RecyclerItemDivider divider=new RecyclerItemDivider(this);
-        divider.setmItemSize(2);
-        divider.setmPaintColor(R.color.cost_divider);
-        recyclerView.addItemDecoration(divider);
         handler=new Handler();
         Util.width=getResources().getDisplayMetrics().widthPixels;
     }
@@ -467,6 +463,10 @@ public class Cost extends BaseActivity {
                         paylayout.animate().setDuration(500).translationX(0)
                                 .setStartDelay(350).setInterpolator(new OvershootInterpolator(1.f))
                                 .start();
+                        RecyclerItemDivider divider=new RecyclerItemDivider(Cost.this);
+                        divider.setmItemSize(2);
+                        divider.setmPaintColor(R.color.cost_divider);
+                        recyclerView.addItemDecoration(divider);
                     }
                 })
                 .start();

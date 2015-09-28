@@ -14,6 +14,7 @@ import android.view.animation.OvershootInterpolator;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.example.cost.R;
+import com.example.cost.contrl.RecyclerItemDivider;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -48,7 +49,7 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolderBody
         int date=time.get(position)%100;
         int month=(time.get(position)%10000)/100;
         viewHolderBody.month.setText(month+"月");
-        viewHolderBody.date.setText(date+"");
+        viewHolderBody.date.setText(date + "");
         LayoutManager layoutManager =new LayoutManager(context);
         layoutManager.setOrientation(android.support.v7.widget.LinearLayoutManager.VERTICAL);
         viewHolderBody.recyclerView.setLayoutManager(layoutManager);

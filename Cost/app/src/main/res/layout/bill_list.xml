@@ -3,11 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
-    <include layout="@layout/view_activty_head"/>
+    <include
+        layout="@layout/view_activty_head"
+        />
     <android.support.v7.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/bill_rv">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bill_rv">
     </android.support.v7.widget.RecyclerView>
 
 

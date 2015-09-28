@@ -28,15 +28,15 @@
 
     <string name="unique">Unique Studio</string>
 
-    <string name="staff_name1">K</string>
+    <string name="staff_name1">K.L</string>
     <string name="staff_position1">Programmer</string>
     <string name="staff_email1">kaili@hustunique.com</string>
-    <string name="staff_name2">K</string>
-    <string name="staff_position2">Programmer</string>
-    <string name="staff_email2">kaili@hustunique.com</string>
-    <string name="staff_name3">K</string>
-    <string name="staff_position3">Programmer</string>
-    <string name="staff_email3">kaili@hustunique.com</string>
+    <string name="staff_name2">张静静</string>
+    <string name="staff_position2">Product Manager</string>
+    <string name="staff_email2">jingyizhang@hustunique.com</string>
+    <string name="staff_name3">叶良辰</string>
+    <string name="staff_position3">Designer</string>
+    <string name="staff_email3">yangcc666@gmail.com</string>
 
 
 </resources>

@@ -6,6 +6,9 @@
         <item name="colorPrimaryDark">@color/style_color_primary_dark</item>
         <item name="colorAccent">@color/style_color_accent</item>
         <!-- Customize your theme here. -->
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="drawerArrowStyle">@style/MyAppDrawerArrowStyle</item>
         <item name="android:windowContentTransitions">true</item>
         <item name="android:windowAllowEnterTransitionOverlap">true</item>
         <item name="android:windowAllowReturnTransitionOverlap">true</item>
@@ -13,9 +16,6 @@
     <style name="AppTheme.TransparentActivity">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowIsTranslucent">true</item>
-    </style>
-    <style name="EditTheme" parent="Widget.AppCompat.EditText">
-        <item name="colorAccent">#a2a2a2</item>
     </style>
 
 </resources>

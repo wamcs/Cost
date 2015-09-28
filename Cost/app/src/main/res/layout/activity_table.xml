@@ -12,6 +12,7 @@
         app:tabSelectedTextColor="@color/table_tab_selected"
         app:tabTextColor="#66c0f2"
         android:background="@color/table_tab_backgroud"
+        android:elevation="10dp"
         />
     <android.support.v4.view.ViewPager
         android:layout_width="match_parent"

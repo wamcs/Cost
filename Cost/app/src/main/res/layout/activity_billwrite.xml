@@ -26,14 +26,16 @@
             android:id="@+id/billwrite_backgroud_layout">
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                >
                 <ImageButton
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:id="@+id/billwrite_return"
                     android:background="@color/style_color_primary"
                     android:src="@mipmap/ic_arrow_back_white_24dp"
-                    android:layout_margin="10dp"/>
+                    android:layout_margin="10dp"
+                    />
                 <ImageButton
                     android:layout_width="40dp"
                     android:layout_height="40dp"
@@ -186,6 +188,7 @@
             android:layout_margin="@dimen/activity_billwrite_item_pad"
             android:id="@+id/billwrite_period_switch"
             android:checked="false"
+            android:elevation="1dp"
             />
     </LinearLayout>
     <LinearLayout
@@ -225,6 +228,7 @@
             android:layout_margin="@dimen/activity_billwrite_item_pad"
             android:id="@+id/billwrite_state_switch"
             android:checked="false"
+            android:elevation="1dp"
             />
     </LinearLayout>
 </LinearLayout>

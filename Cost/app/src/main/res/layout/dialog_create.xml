@@ -12,7 +12,6 @@
         android:textSize="@dimen/dialog_title"
         android:gravity="center"
         android:id="@+id/dia_et"
-        style="@style/EditTheme"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="10dp"
