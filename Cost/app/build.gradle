@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.cost"
-        minSdkVersion 19
+        minSdkVersion 17
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
@@ -24,6 +24,7 @@ repositories {
 
 dependencies {
     compile 'com.github.PhilJay:MPAndroidChart:v2.1.3'
+    compile 'org.solovyev.android.views:linear-layout-manager:0.5@aar'
 }
 
 dependencies {

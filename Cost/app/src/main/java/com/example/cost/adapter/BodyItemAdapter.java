@@ -37,17 +37,12 @@ public class BodyItemAdapter extends RecyclerView.Adapter<BodyItemAdapter.BillVi
     @Override
     public BillViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(context).inflate(R.layout.view_activity_body_item,parent,false);
-        BillViewHolder billViewHolder=new BillViewHolder(view);
-        billViewHolder.content= (TextView) view.findViewById(R.id.view_activity_body_content);
-        billViewHolder.money= (TextView) view.findViewById(R.id.view_activity_body_money);
-        billViewHolder.linearLayout= (LinearLayout) view.findViewById(R.id.view_activity_body_layout);
-        return billViewHolder;
+        return new BillViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(BillViewHolder holder, final int position){
-        holder.content.setWidth(Util.width/3);
-        holder.money.setWidth(Util.width / 3);
+
         holder.content.setText(datalsit.get(length - 1 - position).get("content").toString());
         if((int)datalsit.get(length-1-position).get("income")==0)
             holder.money.setText(datalsit.get(length-1-position).get("pay").toString());
@@ -55,7 +50,7 @@ public class BodyItemAdapter extends RecyclerView.Adapter<BodyItemAdapter.BillVi
             holder.money.setText(datalsit.get(length - 1 - position).get("income").toString());
 
         holder.linearLayout.setBackgroundColor(context.getResources().
-                getColor((Integer) datalsit.get(length-1-position).get("color")));
+                getColor((Integer) datalsit.get(length - 1 - position).get("color")));
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,6 +79,9 @@ public class BodyItemAdapter extends RecyclerView.Adapter<BodyItemAdapter.BillVi
         private LinearLayout linearLayout;
         public BillViewHolder(View itemView) {
             super(itemView);
+            content= (TextView) itemView.findViewById(R.id.view_activity_body_content);
+            money= (TextView) itemView.findViewById(R.id.view_activity_body_money);
+            linearLayout= (LinearLayout) itemView.findViewById(R.id.view_activity_body_layout);
         }
     }
 

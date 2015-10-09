@@ -25,6 +25,7 @@
             android:textColor="#747474"
             android:cursorVisible="false"
             android:background="#00ffffff"
+            android:maxLength="10"
             android:layout_marginStart="30dp"
             android:focusableInTouchMode="false"
             android:focusable="false"

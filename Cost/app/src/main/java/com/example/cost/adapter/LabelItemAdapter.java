@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,6 +26,7 @@ public class LabelItemAdapter extends RecyclerView.Adapter<LabelItemAdapter.View
     private int lastposition;
     private String lastlabel;
     private BillDateHelper billDateHelper;
+
 
     public LabelItemAdapter(Context context,ArrayList<Map<String,Object>> arrayList){
         this.context=context;
@@ -97,13 +99,16 @@ public class LabelItemAdapter extends RecyclerView.Adapter<LabelItemAdapter.View
         arrayList=billDateHelper.getLabelColor();
     }
 
+
+
     class ViewHolder extends RecyclerView.ViewHolder{
         private ImageView imageView;
         private EditText editText;
-        public ViewHolder(View itemView) {
+        public ViewHolder(final View itemView) {
             super(itemView);
             imageView= (ImageView) itemView.findViewById(R.id.label_color);
             editText= (EditText) itemView.findViewById(R.id.label_edit);
+
         }
     }
 

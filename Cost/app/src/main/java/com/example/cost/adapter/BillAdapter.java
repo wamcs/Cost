@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 
 import com.example.cost.Util;
-import com.example.cost.contrl.LayoutManager;
-
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +12,7 @@ import android.view.animation.OvershootInterpolator;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.example.cost.R;
-import com.example.cost.contrl.RecyclerItemDivider;
+import org.solovyev.android.views.llm.LinearLayoutManager;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -38,7 +36,7 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolderBody
     public ViewHolderBody onCreateViewHolder(ViewGroup parent, int viewType) {
         View view;
         ViewHolderBody viewHolder;
-        view=LayoutInflater.from(context).inflate(R.layout.view_activity_body,null);
+        view=LayoutInflater.from(context).inflate(R.layout.view_activity_body,parent,false);
         viewHolder=new ViewHolderBody(view);
         return viewHolder;
     }
@@ -50,7 +48,7 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolderBody
         int month=(time.get(position)%10000)/100;
         viewHolderBody.month.setText(month+"月");
         viewHolderBody.date.setText(date + "");
-        LayoutManager layoutManager =new LayoutManager(context);
+        LinearLayoutManager layoutManager = new org.solovyev.android.views.llm.LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         layoutManager.setOrientation(android.support.v7.widget.LinearLayoutManager.VERTICAL);
         viewHolderBody.recyclerView.setLayoutManager(layoutManager);
         BodyItemAdapter bodyItemAdapter=new BodyItemAdapter(context,recycledate,activity);

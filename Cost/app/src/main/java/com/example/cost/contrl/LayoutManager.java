@@ -2,11 +2,10 @@ package com.example.cost.contrl;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
-import com.example.cost.Util;
 
 
 public class LayoutManager extends android.support.v7.widget.LinearLayoutManager {
@@ -29,8 +28,8 @@ public class LayoutManager extends android.support.v7.widget.LinearLayoutManager
         int height = 0;
         for (int i = 0; i < getItemCount(); i++) {
             measureScrapChild(recycler, i,
-                    View.MeasureSpec.makeMeasureSpec(i, View.MeasureSpec.UNSPECIFIED),
-                    View.MeasureSpec.makeMeasureSpec(i, View.MeasureSpec.UNSPECIFIED),
+                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
                     mMeasuredDimension);
 
             if (getOrientation() == HORIZONTAL) {
@@ -66,8 +65,6 @@ public class LayoutManager extends android.support.v7.widget.LinearLayoutManager
                                    int heightSpec,int[] measuredDimension){
         View view=recycler.getViewForPosition(position);
         RecyclerView.LayoutParams p= (RecyclerView.LayoutParams) view.getLayoutParams();
-        p.width=-1;
-        view.setLayoutParams(p);
         int childWidthSpec= ViewGroup.getChildMeasureSpec(widthSpec,
                 getPaddingLeft()+getPaddingRight(), p.width);
         int childHeightSpec = ViewGroup.getChildMeasureSpec(heightSpec,
@@ -75,6 +72,8 @@ public class LayoutManager extends android.support.v7.widget.LinearLayoutManager
         view.measure(childWidthSpec,childHeightSpec);
         measuredDimension[0]=view.getMeasuredWidth()+p.leftMargin+p.rightMargin;
         measuredDimension[1] = view.getMeasuredHeight() + p.bottomMargin + p.topMargin;
+        Log.e("TAG", "measureScrapChild "+position+"\nheight"+measuredDimension[1]+"\nBottomMargin"+p.bottomMargin
+        +"\nTopMargin"+p.topMargin+"\nviewHeight"+p.height);
         recycler.recycleView(view);
     }
 }
