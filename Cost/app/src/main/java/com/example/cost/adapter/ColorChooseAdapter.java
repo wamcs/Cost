@@ -13,6 +13,10 @@ import com.example.cost.R;
 
 import java.util.ArrayList;
 
+/**
+ * label颜色自定义界面中gridview的adapter，
+ * 加了回调方法用于在选择确认后的颜色消除
+ */
 
 public class ColorChooseAdapter extends BaseAdapter {
 

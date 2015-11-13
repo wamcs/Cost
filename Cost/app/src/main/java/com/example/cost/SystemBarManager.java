@@ -12,6 +12,10 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 
+/**
+ * 实现状态栏透明的类，所用方法为测量状态栏的高度，使其透明，
+ * 并在状态栏处添加一个view，高度为状态栏高度，颜色为主背景色
+ */
 
 public class SystemBarManager {
 

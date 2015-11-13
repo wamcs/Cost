@@ -15,6 +15,9 @@ import java.util.ArrayList;
 import java.util.Map;
 import android.widget.TextView;
 
+/**
+ * billwrite类中label点击后弹出窗口的adapter，回调方法返回label名
+ */
     public class LabelChooseAdapter extends RecyclerView.Adapter<LabelChooseAdapter.ViewHolder>{
 
         private ArrayList<Map<String,Object>> arrayList;

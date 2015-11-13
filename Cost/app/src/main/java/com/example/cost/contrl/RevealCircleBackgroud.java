@@ -13,6 +13,10 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 
+/**
+ * 实现扩散动画的类，使用属性动画实现
+ */
+
 public class RevealCircleBackgroud extends View {
 
     public static final int STATE_NO_START=0;

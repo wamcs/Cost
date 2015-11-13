@@ -13,6 +13,9 @@ import com.example.cost.contrl.CircleImageView;
 
 import java.util.ArrayList;
 
+/**
+ * 饼状图下方具体信息的adpater
+ */
 public class PieChartItemAdapter extends RecyclerView.Adapter
         <PieChartItemAdapter.ChartViewHolder>{
     private Context context;

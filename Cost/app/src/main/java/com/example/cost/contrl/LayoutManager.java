@@ -6,7 +6,9 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
-
+/**
+ * 用于实现嵌套recyclerview的内部recyclerview的高度自适应（有bug，已使用github上的库）
+ */
 
 public class LayoutManager extends android.support.v7.widget.LinearLayoutManager {
     public LayoutManager(Context context) {

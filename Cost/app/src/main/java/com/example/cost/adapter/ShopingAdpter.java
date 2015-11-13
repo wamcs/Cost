@@ -18,6 +18,10 @@ import com.example.cost.datebase.BillDateHelper;
 
 import java.util.ArrayList;
 
+/**
+ * shoppinglist的adapter，last的用处在于可编辑状态与不可编辑状态的切换
+ */
+
 public class ShopingAdpter extends BaseAdapter {
 
     private ArrayList<String> namelist;

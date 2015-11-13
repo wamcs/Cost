@@ -26,7 +26,9 @@ import com.github.mikephil.charting.data.PieDataSet;
 
 import java.util.ArrayList;
 
-
+/**
+ * PieChart，MPAndroidChart中的表，具体方法参见文档
+ */
 public class PieCharFragment extends Fragment {
 
     private int billid;

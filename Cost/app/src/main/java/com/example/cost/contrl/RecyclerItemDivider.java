@@ -9,6 +9,9 @@ import android.view.View;
 
 import com.example.cost.R;
 
+/**
+ * 所有recyclerview的item分割线
+ */
 public class RecyclerItemDivider extends RecyclerView.ItemDecoration{
     private Context context;
     private int mItemSize = 2 ;

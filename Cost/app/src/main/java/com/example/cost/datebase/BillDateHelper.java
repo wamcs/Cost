@@ -17,21 +17,59 @@ import java.util.Map;
 
 public class BillDateHelper extends SQLiteOpenHelper{
 
+    /**
+     * billdirc:账本集
+     * name：账本名
+     * coverpicture：账本封面颜色
+     * backgroud：背景色（未用）
+     */
+
     private final String CREATE_TABLE="create table billdirc(_id integer primary " +
             "key autoincrement,name text,coverpicture integer,backgroud integer)";
+
+    /**
+     * bill：账本具体内容表
+     * content：所记的内容
+     * income：收入
+     * pay：支出
+     * label：标签
+     * color：标签对应颜色
+     * period：周期
+     * year，month，date，week：所记时的时间（用于周期记）
+     * time：上述时间（年月日）的数字集合，为一8位数
+     * billid：所属账本的id
+     *
+     */
 
     private final String CREATE_BILLTABLE="create table bill(_id integer primary key " +
             "autoincrement,content text,income integer,pay integer,label text" +
             ",color integer,period Integer,year integer,month integer,date integer," +
             "week integer,time integer,billid integer)";
     //周期使用正负数来标记。负数为月，正数为天
+    /**
+     * recycle：周期的记录
+     *
+     */
     private final String CREATE_RECYCLETABLE="create table recycle(_id integer " +
             "primary key autoincrement,content text,income integer,pay integer,label text" +
             ",color integer,period integer,day integer,billid integer)";
+
+    /**
+     * shopping：shoppinglist的记录表
+     *
+     */
     private final String CREATE_SHOPPINGTABLE="create table shopping(_id integer " +
             "primary key autoincrement,name text)";
+
+    /**
+     * labelcolor：标签与颜色的对应表
+     */
     private final String CREATE_LABELCOLOR="create table labelcolor(_id integer " +
             "primary key autoincrement,label text,color integer)";
+
+    /**
+     * colors:备选颜色的表
+     */
     private final String CREATE_SELECTCOLOR="create table colors(_id integer " +
             "primary key autoincrement,color integer)";
 
@@ -50,6 +88,7 @@ public class BillDateHelper extends SQLiteOpenHelper{
         db.execSQL(CREATE_SHOPPINGTABLE);
         db.execSQL(CREATE_LABELCOLOR);
         db.execSQL(CREATE_SELECTCOLOR);
+        //后两个查询表的初始化
         for(int i=0;i< Util.label.length;i++)
             db.execSQL("insert into labelcolor values(null,'"+Util.label[i]+"',"+Util.colors[i]+")");
         for(int i=0;i<Util.selectingColors.length;i++)
@@ -66,6 +105,7 @@ public class BillDateHelper extends SQLiteOpenHelper{
 
     }
 
+    //获取现在的时间
     public Map<String,Object> getTime(){
         Map<String,Object> map=new HashMap<>();
         Calendar calendar=Calendar.getInstance();
@@ -102,6 +142,7 @@ public class BillDateHelper extends SQLiteOpenHelper{
         return color;
     }
 
+    //获取所有备选颜色，用于adapter数据的调用
     public ArrayList<Integer> getAllColors(){
         ArrayList<Integer> list=new ArrayList<>();
         SQLiteDatabase db=getWritableDatabase();
@@ -111,6 +152,7 @@ public class BillDateHelper extends SQLiteOpenHelper{
         cursor.close();
         return list;
     }
+
 
     public int getColorID(int color){
         SQLiteDatabase db=getWritableDatabase();
@@ -178,6 +220,7 @@ public class BillDateHelper extends SQLiteOpenHelper{
 
     }
 
+    //获取单项的详细信息
     public Map<String,Object> getbillitem(int billitemID){
         Map<String,Object> map=new HashMap<>();
         SQLiteDatabase db=getWritableDatabase();
@@ -211,6 +254,7 @@ public class BillDateHelper extends SQLiteOpenHelper{
         return map;
     }
 
+    //获取所给id的recycle表中的项
     public Map<String,Object> getrecycle(int ID){
         Map<String,Object> map=new HashMap<>();
         SQLiteDatabase db=getWritableDatabase();
@@ -252,6 +296,7 @@ public class BillDateHelper extends SQLiteOpenHelper{
         return list;
     }
 
+    //获取对应map的id，用于更新
     public int getRecycleID(Map<String,Object> map){
         SQLiteDatabase db=getWritableDatabase();
         String content=map.get("content").toString();

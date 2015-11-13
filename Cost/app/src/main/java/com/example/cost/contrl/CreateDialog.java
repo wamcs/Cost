@@ -19,7 +19,9 @@ import com.example.cost.adapter.GridviewAdapter;
 import java.util.HashMap;
 import java.util.Map;
 
-
+/**
+ * 自定义对话框，添加账本时弹出
+ */
 //实现账本添加的弹出对话框
 public class CreateDialog extends Dialog{
 

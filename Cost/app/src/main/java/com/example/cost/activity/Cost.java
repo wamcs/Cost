@@ -43,6 +43,9 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * 主activity，显示主界面
+ */
 
 
 public class Cost extends BaseActivity {
@@ -82,8 +85,12 @@ public class Cost extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cost);
         billDateHelper=new BillDateHelper(this,"allbill.db",1);
+
+        //id获取用于显示界面内具体内容
         id=this.getSharedPreferences("billselect",
                 Context.MODE_PRIVATE).getInt("selectedID",1);
+
+        //此处使用alarm实现周期功能
         Intent intent =new Intent(this, TimeService.TimeChangedBroadReceiver.class);
         intent.setAction("TIME_CHANGE");
         Calendar calendar=Calendar.getInstance();
@@ -93,8 +100,12 @@ public class Cost extends BaseActivity {
                 PendingIntent.getBroadcast(this, 0, intent, 0);
         AlarmManager am=(AlarmManager)getSystemService(ALARM_SERVICE);
         am.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),24*60*60*1000, sender);
+
         init();
+
         StartAnimation();
+
+        //点击右上角查看收支对比
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,13 +116,19 @@ public class Cost extends BaseActivity {
                 startActivity(intent);
             }
         });
+
         onCreateShopping();
+
         es.execute(new BaseThread());
+
         onCreateNavigation();
+
         onCreateFab();
 
     }
 
+
+    //此处的俩boolean变量的变换与动画调用有关
     @Override
     protected void onRestart() {
         super.onRestart();
@@ -164,6 +181,7 @@ public class Cost extends BaseActivity {
                 drawerLayout.openDrawer(rightLayout);
                 break;
             case R.id.second:
+                //图表
                 Intent billTable=new Intent(Cost.this,BillTable.class);
                 int billid=this.getSharedPreferences("billselect",
                         Context.MODE_PRIVATE).getInt("selectedID",1);
@@ -171,6 +189,7 @@ public class Cost extends BaseActivity {
                 startActivity(billTable);
                 break;
             case R.id.setting:
+                //设置
                 Intent setting=new Intent(Cost.this,Setting.class);
                 startActivity(setting);
                 break;
@@ -183,6 +202,7 @@ public class Cost extends BaseActivity {
     }
 
 
+    //点击back前，若侧栏开着则先关闭侧栏，再次点击退出
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode==KeyEvent.KEYCODE_BACK&&(drawerLayout.isDrawerOpen(rightLayout)
@@ -226,11 +246,12 @@ public class Cost extends BaseActivity {
         Util.width=getResources().getDisplayMetrics().widthPixels;
     }
 
+    //fab的初始化
     public void onCreateFab(){
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //获取位置调用动画
                 int[] location=new int[2];
                 v.getLocationOnScreen(location);
                 location[0]+=v.getWidth()/2;
@@ -241,11 +262,13 @@ public class Cost extends BaseActivity {
         });
     }
 
+    //shoppinglist栏的初始化
     public void onCreateShopping(){
         namelist=new ArrayList<>();
         idlist=new ArrayList<>();
         initData();
         final ShopingAdpter adpter=new ShopingAdpter(this,namelist,idlist);
+        //回调实现更新
         adpter.setConnection(new ShopingAdpter.Connection() {
             @Override
             public void change(int id) {
@@ -292,6 +315,7 @@ public class Cost extends BaseActivity {
         listView.setAdapter(nagivationAdapter);
     }
 
+    //下面几个类均是数据的获取类
     public void onCreateMain(int id){
         time=getTime(id);
         date=getDateMap(id,time);
@@ -393,6 +417,7 @@ public class Cost extends BaseActivity {
         cursor.close();
     }
 
+    //用线程加载主页面内容，测试时因数据调用有卡顿，故使用线程
     public class BaseThread implements Runnable{
 
         @Override
@@ -410,6 +435,7 @@ public class Cost extends BaseActivity {
         }
     }
 
+    //接收billwrite的广播
     public static class BillChangeReceiver extends BroadcastReceiver{
 
         @Override
@@ -418,6 +444,7 @@ public class Cost extends BaseActivity {
         }
     }
 
+    //为初始动画
     public void StartAnimation(){
         fab.setTranslationY(2*getResources().getDimensionPixelOffset(R.dimen.fab_size));
         int actionbarSize = Util.dpToPx(56);

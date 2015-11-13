@@ -17,6 +17,9 @@ import org.solovyev.android.views.llm.LinearLayoutManager;
 import java.util.ArrayList;
 import java.util.Map;
 
+/**
+ *由于使用recyclerview嵌套的形式，此为外部recyclerview的adapter，用于加载条目的日期划分
+ */
 
 public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolderBody>{
 

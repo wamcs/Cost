@@ -10,6 +10,10 @@ import android.widget.LinearLayout;
 
 import com.example.cost.R;
 
+/**
+ * 设置类，包括三条，标签设置，关于我们，版本号
+ */
+
 public class Setting extends BaseActivity{
 
     @Override

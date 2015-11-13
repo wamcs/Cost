@@ -11,6 +11,9 @@ import android.graphics.Region;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
+/**
+ * 自定义view，circleView
+ */
 public class CircleImageView extends ImageView{
 
     Path path;

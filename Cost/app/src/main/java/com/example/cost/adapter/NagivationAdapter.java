@@ -23,6 +23,9 @@ import com.example.cost.contrl.CreateDialog;
 import java.util.ArrayList;
 import java.util.Map;
 
+/**
+ * 左栏中账本的apater
+ */
 public class NagivationAdapter extends BaseAdapter {
 
     private ArrayList<String> namelist = new ArrayList<>();
@@ -59,6 +62,7 @@ public class NagivationAdapter extends BaseAdapter {
         return 0;
     }
 
+    //由于有添加按钮与账本，故调用该方法
     @Override
     public int getItemViewType(int position) {
         if(position==0)
@@ -72,6 +76,8 @@ public class NagivationAdapter extends BaseAdapter {
         return 2;
     }
 
+    //若账本只剩一个不能删除只能清空
+    //用几个last变量记录上一个点击的按钮，用于实现长按后出现按钮的消失
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         if (getItemViewType(position)==0) {

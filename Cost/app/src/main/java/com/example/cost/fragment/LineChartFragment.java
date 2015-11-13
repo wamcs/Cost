@@ -30,6 +30,9 @@ import com.github.mikephil.charting.utils.ValueFormatter;
 
 import java.util.ArrayList;
 
+/**
+ * lineChart，MPAndroidChart中的表，具体方法参见文档
+ */
 public class LineChartFragment extends Fragment {
 
     private int billid;

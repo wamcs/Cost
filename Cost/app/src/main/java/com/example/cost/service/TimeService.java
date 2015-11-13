@@ -18,6 +18,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Map;
 
+/**
+ * 用于实现周期功能的service
+ */
+
 public class TimeService extends Service {
     private BillDateHelper billDateHelper;
     private ArrayList<Map<String,Integer>> list;
@@ -39,14 +43,13 @@ public class TimeService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         if(isTimeChange) {
+            //获取recycle表中全部信息
             list=billDateHelper.getrecycle();
-            Log.e("tsg",list.toString());
-            Log.e("TSG",list.size()+"");
+            //对四类周期循环做处理
             for (int i = 0; i < list.size(); i++) {
                 switch (list.get(i).get("period")){
                     case Util.PRO_DAY:
                         add(list.get(i).get("id"));
-                        Log.e("TAG", "onStartCommand ");
                         break;
                     case Util.PRO_MONTH:
                         if(isMonthChange){
@@ -87,6 +90,9 @@ public class TimeService extends Service {
             db.execSQL("update recycle set day="+(day+1)+" where _id="+id);
     }
 
+    /**
+     * 用于接收时间改变信息的广播
+     */
     public static class TimeChangedBroadReceiver extends BroadcastReceiver{
 
      @Override
@@ -95,6 +101,7 @@ public class TimeService extends Service {
          Log.e("TAG","onReceive "+calendar.get(Calendar.MONTH)+" "+calendar.get(Calendar.DATE));
          int month = calendar.get(Calendar.MONTH) + 1;
          isTimeChange = true;
+         //利用sharePerferences记录上次时间，并进行对比，决定是否调用service
          int getmonth = context.getSharedPreferences("monthChange", Context.MODE_PRIVATE)
                  .getInt("month", 0);
          if (getmonth == 0)

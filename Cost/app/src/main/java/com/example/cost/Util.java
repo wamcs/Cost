@@ -4,6 +4,10 @@ package com.example.cost;
 import android.content.res.Resources;
 import android.util.Log;
 
+/**
+ * 此类为一些数据的集合类
+ */
+
 public class Util {
     public final static int PRO_DAY=1;
     public final static int PRO_WEEK=2;

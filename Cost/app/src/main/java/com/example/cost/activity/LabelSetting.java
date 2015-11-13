@@ -28,6 +28,10 @@ import com.example.cost.adapter.LabelItemAdapter;
 import com.example.cost.contrl.RecyclerItemDivider;
 import com.example.cost.datebase.BillDateHelper;
 
+/**
+ * 标签设置颜色选择
+ *
+ */
 public class LabelSetting extends BaseActivity{
 
     private Toolbar toolbar;

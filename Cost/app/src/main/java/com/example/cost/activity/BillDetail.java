@@ -28,6 +28,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 此类为详细内容类
+ */
 public class BillDetail extends BaseActivity{
     private ImageButton editfab;
     private ImageButton deletebtn;
@@ -78,6 +81,7 @@ public class BillDetail extends BaseActivity{
         change.setAction("BILL_CHANGED");
     }
 
+    //此方法用于数据加载
     public void initDate(int billitemID){
         Map<String,Object> map=billDateHelper.getbillitem(billitemID);
         String content=map.get("content").toString();
@@ -115,6 +119,7 @@ public class BillDetail extends BaseActivity{
                     .getString(billDateHelper.recycleTurntoString(recycleperiod)));
     }
 
+    //几个控件的点击事件
     private void setListener(){
         returnbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,6 +165,7 @@ public class BillDetail extends BaseActivity{
         });
     }
 
+    //删除该条目
     private void delele(){
         Map<String,Object> billmap=billDateHelper.getbillitem(billitemID);
         billDateHelper.deleteBill(billitemID);
@@ -176,6 +182,8 @@ public class BillDetail extends BaseActivity{
         sendBroadcast(change);
         finish();
     }
+
+    //动画方法，实现扩散动画，以及一些初始动画
     private void setupRevealRectangleBackgroud(){
         circleBackgroud.setListener(new RevealCircleBackgroud.onStateListener() {
             @Override

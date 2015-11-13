@@ -40,6 +40,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 编辑类，三种初始化情况，一为主界面fab点击进入，二为shoppinglist的点击进入
+ * 三为更改
+ */
 
 public class BillWrite extends BaseActivity {
 
@@ -172,6 +176,8 @@ public class BillWrite extends BaseActivity {
         });
     }
 
+    //根据获取的billitemid的正负性判断哪种初始化情况，
+    // 负数为shoppinglist，0为fab，正数为更改
     public void initDate(int billitemID){
         if (billitemID<=0){
             year=(int)billDateHelper.getTime().get("year");
@@ -223,6 +229,7 @@ public class BillWrite extends BaseActivity {
         }
     }
 
+    //数据的最终确认，并根据billitemid分三种情况处理，同上
     public void dateCofirm(){
         getBilldate();
         Map<String,Object> map=new HashMap<>();
@@ -278,6 +285,7 @@ public class BillWrite extends BaseActivity {
         overridePendingTransition(0,0);
     }
 
+    //动画
     public void setupRevealCircleBackgroud() {
         revealCircleBackgroud.setListener(new RevealCircleBackgroud.onStateListener() {
             @Override
@@ -329,6 +337,7 @@ public class BillWrite extends BaseActivity {
 
     }
 
+    //下面三个pop是周期标签及时间窗口的弹出
     public void popPeriod(){
         final PopupMenu pop = new PopupMenu(BillWrite.this,periodswitch);
         getMenuInflater().inflate(R.menu.bill_peroid_popmenu, pop.getMenu());
