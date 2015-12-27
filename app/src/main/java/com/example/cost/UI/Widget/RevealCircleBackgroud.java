@@ -1,4 +1,4 @@
-package com.example.cost.contrl;
+package com.example.cost.UI.Widget;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

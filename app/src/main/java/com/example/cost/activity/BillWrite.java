@@ -16,7 +16,6 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewAnimationUtils;
 import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
@@ -32,8 +31,7 @@ import android.widget.TextView;
 import com.example.cost.R;
 import com.example.cost.Util;
 import com.example.cost.adapter.LabelChooseAdapter;
-import com.example.cost.adapter.LabelItemAdapter;
-import com.example.cost.contrl.RevealCircleBackgroud;
+import com.example.cost.UI.Widget.RevealCircleBackgroud;
 import com.example.cost.datebase.BillDateHelper;
 
 import java.util.ArrayList;

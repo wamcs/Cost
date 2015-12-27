@@ -55,7 +55,7 @@
         </LinearLayout>
 
     </android.support.v4.widget.DrawerLayout>
-    <com.example.cost.contrl.RevealCircleBackgroud
+    <com.example.cost.UI.Widget.RevealCircleBackgroud
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/cost_reveal"/>

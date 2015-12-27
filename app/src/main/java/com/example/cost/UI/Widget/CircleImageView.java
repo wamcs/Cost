@@ -1,4 +1,4 @@
-package com.example.cost.contrl;
+package com.example.cost.UI.Widget;
 
 import android.content.Context;
 import android.graphics.Canvas;

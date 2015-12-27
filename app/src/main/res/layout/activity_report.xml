@@ -35,7 +35,7 @@
                     android:textSize="@dimen/head_textsize_top"
                     android:layout_gravity="center"
                     />
-                <com.example.cost.contrl.ColorCompareView
+                <com.example.cost.UI.Widget.ColorCompareView
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
                     android:padding="5dp"
@@ -106,7 +106,7 @@
                         android:textSize="@dimen/head_textsize_top"
                         android:layout_gravity="center"
                         />
-                    <com.example.cost.contrl.ColorCompareView
+                    <com.example.cost.UI.Widget.ColorCompareView
                         android:layout_width="match_parent"
                         android:layout_height="25dp"
                         android:padding="5dp"
@@ -178,7 +178,7 @@
                         android:textSize="@dimen/head_textsize_top"
                         android:layout_gravity="center"
                         />
-                    <com.example.cost.contrl.ColorCompareView
+                    <com.example.cost.UI.Widget.ColorCompareView
                         android:layout_width="match_parent"
                         android:layout_height="25dp"
                         android:padding="5dp"
@@ -251,7 +251,7 @@
                         android:textSize="@dimen/head_textsize_top"
                         android:layout_gravity="center"
                         />
-                    <com.example.cost.contrl.ColorCompareView
+                    <com.example.cost.UI.Widget.ColorCompareView
                         android:layout_width="match_parent"
                         android:layout_height="25dp"
                         android:padding="5dp"

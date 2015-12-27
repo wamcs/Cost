@@ -1,4 +1,4 @@
-package com.example.cost;
+package com.example.cost.Utils;
 
 import android.app.Activity;
 import android.content.Context;

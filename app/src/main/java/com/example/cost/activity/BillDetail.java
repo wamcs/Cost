@@ -7,21 +7,18 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
-import android.os.Build;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.view.animation.DecelerateInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.cost.R;
-import com.example.cost.SystemBarManager;
+import com.example.cost.Utils.SystemBarManager;
 import com.example.cost.Util;
-import com.example.cost.contrl.RevealCircleBackgroud;
+import com.example.cost.UI.Widget.RevealCircleBackgroud;
 import com.example.cost.datebase.BillDateHelper;
 
 import java.util.ArrayList;

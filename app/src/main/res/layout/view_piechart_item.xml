@@ -11,7 +11,7 @@
             android:layout_height="@dimen/piechart_itemlayout_height"
             android:layout_margin="10dp"
             android:orientation="horizontal">
-            <com.example.cost.contrl.CircleImageView
+            <com.example.cost.UI.Widget.CircleImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_margin="15dp"

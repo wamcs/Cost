@@ -11,7 +11,7 @@
         android:background="@color/style_color_primary"
         >
 
-        <com.example.cost.contrl.CircleImageView
+        <com.example.cost.UI.Widget.CircleImageView
             android:layout_width="40dp"
             android:layout_height= "20dp"
             android:id="@+id/view_shoppinglist_radio"
