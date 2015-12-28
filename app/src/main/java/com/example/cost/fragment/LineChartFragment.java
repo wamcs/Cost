@@ -3,7 +3,6 @@ package com.example.cost.fragment;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -25,7 +24,6 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.renderer.XAxisRenderer;
 import com.github.mikephil.charting.utils.ValueFormatter;
 
 import java.util.ArrayList;
@@ -60,12 +58,12 @@ public class LineChartFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_linechart,container,false);
-        lineChart= (LineChart) view.findViewById(R.id.table_line_chart);
-        lastMonth= (ImageButton) view.findViewById(R.id.table_last_month);
-        nextMonth= (ImageButton) view.findViewById(R.id.table_next_month);
-        nowMonth= (TextView) view.findViewById(R.id.table_month);
-        income= (TextView) view.findViewById(R.id.table_income);
-        pay= (TextView) view.findViewById(R.id.table_pay);
+        lineChart= (LineChart) view.findViewById(R.id.line_chart_fragment_line_chart);
+        lastMonth= (ImageButton) view.findViewById(R.id.line_chart_fragment_last_month_button);
+        nextMonth= (ImageButton) view.findViewById(R.id.line_chart_fragment_next_month_button);
+        nowMonth= (TextView) view.findViewById(R.id.line_chart_fragment_month_textview);
+        income= (TextView) view.findViewById(R.id.line_chart_fragment_income_textview);
+        pay= (TextView) view.findViewById(R.id.line_chart_fragment_pay_textview);
         initChart();
         nowMonth.setText(month + "月");
         income.setText(incomeList.get(month-1)+"");

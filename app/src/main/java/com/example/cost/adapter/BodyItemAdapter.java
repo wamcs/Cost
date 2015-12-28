@@ -11,9 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.cost.R;
-import com.example.cost.Util;
 import com.example.cost.activity.BillDetail;
-import com.example.cost.activity.Cost;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -36,7 +34,7 @@ public class BodyItemAdapter extends RecyclerView.Adapter<BodyItemAdapter.BillVi
 
     @Override
     public BillViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(context).inflate(R.layout.view_activity_body_item,parent,false);
+        View view= LayoutInflater.from(context).inflate(R.layout.item_cost_activity_body,parent,false);
         return new BillViewHolder(view);
     }
 
@@ -79,9 +77,9 @@ public class BodyItemAdapter extends RecyclerView.Adapter<BodyItemAdapter.BillVi
         private LinearLayout linearLayout;
         public BillViewHolder(View itemView) {
             super(itemView);
-            content= (TextView) itemView.findViewById(R.id.view_activity_body_content);
-            money= (TextView) itemView.findViewById(R.id.view_activity_body_money);
-            linearLayout= (LinearLayout) itemView.findViewById(R.id.view_activity_body_layout);
+            content= (TextView) itemView.findViewById(R.id.cost_activity_body_content);
+            money= (TextView) itemView.findViewById(R.id.cost_activity_body_money);
+            linearLayout= (LinearLayout) itemView.findViewById(R.id.cost_activity_body_layout);
         }
     }
 

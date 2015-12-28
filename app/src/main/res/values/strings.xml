@@ -15,6 +15,7 @@
 
     <string name="dialogtitle">账本设置</string>
 
+    <!-- bill write activity string-->
     <string name="periodno">一次性</string>
     <string name="periodday">每天</string>
     <string name="periodweek">每周</string>
@@ -28,6 +29,7 @@
 
     <string name="unique">Unique Studio</string>
 
+    <!-- about us string-->
     <string name="staff_name1">K.L</string>
     <string name="staff_position1">Programmer</string>
     <string name="staff_email1">kaili@hustunique.com</string>
@@ -37,6 +39,10 @@
     <string name="staff_name3">yangChen</string>
     <string name="staff_position3">Designer</string>
     <string name="staff_email3">yangcc666@gmail.com</string>
+
+    <!-- cost activity string-->
+    <string name="header_income">收入:</string>
+    <string name="header_pay">支出:</string>
 
 
 </resources>

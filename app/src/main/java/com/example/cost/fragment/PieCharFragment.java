@@ -60,13 +60,13 @@ public class PieCharFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_piechart, container, false);
-        pieChart = (PieChart) view.findViewById(R.id.table_pie_chart);
-        button = (LinearLayout) view.findViewById(R.id.table_trans_btn);
-        lastButton= (ImageButton) view.findViewById(R.id.table_last);
-        nextButton= (ImageButton) view.findViewById(R.id.table_next);
-        titletv= (TextView) view.findViewById(R.id.table_trans_title);
-        moneytv=(TextView) view.findViewById(R.id.table_trans_money);
-        recyclerView= (RecyclerView) view.findViewById(R.id.pie_table_recyclerview);
+        pieChart = (PieChart) view.findViewById(R.id.pie_chart_fragment_pie_chart);
+        button = (LinearLayout) view.findViewById(R.id.pie_chart_fragment_translate_button);
+        lastButton= (ImageButton) view.findViewById(R.id.pie_chart_fragment_last_button);
+        nextButton= (ImageButton) view.findViewById(R.id.pie_chart_fragment_next_button);
+        titletv= (TextView) view.findViewById(R.id.pie_chart_fragment_translate_title_textview);
+        moneytv=(TextView) view.findViewById(R.id.pie_chart_fragment_translate_money_textview);
+        recyclerView= (RecyclerView) view.findViewById(R.id.pie_chart_fragment_recyclerview);
         initView();
         initListener();
         return view;

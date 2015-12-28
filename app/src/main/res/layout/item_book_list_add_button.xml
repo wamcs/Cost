@@ -8,8 +8,8 @@
         android:layout_height="@dimen/view_nagitivation_hsize"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/View_nagitivation_item_padding"
-        android:background="#85d0ff"
-        android:id="@+id/ngv_btn"
+        android:background="@color/item_book_add_button_color"
+        android:id="@id/item_book_add_button"
         android:src="@mipmap/ic_add_white_36dp"
         android:elevation="5dp"/>
 </LinearLayout>

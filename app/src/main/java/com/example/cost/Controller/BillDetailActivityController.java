@@ -5,6 +5,8 @@ import android.view.View;
 
 import com.example.cost.Controller.Base.ActivityController;
 
+import butterknife.ButterKnife;
+
 /**
  * author:wamcs
  * date:2015/12/27
@@ -12,7 +14,8 @@ import com.example.cost.Controller.Base.ActivityController;
  */
 public class BillDetailActivityController extends ActivityController {
 
-    public BillDetailActivityController(AppCompatActivity mActivity, View mView) {
-        super(mActivity, mView);
+    public BillDetailActivityController(AppCompatActivity activity, View view) {
+        super(activity, view);
+        ButterKnife.bind(this, view);
     }
 }

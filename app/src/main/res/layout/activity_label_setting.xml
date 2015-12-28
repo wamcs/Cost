@@ -19,7 +19,7 @@
             android:layout_marginTop="@dimen/label_setting_height"
             android:layout_height="1dp"
             android:background="@color/backgroud"/>
-        <include layout="@layout/view_label_show"
+        <include layout="@layout/layout_label_show"
             android:layout_marginTop="@dimen/label_setting_margin"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

@@ -58,14 +58,14 @@ public class ShopingAdpter extends BaseAdapter {
         final ViewHolder viewHolder;
         if(convertView==null){
             convertView= LayoutInflater.from(context)
-                    .inflate(R.layout.view_shoppinglist_item, null);
+                    .inflate(R.layout.item_shooping_list_view, null);
             viewHolder=new ViewHolder();
             viewHolder.editText= (EditText) convertView.
-                    findViewById(R.id.view_shoppinglist_edittext);
+                    findViewById(R.id.item_shopping_list_edittext);
             viewHolder.imageButton= (ImageButton) convertView
-                    .findViewById(R.id.view_shoppinglist_imagebutton);
+                    .findViewById(R.id.item_shopping_list_imagebutton);
             viewHolder.circleImageView= (CircleImageView) convertView
-                    .findViewById(R.id.view_shoppinglist_radio);
+                    .findViewById(R.id.item_shopping_list_radio);
             convertView.setTag(viewHolder);
         }
         else

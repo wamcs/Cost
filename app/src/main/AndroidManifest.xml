@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".activity.Cost"
+            android:name=".UI.CostActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -16,17 +16,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.BillWrite"
+            android:name=".UI.BillWriteActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.TransparentActivity"/>
-        <activity android:name=".activity.BillDetail"
+        <activity android:name=".UI.BillDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.TransparentActivity"/>
-        <activity android:name=".activity.BillTable"/>
-        <activity android:name=".activity.Report"/>
-        <activity android:name=".activity.Setting" />
-        <activity android:name=".activity.AboutUs"/>
-        <activity android:name=".activity.LabelSetting" />
+        <activity android:name=".UI.BillTableActivity"/>
+        <activity android:name=".UI.ReportActivity"/>
+        <activity android:name=".UI.SettingActivity" />
+        <activity android:name=".UI.AboutUsActivity"/>
+        <activity android:name=".UI.LabelSettingActivity" />
         <receiver android:name=".activity.Cost$BillChangeReceiver">
             <intent-filter>
                 <action android:name="BILL_CHANGED"/>

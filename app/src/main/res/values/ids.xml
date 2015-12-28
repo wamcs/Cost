@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="tool_bar" type="id"/>
+
+    <!-- toolbar ids-->
+    <item name="default_tool_bar_imageview" type="id"/>
+    <item name="default_tool_bar_textview" type="id"/>
+
+    <!-- shopping list ids-->
+    <item name="layout_shopping_list_add_button" type="id"/>
+    <item name="item_shopping_list_listview" type="id"/>
+    
+    <!-- shopping list item ids-->
+    <item name="item_shopping_list_radio" type="id"/>
+    <item name="item_shopping_list_edittext" type="id"/>
+    <item name="item_shopping_list_imagebutton" type="id"/>
+
+    <!-- pie chart item ids-->
+    <item name="table_circle_view" type="id"/>
+    <item name="table_pie_chart_item_title" type="id"/>
+    <item name="table_pie_chart_item_money" type="id"/>
+    <item name="table_pie_chart_item_proportion" type="id"/>
+
+    <!-- book list ids-->
+    <item name="item_book_face" type="id"/>
+    <item name="item_book_name" type="id"/>
+    <item name="item_book_modification" type="id"/>
+    <item name="item_book_delete" type="id"/>
+    <item name="item_book_add_button" type="id"/>
+
+    <item name="item_book_list_dialog_button" type="id"/>
+    <item name="layout_book_list_listview" type="id"/>
+
+    <!-- label setting activity ids-->
+    <item name="label_setting_activity_label_color" type="id"/>
+    <item name="label_setting_activity_label_edittext" type="id"/>
+    <item name="label_setting_activity_recyclerview" type="id"/>
+    <item name="label_setting_activity_choose_color_item" type="id"/>
+    <item name="label_setting_activity_choose_layout_item" type="id"/>
+    <item name="label_setting_activity_color_confirm" type="id"/>
+    <item name="label_setting_activity_color_gridView" type="id"/>
+
+    <!-- bill write activity ids-->
+    <item name="label_choose_label_textview" type="id"/>
+    <item name="label_choose_label_color" type="id"/>
+    <item name="label_choose_button" type="id"/>
+    <item name="label_choose_recyclerview" type="id"/>
+
+    <!-- bill detail activity ids-->
+    <item name="view_compare_income" type="id"/>
+    <item name="view_compare_pay" type="id"/>
+
+    <!-- cost activity ids-->
+    <item name="cost_activity_header_imageview" type="id"/>
+    <item name="cost_activity_head_layout" type="id"/>
+    <item name="cost_activity_income" type="id"/>
+    <item name="cost_activity_pay" type="id"/>
+    <item name="cost_activity_head_income_layout" type="id"/>
+    <item name="cost_activity_head_pay_layout" type="id"/>
+    <item name="cost_activity_head_title" type="id"/>
+    <item name="cost_activity_body_layout" type="id"/>
+    <item name="cost_activity_body_content" type="id"/>
+    <item name="cost_activity_body_money" type="id"/>
+    <item name="cost_activity_body_linearLayout" type="id"/>
+    <item name="cost_activity_body_date_textview" type="id"/>
+    <item name="cost_activity_body_month_textview" type="id"/>
+    <item name="cost_activity_body_recyclerview" type="id"/>
+    <item name="cost_activity_bill_recyclerview" type="id"/>
+    
+    <!-- pie chart fragment ids-->
+    <item name="pie_chart_fragment_pie_chart" type="id"/>
+    <item name="pie_chart_fragment_translate_button" type="id"/>
+    <item name="pie_chart_fragment_translate_title_textview" type="id"/>
+    <item name="pie_chart_fragment_translate_money_textview" type="id"/>
+    <item name="pie_chart_fragment_last_button" type="id"/>
+    <item name="pie_chart_fragment_next_button" type="id"/>
+    <item name="pie_chart_fragment_recyclerview" type="id"/>
+
+    <!-- line chart fragment ids-->
+    <item name="line_chart_fragment_line_chart" type="id"/>
+    <item name="line_chart_fragment_last_month_button" type="id"/>
+    <item name="line_chart_fragment_month_textview" type="id"/>
+    <item name="line_chart_fragment_next_month_button" type="id"/>
+    <item name="line_chart_fragment_income_textview" type="id"/>
+    <item name="line_chart_fragment_pay_textview" type="id"/>
+
+</resources>

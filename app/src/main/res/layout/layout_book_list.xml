@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout     
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <ListView 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@id/layout_book_list_listview" 
+        android:background="@color/style_color_primary"
+        android:layout_gravity="center_horizontal"
+        android:headerDividersEnabled="false"
+        android:footerDividersEnabled="false">
+
+    </ListView>
+</LinearLayout>

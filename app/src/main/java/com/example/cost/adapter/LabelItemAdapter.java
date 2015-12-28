@@ -2,15 +2,12 @@ package com.example.cost.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import com.example.cost.R;
 import com.example.cost.datebase.BillDateHelper;
@@ -37,7 +34,7 @@ public class LabelItemAdapter extends RecyclerView.Adapter<LabelItemAdapter.View
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view;
         ViewHolder viewHolder;
-        view= LayoutInflater.from(context).inflate(R.layout.view_label_show_items,parent,false);
+        view= LayoutInflater.from(context).inflate(R.layout.item_label_show,parent,false);
         viewHolder=new ViewHolder(view);
         parent.setOnTouchListener(new View.OnTouchListener() {
                 @Override
@@ -106,8 +103,8 @@ public class LabelItemAdapter extends RecyclerView.Adapter<LabelItemAdapter.View
         private EditText editText;
         public ViewHolder(final View itemView) {
             super(itemView);
-            imageView= (ImageView) itemView.findViewById(R.id.label_color);
-            editText= (EditText) itemView.findViewById(R.id.label_edit);
+            imageView= (ImageView) itemView.findViewById(R.id.label_setting_activity_label_color);
+            editText= (EditText) itemView.findViewById(R.id.label_setting_activity_label_edittext);
 
         }
     }

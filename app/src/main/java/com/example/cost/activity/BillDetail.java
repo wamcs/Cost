@@ -69,7 +69,7 @@ public class BillDetail extends BaseActivity{
         timetv= (TextView) findViewById(R.id.bill_detail_time);
         periodtv= (TextView) findViewById(R.id.bill_detail_period);
         statetv= (TextView) findViewById(R.id.bill_detail_state);
-        linearLayout= (LinearLayout) findViewById(R.id.linearLayout);
+        linearLayout= (LinearLayout) findViewById(R.id.cost_activity_body_linearLayout);
         backLayout= (LinearLayout) findViewById(R.id.bill_detail_layout);
         circleBackgroud = (RevealCircleBackgroud) findViewById(R.id.bill_detail_reveal);
         intent=new Intent(this,BillWrite.class);

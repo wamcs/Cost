@@ -18,7 +18,7 @@
             android:layout_height="match_parent">
             <include layout="@layout/view_toolbar"
             android:id="@+id/toolbar" />
-            <include layout="@layout/bill_list"
+            <include layout="@layout/layout_bill_list"
                 android:layout_below="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -41,7 +41,7 @@
             android:orientation="vertical"
             android:background="@color/Nagitivation_color"
             android:id="@+id/leftlayout">
-           <include layout="@layout/view_nagitivation"/>
+           <include layout="@layout/layout_book_list"/>
 
         </LinearLayout>
         <LinearLayout
@@ -51,7 +51,7 @@
             android:orientation="vertical"
             android:background="@color/Nagitivation_color"
             android:id="@+id/rightlayout">
-            <include layout="@layout/view_shoppinglist"/>
+            <include layout="@layout/layout_shopping_list"/>
         </LinearLayout>
 
     </android.support.v4.widget.DrawerLayout>

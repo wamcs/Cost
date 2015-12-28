@@ -1,17 +1,13 @@
 package com.example.cost.UI.Widget;
 
-import android.animation.ObjectAnimator;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
-import android.view.animation.AnimationSet;
-import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -45,7 +41,7 @@ public class ColorCompareView  extends RelativeLayout{
     }
 
     public void init(Context context){
-        View view= LayoutInflater.from(context).inflate(R.layout.view_compare_color,this,false);
+        View view= LayoutInflater.from(context).inflate(R.layout.item_compare_color,this,false);
         payImageView= (ImageView) view.findViewById(R.id.view_compare_pay);
         incomeImageView=(ImageView) view.findViewById(R.id.view_compare_income);
         addView(view);

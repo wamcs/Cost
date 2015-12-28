@@ -82,8 +82,8 @@ public class NagivationAdapter extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
         if (getItemViewType(position)==0) {
 
-            convertView = layoutInflater.inflate(R.layout.view_nagitivation_addbtn, null);
-            ImageButton bt = (ImageButton) convertView.findViewById(R.id.ngv_btn);
+            convertView = layoutInflater.inflate(R.layout.item_book_list_add_button, null);
+            ImageButton bt = (ImageButton) convertView.findViewById(R.id.item_book_add_button);
             bt.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -118,12 +118,12 @@ public class NagivationAdapter extends BaseAdapter {
         else {
             final viewHolder viewHolder;
             if (convertView == null) {
-                convertView = layoutInflater.inflate(R.layout.view_nagivation_item, null);
+                convertView = layoutInflater.inflate(R.layout.item_book_list, null);
                 viewHolder = new viewHolder();
-                viewHolder.delbutton = (ImageButton) convertView.findViewById(R.id.ngv_item_del);
-                viewHolder.modbutton = (ImageButton) convertView.findViewById(R.id.ngv_item_mod);
-                viewHolder.itembutton = (ImageButton) convertView.findViewById(R.id.ngv_item_iv);
-                viewHolder.title = (TextView) convertView.findViewById(R.id.nav_item_tv);
+                viewHolder.delbutton = (ImageButton) convertView.findViewById(R.id.item_book_delete);
+                viewHolder.modbutton = (ImageButton) convertView.findViewById(R.id.item_book_modification);
+                viewHolder.itembutton = (ImageButton) convertView.findViewById(R.id.item_book_face);
+                viewHolder.title = (TextView) convertView.findViewById(R.id.item_book_name);
                 convertView.setTag(viewHolder);
             } else {
                 viewHolder = (NagivationAdapter.viewHolder) convertView.getTag();

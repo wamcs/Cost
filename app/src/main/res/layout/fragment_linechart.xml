@@ -10,7 +10,7 @@
         android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/table_line_chart"
+        android:id="@id/line_chart_fragment_line_chart"
         android:layout_gravity="center_vertical|center_horizontal"
         /></android.support.v7.widget.CardView>
     <android.support.v7.widget.CardView
@@ -36,7 +36,7 @@
                    android:layout_gravity="start|center"
                    android:background="#00000000"
                    android:src="@mipmap/ic_chevron_left_grey600_36dp"
-                   android:id="@+id/table_last_month"
+                   android:id="@id/line_chart_fragment_last_month_button"
                    />
                <TextView
                    android:layout_width="0dp"
@@ -45,7 +45,7 @@
                    android:gravity="center"
                    android:layout_gravity="center"
                    android:layout_weight="10"
-                   android:id="@+id/table_month"/>
+                   android:id="@id/line_chart_fragment_month_textview"/>
                <ImageButton
                    android:layout_width="50dp"
                    android:layout_height="50dp"
@@ -53,7 +53,7 @@
                    android:layout_gravity="end|center"
                    android:background="#00000000"
                    android:src="@mipmap/ic_chevron_right_grey600_36dp"
-                   android:id="@+id/table_next_month"
+                   android:id="@id/line_chart_fragment_next_month_button"
                    />
            </LinearLayout>
            <LinearLayout
@@ -61,70 +61,40 @@
                android:layout_height="1dp"
                android:background="@color/backgroud"/>
            <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:orientation="horizontal"
-               android:layout_marginTop="10dp"
-               android:layout_marginStart="10dp"
-               android:layout_marginEnd="10dp">
+               style="@style/lineChartLinearLayout"
+               >
                <ImageView
-                   android:layout_width="30dp"
-                   android:layout_height="30dp"
-                   android:layout_margin="10dp"
+                   style="@style/lineChartImageView"
                    android:background="@color/line_chart_income"
                    />
                <TextView
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:textSize="@dimen/subhead"
+                   style="@style/lineChartTitleText"
                    android:text="@string/income"
-                   android:layout_marginStart="10dp"
-                   android:layout_gravity="center"
-                   android:layout_weight="8"/>
+                   />
                <TextView
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:textSize="@dimen/subhead"
-                   android:layout_gravity="center"
+                   style="@style/lineChartDetailText"
                    android:text="200"
                    android:textColor="@color/line_chart_income"
-                   android:layout_weight="1"
-                   android:id="@+id/table_income"/>
+                   android:id="@id/line_chart_fragment_income_textview"/>
            </LinearLayout>
            <LinearLayout
                android:layout_width="match_parent"
                android:layout_height="1dp"
                android:background="@color/backgroud"/>
            <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:orientation="horizontal"
-               android:layout_marginTop="10dp"
-               android:layout_marginStart="10dp"
-               android:layout_marginEnd="10dp">
+               style="@style/lineChartLinearLayout">
                <ImageView
-                   android:layout_width="30dp"
-                   android:layout_height="30dp"
-                   android:layout_margin="10dp"
+                   style="@style/lineChartImageView"
                    android:background="@color/line_chart_pay"
                    />
                <TextView
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:textSize="@dimen/subhead"
-                   android:text="@string/pay"
-                   android:layout_marginStart="10dp"
-                   android:layout_gravity="center"
-                   android:layout_weight="8"/>
+                   style="@style/lineChartTitleText"
+                   android:text="@string/pay" />
                <TextView
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:textSize="@dimen/subhead"
-                   android:layout_gravity="center"
+                   style="@style/lineChartDetailText"
                    android:text="200"
-                   android:id="@+id/table_pay"
-                   android:textColor="@color/line_chart_pay"
-                   android:layout_weight="1"/>
+                   android:id="@id/line_chart_fragment_pay_textview"
+                   android:textColor="@color/line_chart_pay" />
            </LinearLayout>
        </LinearLayout>
     </android.support.v7.widget.CardView>

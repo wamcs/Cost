@@ -7,7 +7,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="169dp"
-        android:id="@+id/view_activity_head_iv"
+        android:id="@id/cost_activity_header_imageview"
         android:background="@color/activity_head_color"
         />
     <LinearLayout
@@ -17,28 +17,24 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="20dp"
         android:layout_marginStart="250dp"
-        android:id="@+id/activity_head_layout">
+        android:id="@id/cost_activity_head_layout">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:id="@+id/activity_head_income_layout"
+            android:id="@id/cost_activity_head_income_layout"
             >
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="收入:"
+                style="@style/HeaderLittleText"
+                android:text="@string/header_income"
                 android:layout_gravity="start"
-                android:textColor="@color/text_color_primary"
-                android:textSize="@dimen/subhead" />
+                android:textColor="@color/secondary_color" />
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/HeaderLittleText"
                 android:text="2,000.00"
-                android:textSize="@dimen/subhead"
                 android:textColor="#ffffff"
-                android:id="@+id/view_activity_income"
+                android:id="@id/cost_activity_income"
                 />
 
 
@@ -46,24 +42,20 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/activity_head_pay_layout"
+            android:id="@id/cost_activity_head_pay_layout"
             >
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="支出:"
+                style="@style/HeaderLittleText"
+                android:text="@string/header_pay"
                 android:layout_gravity="start"
-                android:textSize="@dimen/subhead"
-                android:textColor="@color/text_color_primary"/>
+                android:textColor="@color/secondary_color"/>
 
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/HeaderLittleText"
                 android:text="500.00"
-                android:textSize="@dimen/subhead"
                 android:textColor="#ffffff"
-                android:id="@+id/view_activity_pay"
+                android:id="@id/cost_activity_pay"
                 />
         </LinearLayout>
 
@@ -73,12 +65,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="生活日常"
-        android:textColor="@color/text_color_primary"
+        android:textColor="@color/secondary_color"
         android:textSize="@dimen/display1"
-        android:id="@+id/view_activity_head_title"
+        android:id="@id/cost_activity_head_title"
         android:layout_marginBottom="16dp"
         android:layout_marginStart="16dp"
-        android:layout_alignBottom="@+id/view_activity_head_iv"
+        android:layout_alignBottom="@id/cost_activity_header_imageview"
         android:layout_alignParentStart="true" />
 
 

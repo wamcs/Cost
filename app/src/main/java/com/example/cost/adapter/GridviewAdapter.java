@@ -60,10 +60,10 @@ public class GridviewAdapter extends BaseAdapter{
         viewHolder viewHolder ;
         //优化
         if(convertView==null){
-            convertView=layoutInflater.inflate(R.layout.view_nagitivation_gridview_item,
+            convertView=layoutInflater.inflate(R.layout.item_book_list_dialog,
                     null);
             viewHolder=new viewHolder();
-            viewHolder.itembtn= (ImageButton) convertView.findViewById(R.id.ngv_dia_grid_btn);
+            viewHolder.itembtn= (ImageButton) convertView.findViewById(R.id.item_book_list_dialog_button);
             convertView.setTag(viewHolder);
         }
         else

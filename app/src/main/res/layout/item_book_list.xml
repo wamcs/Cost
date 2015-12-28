@@ -17,7 +17,7 @@
 
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/ngv_item_iv"
+            android:id="@id/item_book_face"
             android:layout_centerHorizontal="true"
             android:focusable="false"
 
@@ -27,30 +27,24 @@
             android:layout_height="wrap_content"
             android:text="Large Text"
             android:textColor="#756b6e"
-            android:id="@+id/nav_item_tv"
+            android:id="@id/item_book_name"
             android:layout_marginTop="25dp"
-            android:layout_alignTop="@+id/ngv_item_iv"
+            android:layout_alignTop="@id/item_book_face"
             android:layout_centerHorizontal="true"
             />
     </RelativeLayout>
 
     <ImageButton
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:id="@+id/ngv_item_mod"
+        style="@style/BookListItemButton"
+        android:id="@id/item_book_modification"
         android:src="@mipmap/ic_edit_white_36dp"
-        android:focusable="false"
-        android:background="@color/style_color_primary"
-        android:layout_alignTop="@+id/ngv_item_del"
+        android:layout_alignTop="@+id/item_book_delete"
         android:layout_toEndOf="@+id/relativeLayout2" />
 
     <ImageButton
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:id="@+id/ngv_item_del"
+        style="@style/BookListItemButton"
+        android:id="@id/item_book_delete"
         android:src="@mipmap/ic_cancel_white_36dp"
-        android:background="@color/style_color_primary"
-        android:focusable="false"
         android:layout_alignTop="@+id/relativeLayout2"
         android:layout_toStartOf="@+id/relativeLayout2"
         android:layout_marginTop="45dp" />

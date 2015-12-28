@@ -379,7 +379,7 @@ public class BillWrite extends BaseActivity {
         AlertDialog.Builder builder=
                 new AlertDialog.Builder(BillWrite.this);
         View view= LayoutInflater.
-                from(BillWrite.this).inflate(R.layout.view_label_choose,null);
+                from(BillWrite.this).inflate(R.layout.layout_label_choose,null);
         RecyclerView recyclerView= (RecyclerView)
                 view.findViewById(R.id.label_choose_recyclerview);
         final TextView textView= (TextView) view.findViewById(R.id.label_choose_title);

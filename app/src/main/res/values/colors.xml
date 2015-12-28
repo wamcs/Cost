@@ -4,7 +4,7 @@
     <color name="style_color_primary_dark">#0277bd</color>
     <color name="style_color_accent">#f16897</color>
 
-    <color name="text_color_primary">#b3e5fc</color>
+    <color name="secondary_color">#b3e5fc</color>
 
     <color name="Nagitivation_color">#fff</color>
 
@@ -72,6 +72,10 @@
     <color name="bill_cover_checked5">#145750</color>
 
     <color name="cost_divider">#77bdbdbd</color>
+
+    <color name="item_book_add_button_color">#85d0ff</color>
+
+    <color name="ensure_button_color">#2e94d2</color>
 
 
 </resources>

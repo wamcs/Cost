@@ -27,11 +27,14 @@ public abstract class ActivityController extends ContextController {
 
     private View mView;
 
-    public ActivityController(AppCompatActivity mActivity,View mView) {
-        super(mActivity);
-        this.mActivity=mActivity;
-        this.mView=mView;
-        ButterKnife.bind(this,mView);
+    public ActivityController(AppCompatActivity activity,View view) {
+        super(activity);
+        this.mActivity=activity;
+        this.mView=view;
+        if (isToolBarEnable()) {
+            ButterKnife.bind(this, view);
+            initToolBar();
+        }
 
     }
 
@@ -42,6 +45,10 @@ public abstract class ActivityController extends ContextController {
             actionBar.setHomeButtonEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+    }
+
+    protected boolean isToolBarEnable(){
+        return true;
     }
 
     public ActionBar getActionBar(){

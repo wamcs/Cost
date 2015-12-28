@@ -24,7 +24,7 @@ public abstract class ContextController extends BaseController {
         return mContext;
     }
 
-    public Drawable getDrawabel (int resId){
+    public Drawable getDrawable (int resId){
         return mContext.getResources().getDrawable(resId);
     }
 

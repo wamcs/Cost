@@ -1,9 +1,12 @@
 package com.example.cost.Controller;
 
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.example.cost.Controller.Base.ActivityController;
+
+import butterknife.ButterKnife;
 
 /**
  * author:wamcs
@@ -12,7 +15,13 @@ import com.example.cost.Controller.Base.ActivityController;
  */
 public class AboutUsActivityController extends ActivityController{
 
-    public AboutUsActivityController(AppCompatActivity mActivity, View mView) {
-        super(mActivity, mView);
+    public AboutUsActivityController(AppCompatActivity activity, View view) {
+        super(activity, view);
+        ButterKnife.bind(this, view);
+    }
+
+    private void initToolbar(){
+        ActionBar actionBar=getActionBar();
+
     }
 }

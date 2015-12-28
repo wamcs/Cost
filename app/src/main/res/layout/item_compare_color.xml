@@ -7,14 +7,14 @@
         <ImageView
             android:layout_width="100dp"
             android:layout_height="match_parent"
-            android:id="@+id/view_compare_income"
+            android:id="@id/view_compare_income"
             android:background="#53d7a6"
             android:layout_alignParentStart="true"
             />
         <ImageView
             android:layout_width="100dp"
             android:layout_height="match_parent"
-            android:id="@+id/view_compare_pay"
+            android:id="@id/view_compare_pay"
             android:background="#ddf59d"
             android:layout_alignParentEnd="true"
             />

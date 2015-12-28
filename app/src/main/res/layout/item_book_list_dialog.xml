@@ -6,5 +6,5 @@
     android:layout_width="@dimen/dialog_radio_pic_lsize"
     android:layout_height="@dimen/dialog_radio_pic_hsize"
     android:layout_margin="@dimen/dialog_radio_pic_pad"
-    android:id="@+id/ngv_dia_grid_btn"/>
+    android:id="@id/item_book_list_dialog_button"/>
 </LinearLayout>

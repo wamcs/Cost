@@ -53,12 +53,12 @@ public class ColorChooseAdapter extends BaseAdapter {
         final viewHolder viewholder;
         if(convertView==null) {
             convertView = LayoutInflater.from(context).
-                    inflate(R.layout.view_color_choose_item, parent, false);
+                    inflate(R.layout.item_color_choose, parent, false);
             viewholder = new viewHolder();
             viewholder.imageView =
-                    (ImageView) convertView.findViewById(R.id.label_choose_item);
+                    (ImageView) convertView.findViewById(R.id.label_setting_activity_choose_color_item);
             viewholder.linearLayout=
-                    (LinearLayout) convertView.findViewById(R.id.label_choose_layout);
+                    (LinearLayout) convertView.findViewById(R.id.label_setting_activity_choose_layout_item);
             convertView.setTag(viewholder);
         }
         else{

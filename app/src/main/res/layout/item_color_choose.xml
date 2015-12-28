@@ -3,11 +3,11 @@
     android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:id="@+id/label_choose_layout">
+    android:id="@id/label_setting_activity_choose_layout_item">
     <ImageView
         android:layout_width="@dimen/color_choose_width"
         android:layout_height="@dimen/color_choose_height"
-        android:id="@+id/label_choose_item"
+        android:id="@id/label_setting_activity_choose_color_item"
         android:layout_margin="10dp"
         />
 
