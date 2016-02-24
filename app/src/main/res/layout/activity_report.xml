@@ -4,11 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
     <android.support.v7.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/style_color_primary"
-        android:id="@+id/activity_report_toolbar"
-        />
+        style="@style/Toolbar"
+        android:id="@id/tool_bar">
+        <include layout="@layout/layout_default_toolbar"/>
+    </android.support.v7.widget.Toolbar>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -35,7 +34,7 @@
                     android:textSize="@dimen/head_textsize_top"
                     android:layout_gravity="center"
                     />
-                <com.example.cost.contrl.ColorCompareView
+                <com.example.cost.UI.Widget.ColorCompareView
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
                     android:padding="5dp"
@@ -106,7 +105,7 @@
                         android:textSize="@dimen/head_textsize_top"
                         android:layout_gravity="center"
                         />
-                    <com.example.cost.contrl.ColorCompareView
+                    <com.example.cost.UI.Widget.ColorCompareView
                         android:layout_width="match_parent"
                         android:layout_height="25dp"
                         android:padding="5dp"
@@ -178,7 +177,7 @@
                         android:textSize="@dimen/head_textsize_top"
                         android:layout_gravity="center"
                         />
-                    <com.example.cost.contrl.ColorCompareView
+                    <com.example.cost.UI.Widget.ColorCompareView
                         android:layout_width="match_parent"
                         android:layout_height="25dp"
                         android:padding="5dp"
@@ -251,7 +250,7 @@
                         android:textSize="@dimen/head_textsize_top"
                         android:layout_gravity="center"
                         />
-                    <com.example.cost.contrl.ColorCompareView
+                    <com.example.cost.UI.Widget.ColorCompareView
                         android:layout_width="match_parent"
                         android:layout_height="25dp"
                         android:padding="5dp"

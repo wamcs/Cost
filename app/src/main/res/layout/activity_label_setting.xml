@@ -2,7 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <include layout="@layout/view_toolbar"/>
+    <android.support.v7.widget.Toolbar
+        style="@style/Toolbar"
+        android:id="@id/tool_bar">
+        <include layout="@layout/layout_default_toolbar"/>
+    </android.support.v7.widget.Toolbar>
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,7 +23,7 @@
             android:layout_marginTop="@dimen/label_setting_height"
             android:layout_height="1dp"
             android:background="@color/backgroud"/>
-        <include layout="@layout/view_label_show"
+        <include layout="@layout/layout_label_show"
             android:layout_marginTop="@dimen/label_setting_margin"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

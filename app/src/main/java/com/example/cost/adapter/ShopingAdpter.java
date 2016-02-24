@@ -13,8 +13,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import com.example.cost.R;
 import com.example.cost.activity.BillWrite;
-import com.example.cost.contrl.CircleImageView;
-import com.example.cost.datebase.BillDateHelper;
+import com.example.cost.UI.Widget.CircleImageView;
+import com.example.cost.datebase.BillDataHelper;
 
 import java.util.ArrayList;
 
@@ -29,14 +29,14 @@ public class ShopingAdpter extends BaseAdapter {
     private Context context;
     private ViewHolder last;
     private int lastposition;
-    private BillDateHelper billDateHelper;
+    private BillDataHelper billDataHelper;
     private Connection connection;
 
     public ShopingAdpter(Context context,ArrayList<String> namelist,ArrayList<Integer> idlist){
         this.context=context;
         this.namelist=namelist;
         this.idlist=idlist;
-        billDateHelper=new BillDateHelper(context,"allbill.db",1);
+        billDataHelper =new BillDataHelper(context,"allbill.db",1);
     }
     @Override
     public int getCount() {
@@ -58,14 +58,14 @@ public class ShopingAdpter extends BaseAdapter {
         final ViewHolder viewHolder;
         if(convertView==null){
             convertView= LayoutInflater.from(context)
-                    .inflate(R.layout.view_shoppinglist_item, null);
+                    .inflate(R.layout.item_shooping_list_view, null);
             viewHolder=new ViewHolder();
             viewHolder.editText= (EditText) convertView.
-                    findViewById(R.id.view_shoppinglist_edittext);
+                    findViewById(R.id.item_shopping_list_edittext);
             viewHolder.imageButton= (ImageButton) convertView
-                    .findViewById(R.id.view_shoppinglist_imagebutton);
+                    .findViewById(R.id.item_shopping_list_imagebutton);
             viewHolder.circleImageView= (CircleImageView) convertView
-                    .findViewById(R.id.view_shoppinglist_radio);
+                    .findViewById(R.id.item_shopping_list_radio);
             convertView.setTag(viewHolder);
         }
         else
@@ -79,7 +79,7 @@ public class ShopingAdpter extends BaseAdapter {
                     last.editText.setFocusable(false);
                     last.imageButton.setVisibility(View.INVISIBLE);
                     last.editText.setCursorVisible(false);
-                    billDateHelper.updateShopping(last.editText.getText().toString(),
+                    billDataHelper.updateShopping(last.editText.getText().toString(),
                             idlist.get(lastposition));
                     initData();
                     notifyDataSetChanged();
@@ -106,7 +106,7 @@ public class ShopingAdpter extends BaseAdapter {
         viewHolder.imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                billDateHelper.deleteShopping(idlist.get(position));
+                billDataHelper.deleteShopping(idlist.get(position));
                 initData();
                 notifyDataSetChanged();
             }
@@ -127,7 +127,7 @@ public class ShopingAdpter extends BaseAdapter {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction()==MotionEvent.ACTION_DOWN&&last!=null&&lastposition<idlist.size()){
-                    billDateHelper.updateShopping(last.editText.getText().toString(),
+                    billDataHelper.updateShopping(last.editText.getText().toString(),
                             idlist.get(lastposition));
                     last.editText.setCursorVisible(false);
                     last.editText.setFocusableInTouchMode(false);
@@ -155,7 +155,7 @@ public class ShopingAdpter extends BaseAdapter {
             namelist.clear();
         if(!idlist.isEmpty())
             idlist.clear();
-        SQLiteDatabase db=billDateHelper.getWritableDatabase();
+        SQLiteDatabase db= billDataHelper.getWritableDatabase();
         Cursor cursor=db.rawQuery("select * from shopping",null);
         for(;cursor.moveToNext();cursor.isAfterLast()){
             namelist.add(cursor.getString(cursor.getColumnIndex("name")));

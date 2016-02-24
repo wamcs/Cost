@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/view_shoppinglist_item_height"
+    android:layout_gravity="center_horizontal"
+    android:background="@color/style_color_primary"
+    >
+    <com.example.cost.UI.Widget.CircleImageView
+        android:layout_width="40dp"
+        android:layout_height= "20dp"
+        android:id="@id/item_shopping_list_radio"
+        android:layout_margin="10dp"
+        android:src="@color/shopping_list_radio_nocheck"
+        />
+
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:id="@id/item_shopping_list_edittext"
+        android:layout_weight="1"
+        android:cursorVisible="false"
+        android:background="@color/style_color_primary"
+        android:textColor="@color/secondary_color"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:ems="10"
+        android:singleLine="true" />
+    <ImageButton
+        android:layout_width="30dp"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:id="@id/item_shopping_list_imagebutton"
+        android:visibility="invisible"
+        android:background="@color/style_color_primary"
+        android:src="@mipmap/ic_cancel_white_36dp"/>
+</LinearLayout>

@@ -39,7 +39,7 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolderBody
     public ViewHolderBody onCreateViewHolder(ViewGroup parent, int viewType) {
         View view;
         ViewHolderBody viewHolder;
-        view=LayoutInflater.from(context).inflate(R.layout.view_activity_body,parent,false);
+        view=LayoutInflater.from(context).inflate(R.layout.layout_activity_body,parent,false);
         viewHolder=new ViewHolderBody(view);
         return viewHolder;
     }
@@ -73,10 +73,10 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolderBody
         private LinearLayout linearLayout;
         public ViewHolderBody(View itemView) {
             super(itemView);
-            month= (TextView) itemView.findViewById(R.id.view_activity_body_month);
-            date= (TextView) itemView.findViewById(R.id.view_activity_body_data);
-            recyclerView= (RecyclerView) itemView.findViewById(R.id.view_activity_body_recyclerview);
-            linearLayout = (LinearLayout) itemView.findViewById(R.id.linearLayout);
+            month= (TextView) itemView.findViewById(R.id.cost_activity_body_month_textview);
+            date= (TextView) itemView.findViewById(R.id.cost_activity_body_date_textview);
+            recyclerView= (RecyclerView) itemView.findViewById(R.id.cost_activity_body_recyclerview);
+            linearLayout = (LinearLayout) itemView.findViewById(R.id.cost_activity_body_linearLayout);
         }
     }
 

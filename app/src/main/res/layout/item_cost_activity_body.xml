@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@id/cost_activity_body_layout"
+    android:layout_margin="@dimen/detail_padding"
+    android:weightSum="2">
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@id/cost_activity_body_content"
+        android:text="午饭"
+        android:layout_marginStart="10dp"
+        android:textSize="@dimen/Title"
+        android:padding="@dimen/detail_body_item_padding"
+        android:gravity="start"
+        android:layout_weight="1"
+        />
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@id/cost_activity_body_money"
+        android:text="100"
+        android:textSize="@dimen/Title"
+        android:padding="@dimen/detail_body_item_padding"
+        android:gravity="end"
+        android:layout_marginEnd="10dp"
+        android:layout_weight="1"/>
+
+</LinearLayout>

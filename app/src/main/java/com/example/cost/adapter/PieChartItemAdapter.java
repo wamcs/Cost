@@ -5,11 +5,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.cost.R;
-import com.example.cost.contrl.CircleImageView;
+import com.example.cost.UI.Widget.CircleImageView;
 
 import java.util.ArrayList;
 
@@ -47,11 +46,11 @@ public class PieChartItemAdapter extends RecyclerView.Adapter
 
     @Override
     public ChartViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(context).inflate(R.layout.view_piechart_item,parent,false);
+        View view= LayoutInflater.from(context).inflate(R.layout.item_pie_chart,parent,false);
         ChartViewHolder viewHolder=new ChartViewHolder(view);
-        viewHolder.titletv= (TextView) view.findViewById(R.id.table_pieitem_title);
-        viewHolder.moneytv= (TextView) view.findViewById(R.id.table_pieitem_money);
-        viewHolder.proportiontv= (TextView) view.findViewById(R.id.table_pieitem_proportion);
+        viewHolder.titletv= (TextView) view.findViewById(R.id.table_pie_chart_item_title);
+        viewHolder.moneytv= (TextView) view.findViewById(R.id.table_pie_chart_item_money);
+        viewHolder.proportiontv= (TextView) view.findViewById(R.id.table_pie_chart_item_proportion);
         viewHolder.circleImageView= (CircleImageView) view.findViewById(R.id.table_circle_view);
         return viewHolder;
     }

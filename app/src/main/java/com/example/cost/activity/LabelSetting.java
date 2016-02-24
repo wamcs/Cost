@@ -1,23 +1,15 @@
 package com.example.cost.activity;
 
 import android.app.Dialog;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Rect;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
@@ -26,7 +18,7 @@ import com.example.cost.R;
 import com.example.cost.adapter.ColorChooseAdapter;
 import com.example.cost.adapter.LabelItemAdapter;
 import com.example.cost.contrl.RecyclerItemDivider;
-import com.example.cost.datebase.BillDateHelper;
+import com.example.cost.datebase.BillDataHelper;
 
 /**
  * 标签设置颜色选择
@@ -37,7 +29,7 @@ public class LabelSetting extends BaseActivity{
     private Toolbar toolbar;
     private ImageButton addBtn;
     private RecyclerView recyclerView;
-    private BillDateHelper billDateHelper;
+    private BillDataHelper billDataHelper;
     private LabelItemAdapter adapter;
     private int Color=-1;
 
@@ -45,7 +37,7 @@ public class LabelSetting extends BaseActivity{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_label_setting);
-        billDateHelper=new BillDateHelper(this,"allbill.db",1);
+        billDataHelper =new BillDataHelper(this,"allbill.db",1);
         init();
         setRecyclerView();
         setToolbar();
@@ -55,7 +47,7 @@ public class LabelSetting extends BaseActivity{
     public void init(){
         toolbar= (Toolbar) findViewById(R.id.toolbar);
         addBtn= (ImageButton) findViewById(R.id.activity_label_addbtn);
-        recyclerView= (RecyclerView) findViewById(R.id.activity_label_recycle);
+        recyclerView= (RecyclerView) findViewById(R.id.label_setting_activity_recyclerview);
     }
 
     public void setListener(){
@@ -70,10 +62,10 @@ public class LabelSetting extends BaseActivity{
     public void setupColorChoose(){
         AlertDialog.Builder builder=new AlertDialog.Builder(LabelSetting.this);
         View view= LayoutInflater.
-                from(this).inflate(R.layout.view_color_choose,null);
-        GridView gridView= (GridView) view.findViewById(R.id.label_color_gridView);
-        Button button= (Button) view.findViewById(R.id.label_color_confirm);
-        final ColorChooseAdapter adapter=new ColorChooseAdapter(LabelSetting.this,billDateHelper.getAllColors());
+                from(this).inflate(R.layout.layout_color_choose,null);
+        GridView gridView= (GridView) view.findViewById(R.id.label_setting_activity_color_gridView);
+        Button button= (Button) view.findViewById(R.id.label_setting_activity_color_confirm);
+        final ColorChooseAdapter adapter=new ColorChooseAdapter(LabelSetting.this, billDataHelper.getAllColors());
         adapter.setListener(new ColorChooseAdapter.ColorListener() {
             @Override
             public void getColor(int color) {
@@ -88,9 +80,9 @@ public class LabelSetting extends BaseActivity{
             @Override
             public void onClick(View v) {
                 if(Color!=-1) {
-                    billDateHelper.addlabel("新建标签", Color);
-                    int id = billDateHelper.getColorID(Color);
-                    billDateHelper.deleteColor(id);
+                    billDataHelper.addlabel("新建标签", Color);
+                    int id = billDataHelper.getColorID(Color);
+                    billDataHelper.deleteColor(id);
                     updateAdapter();
                     dialog.dismiss();
                 }
@@ -104,7 +96,7 @@ public class LabelSetting extends BaseActivity{
     }
 
     public void setRecyclerView(){
-        adapter=new LabelItemAdapter(this,billDateHelper.getLabelColor());
+        adapter=new LabelItemAdapter(this, billDataHelper.getLabelColor());
         LinearLayoutManager manager=new LinearLayoutManager(this);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.addItemDecoration(new RecyclerItemDivider(this));

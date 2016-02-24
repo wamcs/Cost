@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     >
-    <com.example.cost.contrl.RevealCircleBackgroud
+    <com.example.cost.UI.Widget.RevealCircleBackgroud
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/billwrite_reveal"
@@ -59,8 +59,8 @@
                     android:id="@+id/billwrite_getmoney"
                     android:layout_gravity="center_horizontal"
                     android:hint="金额"
-                    android:textColorHint="@color/text_color_primary"
-                    android:textColor="@color/text_color_primary"
+                    android:textColorHint="@color/secondary_color"
+                    android:textColor="@color/secondary_color"
                     android:ems="10"
                     android:inputType="number"
                     android:singleLine="true"
@@ -76,8 +76,8 @@
                     android:layout_height="@dimen/activity_billwrite_edittext_height"
                     android:id="@+id/billwrite_getremark"
                     android:hint="备注..."
-                    android:textColorHint="@color/text_color_primary"
-                    android:textColor="@color/text_color_primary"
+                    android:textColorHint="@color/secondary_color"
+                    android:textColor="@color/secondary_color"
                     android:ems="10"
                     android:textColorLink="#ffa7c3"
                     android:singleLine="true"/>

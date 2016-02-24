@@ -17,7 +17,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.cost.Util;
-import com.example.cost.datebase.BillDateHelper;
+import com.example.cost.datebase.BillDataHelper;
 import com.example.cost.R;
 import com.example.cost.contrl.CreateDialog;
 import java.util.ArrayList;
@@ -32,7 +32,7 @@ public class NagivationAdapter extends BaseAdapter {
     private ArrayList<Integer> coverlist = new ArrayList<>();
     private ArrayList<Integer> ID=new ArrayList<>();
     private int[] coverpictures = Util.billCover;
-    private BillDateHelper billDateHelper;
+    private BillDataHelper billDataHelper;
     private SQLiteDatabase db;
     private Context context;
     private LayoutInflater layoutInflater;
@@ -43,7 +43,7 @@ public class NagivationAdapter extends BaseAdapter {
     public NagivationAdapter(Context context) {
         this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
-        billDateHelper = new BillDateHelper(context, "allbill.db", 1);
+        billDataHelper = new BillDataHelper(context, "allbill.db", 1);
         initBasedate();
     }
 
@@ -82,8 +82,8 @@ public class NagivationAdapter extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
         if (getItemViewType(position)==0) {
 
-            convertView = layoutInflater.inflate(R.layout.view_nagitivation_addbtn, null);
-            ImageButton bt = (ImageButton) convertView.findViewById(R.id.ngv_btn);
+            convertView = layoutInflater.inflate(R.layout.item_book_list_add_button, null);
+            ImageButton bt = (ImageButton) convertView.findViewById(R.id.item_book_add_button);
             bt.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -96,7 +96,7 @@ public class NagivationAdapter extends BaseAdapter {
                             Map map = createDialog.getDate();
                             String name = map.get("name").toString();
                             int cover = Integer.parseInt(map.get("cover").toString());
-                            db = billDateHelper.getWritableDatabase();
+                            db = billDataHelper.getWritableDatabase();
                             db.execSQL("insert into billdirc values(null,'" + name + "'," + cover + ",0)");
                             initBasedate();
                             context.getSharedPreferences("billselect",
@@ -118,12 +118,12 @@ public class NagivationAdapter extends BaseAdapter {
         else {
             final viewHolder viewHolder;
             if (convertView == null) {
-                convertView = layoutInflater.inflate(R.layout.view_nagivation_item, null);
+                convertView = layoutInflater.inflate(R.layout.item_book_list, null);
                 viewHolder = new viewHolder();
-                viewHolder.delbutton = (ImageButton) convertView.findViewById(R.id.ngv_item_del);
-                viewHolder.modbutton = (ImageButton) convertView.findViewById(R.id.ngv_item_mod);
-                viewHolder.itembutton = (ImageButton) convertView.findViewById(R.id.ngv_item_iv);
-                viewHolder.title = (TextView) convertView.findViewById(R.id.nav_item_tv);
+                viewHolder.delbutton = (ImageButton) convertView.findViewById(R.id.item_book_delete);
+                viewHolder.modbutton = (ImageButton) convertView.findViewById(R.id.item_book_modification);
+                viewHolder.itembutton = (ImageButton) convertView.findViewById(R.id.item_book_face);
+                viewHolder.title = (TextView) convertView.findViewById(R.id.item_book_name);
                 convertView.setTag(viewHolder);
             } else {
                 viewHolder = (NagivationAdapter.viewHolder) convertView.getTag();
@@ -303,7 +303,7 @@ public class NagivationAdapter extends BaseAdapter {
         namelist.clear();
         coverlist.clear();
         ID.clear();
-        db = billDateHelper.getWritableDatabase();
+        db = billDataHelper.getWritableDatabase();
         Cursor name = db.rawQuery("select name from billdirc ", null);
         Cursor cover = db.rawQuery("select coverpicture from billdirc ", null);
         Cursor id=db.rawQuery("select _id from billdirc",null);
@@ -319,13 +319,13 @@ public class NagivationAdapter extends BaseAdapter {
     }
 
     public void modBasedate(String name, int cover, int position) {
-        db = billDateHelper.getWritableDatabase();
+        db = billDataHelper.getWritableDatabase();
         db.execSQL("update billdirc set name ='" + name + "', coverpicture = " +
                   cover + " where _id = " + position );
     }
 
     public void delBasedate(int position) {
-        db = billDateHelper.getWritableDatabase();
+        db = billDataHelper.getWritableDatabase();
         db.execSQL("delete from billdirc where _id = " + position);
     }
 }
