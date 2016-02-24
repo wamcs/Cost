@@ -11,10 +11,10 @@ import android.util.DisplayMetrics;
 public class Display {
 
     public static DisplayMetrics display(){
-        if (null == AppDate.getContext()){
+        if (null == AppData.getContext()){
             return null;
         }
-        return AppDate.getContext().getResources().getDisplayMetrics();
+        return AppData.getContext().getResources().getDisplayMetrics();
     }
 
     public static int width(){

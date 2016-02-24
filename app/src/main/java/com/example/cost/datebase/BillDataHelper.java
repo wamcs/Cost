@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.example.cost.R;
 import com.example.cost.Util;
+import com.example.cost.Utils.SharePreference;
 
 import java.sql.SQLClientInfoException;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BillDateHelper extends SQLiteOpenHelper{
+public class BillDataHelper extends SQLiteOpenHelper{
 
     /**
      * billdirc:账本集
@@ -74,7 +75,7 @@ public class BillDateHelper extends SQLiteOpenHelper{
             "primary key autoincrement,color integer)";
 
     private Context context;
-    public BillDateHelper(Context context, String name,int version) {
+    public BillDataHelper(Context context, String name, int version) {
         super(context, name, null, version);
         this.context=context;
 
@@ -94,9 +95,7 @@ public class BillDateHelper extends SQLiteOpenHelper{
         for(int i=0;i<Util.selectingColors.length;i++)
             db.execSQL("insert into colors values(null,"+Util.selectingColors[i]+")");
         db.execSQL("insert into billdirc values(null,'新建账本',0,0)");
-        context.getSharedPreferences("billselect",
-                Context.MODE_PRIVATE).edit().putInt("selectedID",1)
-                .commit();
+        SharePreference.put("selectedID", 1);
 
     }
 
@@ -133,7 +132,7 @@ public class BillDateHelper extends SQLiteOpenHelper{
     }
 
     //从bill里获取标签对应颜色
-    public int getcolor(String label){
+    public int getColorFromBill(String label){
         SQLiteDatabase db=getWritableDatabase();
         Cursor cursor=db.rawQuery("select distinct color from bill where label='" + label + "'", null);
         cursor.moveToNext();
@@ -156,7 +155,7 @@ public class BillDateHelper extends SQLiteOpenHelper{
 
     public int getColorID(int color){
         SQLiteDatabase db=getWritableDatabase();
-        Cursor cursor=db.rawQuery("select _id from colors where color="+color,null);
+        Cursor cursor=db.rawQuery("select _id from colors where color=" + color, null);
         cursor.moveToNext();
         int id=cursor.getInt(cursor.getColumnIndex("_id"));
         cursor.close();
@@ -212,7 +211,7 @@ public class BillDateHelper extends SQLiteOpenHelper{
 
     public String getLabel(int id){
         SQLiteDatabase db=getWritableDatabase();
-        Cursor cursor=db.rawQuery("select label from labelcolor where _id="+id,null);
+        Cursor cursor=db.rawQuery("select label from labelcolor where _id=" + id, null);
         cursor.moveToNext();
         String label=cursor.getString(cursor.getColumnIndex("label"));
         cursor.close();
@@ -221,7 +220,7 @@ public class BillDateHelper extends SQLiteOpenHelper{
     }
 
     //获取单项的详细信息
-    public Map<String,Object> getbillitem(int billitemID){
+    public Map<String,Object> getBillItem(int billitemID){
         Map<String,Object> map=new HashMap<>();
         SQLiteDatabase db=getWritableDatabase();
         Cursor cursor=db.rawQuery("select * from bill where _id="+billitemID,null);
@@ -255,7 +254,7 @@ public class BillDateHelper extends SQLiteOpenHelper{
     }
 
     //获取所给id的recycle表中的项
-    public Map<String,Object> getrecycle(int ID){
+    public Map<String,Object> getRecycle(int ID){
         Map<String,Object> map=new HashMap<>();
         SQLiteDatabase db=getWritableDatabase();
         Cursor cursor=db.rawQuery("select * from recycle where _id="+ID,null);
@@ -278,7 +277,7 @@ public class BillDateHelper extends SQLiteOpenHelper{
         return map;
     }
 
-    public ArrayList<Map<String,Integer>> getrecycle(){
+    public ArrayList<Map<String,Integer>> getRecycle(){
         ArrayList<Map<String,Integer>> list=new ArrayList<>();
         SQLiteDatabase db=getWritableDatabase();
         Cursor cursor=db.rawQuery("select * from recycle ",null);
@@ -326,7 +325,7 @@ public class BillDateHelper extends SQLiteOpenHelper{
         int billid=Integer.parseInt(map.get("billid").toString());
         Cursor cursor=db.rawQuery("select _id from bill where content='" + content + "' and income="
                 + income + " and pay=" + pay + " and label='" + label + "' and color=" + color
-                + " and billid=" + billid,null);
+                + " and billid=" + billid, null);
         for (;cursor.moveToNext();cursor.isAfterLast()) {
             int id = cursor.getInt(cursor.getColumnIndex("_id"));
             list.add(id);
@@ -337,7 +336,7 @@ public class BillDateHelper extends SQLiteOpenHelper{
 
     public void updateShopping(String name,int id){
         SQLiteDatabase db=getWritableDatabase();
-        db.execSQL("update shopping set name='"+name+"' where _id="+id);
+        db.execSQL("update shopping set name='" + name + "' where _id=" + id);
     }
 
     public void addShopping(){
@@ -345,7 +344,7 @@ public class BillDateHelper extends SQLiteOpenHelper{
         db.execSQL("insert into shopping values(null,'新建')");
     }
 
-    public void addbill(Map<String,Object> map){
+    public void addBill(Map<String, Object> map){
         SQLiteDatabase db=getWritableDatabase();
         String content=map.get("content").toString();
         int income=Integer.parseInt(map.get("income").toString());
@@ -365,7 +364,7 @@ public class BillDateHelper extends SQLiteOpenHelper{
                 + "," + billid + ")");
     }
 
-    public void addrecycle(Map<String,Object> map){
+    public void addRecycle(Map<String, Object> map){
         SQLiteDatabase db=getWritableDatabase();
         String content=map.get("content").toString();
         int income=Integer.parseInt(map.get("income").toString());
@@ -419,7 +418,7 @@ public class BillDateHelper extends SQLiteOpenHelper{
                 + ", period=" + period + " where _id="+id);
     }
 
-    public void deleterecycle(int id){
+    public void deleteRecycle(int id){
         SQLiteDatabase db=getWritableDatabase();
         db.execSQL("delete from recycle where _id="+id);
     }
@@ -434,7 +433,7 @@ public class BillDateHelper extends SQLiteOpenHelper{
         db.execSQL("delete from shopping where _id="+id);
     }
 
-    public int recycleTurntoString(int recycle){
+    public int recycleTurnToString(int recycle){
         int period=R.string.periodno;
         switch (recycle){
             case Util.PRO_DAY:
@@ -454,6 +453,61 @@ public class BillDateHelper extends SQLiteOpenHelper{
                 break;
         }
         return period;
+    }
+
+    public Map<String,Integer> getDataOfIncomeAndPay(int billId ,int year){
+        return  getDataOfIncomeAndPay(billId,year,-1,-1,-1);
+    }
+
+    public Map<String,Integer> getDataOfIncomeAndPay(int billId ,int year ,int month){
+        return getDataOfIncomeAndPay(billId,year,month,-1,-1);
+    }
+
+    public Map<String,Integer> getWeekDataOfIncomeAndPay(int billId ,int year ,int month ,int week){
+        return getDataOfIncomeAndPay(billId,year,month,week,-1);
+    }
+
+    public Map<String,Integer> getDateDataOfIncomeAndPay(int billId ,int year ,int month ,int date){
+        return getDataOfIncomeAndPay(billId, year, month, -1, date);
+    }
+
+    private Map<String,Integer> getDataOfIncomeAndPay(int billId ,int year ,int month ,int week ,int date){
+        SQLiteDatabase db=getWritableDatabase();
+        Cursor cursor;
+
+        if ( billId < 1){
+            throw new IllegalArgumentException("bill ID is lesser than 1");
+        }else if ( year < 0){
+            throw new IllegalArgumentException("year error");
+        }
+
+
+        if(month == -1){
+            cursor=db.rawQuery("select income,pay from bill where billid="
+                    + billId + " and year=" + year, null);
+        }else if (week == -1 && date ==-1){
+            cursor=db.rawQuery("select income,pay from bill where billid="
+                    +billId+" and year="+year+" and month="+month,null);
+        }else if (week != -1){
+            cursor=db.rawQuery("select income,pay from bill where billid="
+                    +billId+" and year="+year+" and month="+month+" and week="+week,null);
+        }else {
+            cursor=db.rawQuery("select income,pay from bill where billid="
+                    +billId+" and year="+year+" and month="+month+" and date="+date,null);
+        }
+
+        int income=0;
+        int pay=0;
+        for(;cursor.moveToNext();cursor.isAfterLast()){
+            income+=cursor.getInt(cursor.getColumnIndex("income"));
+            pay+=cursor.getInt(cursor.getColumnIndex("pay"));
+        }
+
+        Map<String,Integer> map=new HashMap<>();
+        map.put("income",income);
+        map.put("pay",pay);
+        cursor.close();
+        return map;
     }
 
 

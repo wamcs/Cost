@@ -20,7 +20,7 @@ import butterknife.ButterKnife;
  */
 public abstract class ActivityController extends ContextController {
 
-    @Bind(R.id.toolbar)
+    @Bind(R.id.tool_bar)
     Toolbar toolbar;
 
     private AppCompatActivity mActivity;

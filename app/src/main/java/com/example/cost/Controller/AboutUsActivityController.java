@@ -1,12 +1,15 @@
 package com.example.cost.Controller;
 
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.cost.Controller.Base.ActivityController;
+import com.example.cost.R;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * author:wamcs
@@ -15,13 +18,19 @@ import butterknife.ButterKnife;
  */
 public class AboutUsActivityController extends ActivityController{
 
+    @Bind(R.id.default_tool_bar_textview)
+    TextView mToolbarText;
+
+
     public AboutUsActivityController(AppCompatActivity activity, View view) {
         super(activity, view);
         ButterKnife.bind(this, view);
+        mToolbarText.setText("我们");
     }
 
-    private void initToolbar(){
-        ActionBar actionBar=getActionBar();
-
+    @OnClick(R.id.default_tool_bar_imageview)
+    void back(){
+        finish();
     }
+
 }

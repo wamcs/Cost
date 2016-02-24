@@ -16,8 +16,6 @@ public class FinalNumber {
 
     public static boolean isInitialize=false;
 
-    public static int year;
-    public static int month;
 
     public static int width;
 

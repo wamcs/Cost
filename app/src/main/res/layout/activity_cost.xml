@@ -16,10 +16,13 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <include layout="@layout/view_toolbar"
-            android:id="@+id/toolbar" />
+            <android.support.v7.widget.Toolbar
+                style="@style/Toolbar"
+                android:id="@id/tool_bar">
+                <include layout="@layout/layout_activity_toolbar"/>
+            </android.support.v7.widget.Toolbar>
             <include layout="@layout/layout_bill_list"
-                android:layout_below="@+id/toolbar"
+                android:layout_below="@+id/tool_bar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 />

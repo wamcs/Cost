@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.cost.R;
-import com.example.cost.datebase.BillDateHelper;
+import com.example.cost.datebase.BillDataHelper;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -22,13 +22,13 @@ public class LabelItemAdapter extends RecyclerView.Adapter<LabelItemAdapter.View
     private LabelItemAdapter.ViewHolder last;
     private int lastposition;
     private String lastlabel;
-    private BillDateHelper billDateHelper;
+    private BillDataHelper billDataHelper;
 
 
     public LabelItemAdapter(Context context,ArrayList<Map<String,Object>> arrayList){
         this.context=context;
         this.arrayList=arrayList;
-        billDateHelper=new BillDateHelper(context,"allbill.db",1);
+        billDataHelper =new BillDataHelper(context,"allbill.db",1);
     }
 
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -40,9 +40,9 @@ public class LabelItemAdapter extends RecyclerView.Adapter<LabelItemAdapter.View
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
                     if (event.getAction() == MotionEvent.ACTION_DOWN && last != null) {
-                        billDateHelper.updatelabel(last.editText.getText().toString(),
-                                billDateHelper.getlabelID(lastlabel));
-                        billDateHelper.modificateLabel(lastlabel, last.editText.getText().toString());
+                        billDataHelper.updatelabel(last.editText.getText().toString(),
+                                billDataHelper.getlabelID(lastlabel));
+                        billDataHelper.modificateLabel(lastlabel, last.editText.getText().toString());
                         last.editText.setFocusableInTouchMode(false);
                         last.editText.setFocusable(false);
                         last.editText.setCursorVisible(false);
@@ -69,9 +69,9 @@ public class LabelItemAdapter extends RecyclerView.Adapter<LabelItemAdapter.View
                     last.editText.setFocusableInTouchMode(false);
                     last.editText.setFocusable(false);
                     last.editText.setCursorVisible(false);
-                    billDateHelper.updatelabel(last.editText.getText().toString(),
-                            billDateHelper.getlabelID(lastlabel));
-                    billDateHelper.modificateLabel(lastlabel, last.editText.getText().toString());
+                    billDataHelper.updatelabel(last.editText.getText().toString(),
+                            billDataHelper.getlabelID(lastlabel));
+                    billDataHelper.modificateLabel(lastlabel, last.editText.getText().toString());
                     initData();
                     notifyDataSetChanged();
                 }
@@ -93,7 +93,7 @@ public class LabelItemAdapter extends RecyclerView.Adapter<LabelItemAdapter.View
     public void initData(){
         if(arrayList!=null)
             arrayList.clear();
-        arrayList=billDateHelper.getLabelColor();
+        arrayList= billDataHelper.getLabelColor();
     }
 
 

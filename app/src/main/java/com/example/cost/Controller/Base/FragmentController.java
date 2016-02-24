@@ -18,10 +18,12 @@ import butterknife.ButterKnife;
 public abstract class FragmentController extends ContextController {
 
     private Fragment mFragment;
+    private View mView;
 
     public FragmentController(Fragment fragment, ActivityController controller, View view) {
         super(controller.getContext());
         mFragment = fragment;
+        mView=view;
         ButterKnife.bind(this, view);
     }
 
@@ -58,4 +60,7 @@ public abstract class FragmentController extends ContextController {
         return mFragment.getFragmentManager();
     }
 
+    public View getRootView(){
+        return mView;
+    }
 }

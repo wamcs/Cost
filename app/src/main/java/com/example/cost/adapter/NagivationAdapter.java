@@ -17,7 +17,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.cost.Util;
-import com.example.cost.datebase.BillDateHelper;
+import com.example.cost.datebase.BillDataHelper;
 import com.example.cost.R;
 import com.example.cost.contrl.CreateDialog;
 import java.util.ArrayList;
@@ -32,7 +32,7 @@ public class NagivationAdapter extends BaseAdapter {
     private ArrayList<Integer> coverlist = new ArrayList<>();
     private ArrayList<Integer> ID=new ArrayList<>();
     private int[] coverpictures = Util.billCover;
-    private BillDateHelper billDateHelper;
+    private BillDataHelper billDataHelper;
     private SQLiteDatabase db;
     private Context context;
     private LayoutInflater layoutInflater;
@@ -43,7 +43,7 @@ public class NagivationAdapter extends BaseAdapter {
     public NagivationAdapter(Context context) {
         this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
-        billDateHelper = new BillDateHelper(context, "allbill.db", 1);
+        billDataHelper = new BillDataHelper(context, "allbill.db", 1);
         initBasedate();
     }
 
@@ -96,7 +96,7 @@ public class NagivationAdapter extends BaseAdapter {
                             Map map = createDialog.getDate();
                             String name = map.get("name").toString();
                             int cover = Integer.parseInt(map.get("cover").toString());
-                            db = billDateHelper.getWritableDatabase();
+                            db = billDataHelper.getWritableDatabase();
                             db.execSQL("insert into billdirc values(null,'" + name + "'," + cover + ",0)");
                             initBasedate();
                             context.getSharedPreferences("billselect",
@@ -303,7 +303,7 @@ public class NagivationAdapter extends BaseAdapter {
         namelist.clear();
         coverlist.clear();
         ID.clear();
-        db = billDateHelper.getWritableDatabase();
+        db = billDataHelper.getWritableDatabase();
         Cursor name = db.rawQuery("select name from billdirc ", null);
         Cursor cover = db.rawQuery("select coverpicture from billdirc ", null);
         Cursor id=db.rawQuery("select _id from billdirc",null);
@@ -319,13 +319,13 @@ public class NagivationAdapter extends BaseAdapter {
     }
 
     public void modBasedate(String name, int cover, int position) {
-        db = billDateHelper.getWritableDatabase();
+        db = billDataHelper.getWritableDatabase();
         db.execSQL("update billdirc set name ='" + name + "', coverpicture = " +
                   cover + " where _id = " + position );
     }
 
     public void delBasedate(int position) {
-        db = billDateHelper.getWritableDatabase();
+        db = billDataHelper.getWritableDatabase();
         db.execSQL("delete from billdirc where _id = " + position);
     }
 }

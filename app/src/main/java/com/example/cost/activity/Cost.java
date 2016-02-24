@@ -31,7 +31,7 @@ import com.example.cost.Util;
 import com.example.cost.adapter.BillAdapter;
 import com.example.cost.adapter.ShopingAdpter;
 import com.example.cost.contrl.RecyclerItemDivider;
-import com.example.cost.datebase.BillDateHelper;
+import com.example.cost.datebase.BillDataHelper;
 import com.example.cost.R;
 import com.example.cost.adapter.NagivationAdapter;
 import com.example.cost.service.TimeService;
@@ -51,7 +51,7 @@ import java.util.concurrent.Executors;
 public class Cost extends BaseActivity {
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
-    private BillDateHelper billDateHelper;
+    private BillDataHelper billDataHelper;
     private ListView listView;
     private RecyclerView recyclerView;
     private TextView titletv;
@@ -84,7 +84,7 @@ public class Cost extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cost);
-        billDateHelper=new BillDateHelper(this,"allbill.db",1);
+        billDataHelper =new BillDataHelper(this,"allbill.db",1);
 
         //id获取用于显示界面内具体内容
         id=this.getSharedPreferences("billselect",
@@ -159,8 +159,8 @@ public class Cost extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(billDateHelper!=null)
-            billDateHelper.close();
+        if(billDataHelper !=null)
+            billDataHelper.close();
     }
 
     @Override
@@ -272,7 +272,7 @@ public class Cost extends BaseActivity {
         adpter.setConnection(new ShopingAdpter.Connection() {
             @Override
             public void change(int id) {
-                    billDateHelper.deleteShopping(id);
+                    billDataHelper.deleteShopping(id);
                     initData();
                     adpter.notifyDataSetChanged();
 
@@ -281,7 +281,7 @@ public class Cost extends BaseActivity {
         shoppingadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                billDateHelper.addShopping();
+                billDataHelper.addShopping();
                 initData();
                 adpter.notifyDataSetChanged();
             }
@@ -335,7 +335,7 @@ public class Cost extends BaseActivity {
 
     public ArrayList<Integer> getTime(int id){
         ArrayList<Integer> time=new ArrayList<>();
-        SQLiteDatabase db=billDateHelper.getWritableDatabase();
+        SQLiteDatabase db= billDataHelper.getWritableDatabase();
         Cursor cursor=db.rawQuery("select distinct time from bill where billid="+id+" order by time desc", null);
         for(;cursor.moveToNext();cursor.isAfterLast()){
             time.add(cursor.getInt(cursor.getColumnIndex("time")));
@@ -347,7 +347,7 @@ public class Cost extends BaseActivity {
 
     public ArrayList<Map<String,Object>> getDateList(int time,int id){
         ArrayList<Map<String,Object>> datelist=new ArrayList<>();
-        SQLiteDatabase db=billDateHelper.getWritableDatabase();
+        SQLiteDatabase db= billDataHelper.getWritableDatabase();
         Cursor cursor=db.rawQuery("select * from bill where time="+time+" and billid="+id,null);
         for (;cursor.moveToNext();cursor.isAfterLast()){
             Map<String,Object> map=new HashMap<>();
@@ -374,7 +374,7 @@ public class Cost extends BaseActivity {
     }
 
     public String getTitle(int id){
-        SQLiteDatabase db=billDateHelper.getWritableDatabase();
+        SQLiteDatabase db= billDataHelper.getWritableDatabase();
         Cursor cursor=db.rawQuery("select name from billdirc where _id="+id,null);
         cursor.moveToNext();
         String name = cursor.getString(cursor.getColumnIndex("name"));
@@ -383,7 +383,7 @@ public class Cost extends BaseActivity {
     }
 
     public int getTotalIncome(int id){
-        SQLiteDatabase db=billDateHelper.getWritableDatabase();
+        SQLiteDatabase db= billDataHelper.getWritableDatabase();
         Cursor cursor=db.rawQuery("select income from bill where billid="+id,null);
         int income=0;
         for(;cursor.moveToNext();cursor.isAfterLast())
@@ -394,7 +394,7 @@ public class Cost extends BaseActivity {
     }
 
     public int getTotalPay(int id){
-        SQLiteDatabase db=billDateHelper.getWritableDatabase();
+        SQLiteDatabase db= billDataHelper.getWritableDatabase();
         Cursor cursor=db.rawQuery("select pay from bill where billid="+id,null);
         int pay=0;
         for(;cursor.moveToNext();cursor.isAfterLast())
@@ -408,7 +408,7 @@ public class Cost extends BaseActivity {
         namelist.clear();
         if(!idlist.isEmpty())
         idlist.clear();
-        SQLiteDatabase db=billDateHelper.getWritableDatabase();
+        SQLiteDatabase db= billDataHelper.getWritableDatabase();
         Cursor cursor=db.rawQuery("select * from shopping",null);
         for(;cursor.moveToNext();cursor.isAfterLast()){
             namelist.add(cursor.getString(cursor.getColumnIndex("name")));

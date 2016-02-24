@@ -19,7 +19,7 @@ import com.example.cost.R;
 import com.example.cost.Utils.SystemBarManager;
 import com.example.cost.Util;
 import com.example.cost.UI.Widget.RevealCircleBackgroud;
-import com.example.cost.datebase.BillDateHelper;
+import com.example.cost.datebase.BillDataHelper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,7 +41,7 @@ public class BillDetail extends BaseActivity{
     private RevealCircleBackgroud circleBackgroud;
     private LinearLayout linearLayout;
     private LinearLayout backLayout;
-    private BillDateHelper billDateHelper;
+    private BillDataHelper billDataHelper;
     private int billitemID;
     private Intent intent;
     private Intent change;
@@ -50,7 +50,7 @@ public class BillDetail extends BaseActivity{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bill_detail);
-        billDateHelper=new BillDateHelper(this,"allbill.db",1);
+        billDataHelper =new BillDataHelper(this,"allbill.db",1);
         billitemID=getIntent().getIntExtra("billitemID",1);
         init();
         initDate(billitemID);
@@ -80,7 +80,7 @@ public class BillDetail extends BaseActivity{
 
     //此方法用于数据加载
     public void initDate(int billitemID){
-        Map<String,Object> map=billDateHelper.getbillitem(billitemID);
+        Map<String,Object> map= billDataHelper.getBillItem(billitemID);
         String content=map.get("content").toString();
         int income=Integer.parseInt(map.get("income").toString());
         int pay=Integer.parseInt(map.get("pay").toString());
@@ -110,10 +110,10 @@ public class BillDetail extends BaseActivity{
         }
         if(recycleperiod==Util.NOPERIOD)
             periodtv.setText(getResources()
-                    .getString(billDateHelper.recycleTurntoString(recycleperiod)));
+                    .getString(billDataHelper.recycleTurnToString(recycleperiod)));
         else
             periodtv.setText(getResources()
-                    .getString(billDateHelper.recycleTurntoString(recycleperiod)));
+                    .getString(billDataHelper.recycleTurnToString(recycleperiod)));
     }
 
     //几个控件的点击事件
@@ -164,17 +164,17 @@ public class BillDetail extends BaseActivity{
 
     //删除该条目
     private void delele(){
-        Map<String,Object> billmap=billDateHelper.getbillitem(billitemID);
-        billDateHelper.deleteBill(billitemID);
+        Map<String,Object> billmap= billDataHelper.getBillItem(billitemID);
+        billDataHelper.deleteBill(billitemID);
         if((int)billmap.get("period")!=Util.NOPERIOD)
         {
-            int recycleid = billDateHelper.getRecycleID(billmap);
+            int recycleid = billDataHelper.getRecycleID(billmap);
             Map<String ,Object> map=new HashMap<>();
             map.put("period",0);
-            ArrayList<Integer> list=billDateHelper.getBillID(billmap);
+            ArrayList<Integer> list= billDataHelper.getBillID(billmap);
             for(int i=0;i<list.size();i++)
-                billDateHelper.updateBillRecycle(map,list.get(i));
-            billDateHelper.deleterecycle(recycleid);
+                billDataHelper.updateBillRecycle(map,list.get(i));
+            billDataHelper.deleteRecycle(recycleid);
         }
         sendBroadcast(change);
         finish();
